@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Theramanuel Brokerage Copy Trade, Finance and Investment ">
+	<meta name="keywords" content="Theramanuel, Brokerage, Copy, Trade, Finance, and, Investment">
+	<meta name="author" content="Warren Wong">
+	<meta name="theme-color" content="#E67300">
+	<!-- critical preload -->
+	<link rel="preload" href="{{ asset('js/vendors/bootstrap.bundle.min.js') }}" as="script">
+	<link rel="preload" href="{{ asset('css/style.css') }}" as="style">
+	<!-- icon preload -->
+	<link rel="preload" href="{{ asset('fonts/fa-brands-400.woff2') }}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{ asset('fonts/fa-solid-900.woff2') }}" as="font" type="font/woff2" crossorigin>
+	<!-- font preload -->
+	<link rel="preload" href="{{ asset('fonts/dm-sans-v11-latin-700.woff2') }}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{ asset('fonts/dm-sans-v11-latin-regular.woff2') }}" as="font" type="font/woff2"
+		crossorigin>
+	<!-- stylesheet -->
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="{{ asset('storage/' . $settings->favicon) }}" type="image/x-icon">
+	<!-- Touch icon -->
+	<link rel="apple-touch-icon-precomposed" href="{{ asset('storage/' . $settings->favicon) }}">
+	<title>Sign In - Theramanuel Brokerage</title>
+</head>
+
+<body>
+	<!-- page loader begin -->
+	<div
+		class="page-loader w-100 h-100 bg-white d-flex justify-content-center align-items-center position-fixed overflow-hidden">
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+	</div>
+	<!-- page loader end -->
+	<main>
+		<!-- section content begin -->
+		<section>
+			<div class="container-fluid overflow-hidden">
+				<div class="row vh-100">
+					<div class="col-7 bg-light shadow-lg d-none d-lg-block"
+						style="background-image: url({{ asset('img/blockit/in-signin-image.jpg') }}); background-size: cover;">
+					</div>
+					<div class="col-md-12 col-lg-5 d-flex align-items-center">
+						<div class="row justify-content-center">
+							<div class="col-md-8 col-lg-6">
+								<div class="text-center">
+									<a class="navbar-brand" href="{{ route('home') }}">
+										<img src="{{ asset('storage/' . $settings->logo) }}" alt="logo" width="110"
+											height="40" class="d-inline-block">
+									</a>
+									<p class="lead text-muted mt-1 mb-3">Log into your account</p>
+									<!-- login form begin -->
+									<form>
+										<div class="row g-1">
+											<div class="col-12">
+												<div class="input-group">
+													<input id="username" type="text" class="form-control"
+														placeholder="Username" aria-label="Username">
+													<span class="input-group-text"><i
+															class="fas fa-user fa-xs text-secondary"></i></span>
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="input-group">
+													<input id="password" type="password" class="form-control"
+														placeholder="Password" aria-label="Password">
+													<span class="input-group-text"><i
+															class="fas fa-lock fa-xs text-secondary"></i></span>
+												</div>
+											</div>
+											<div class="col-6 text-start">
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label"><small>Remember me</small></label>
+											</div>
+											<div class="col-6 text-end">
+												<a href="#" class="link-dark text-decoration-none"><small>Forgot
+														password?</small></a>
+											</div>
+											<div class="d-grid">
+												<button type="submit" class="btn btn-primary rounded-pill"
+													name="submit">Sign in</button>
+											</div>
+										</div>
+									</form>
+									<!-- login form end -->
+									<h6 class="mt-4 mb-4 text-line">
+										<span class="text-muted">Or sign in with</span>
+									</h6>
+									<div class="mb-3">
+										<a class="btn btn-light rounded-pill bg-google" href="#"><i
+												class="fab fa-google me-1"></i>Google</a>
+										<a class="btn btn-light rounded-pill bg-facebook" href="#"><i
+												class="fab fa-facebook-f me-1"></i>Facebook</a>
+									</div>
+									<small class="text-muted">Don't have an account? <a href="{{ route('register') }}"
+											class="link-primary text-decoration-none">Register here</a></small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section content end -->
+	</main>
+	<!-- javascript -->
+	<script src="{{ asset('js/vendors/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ asset('js/vendors/vanilla-marquee.min.js') }}"></script>
+	<script src="{{ asset('js/utilities.min.js') }}"></script>
+	<script src="{{ asset('js/config-theme.js') }}"></script>
+</body>
+
+</html>

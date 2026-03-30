@@ -1,0 +1,59 @@
+[
+    {
+        "name": "NFLX",
+        "current": "619.34",
+        "change": "+16.42",
+        "percentage": "+2.72%",
+        "logo": "https://s3-symbol-logo.tradingview.com/netflix--big.svg",
+        "subName": "Netflix, Inc."
+    },
+    {
+        "name": "XAUUSD",
+        "current": "2,089.00",
+        "change": "-6.70",
+        "percentage": "-0.32%",
+        "logo": "https://s3-symbol-logo.tradingview.com/metal/gold--big.svg",
+        "subName": "Gold Spot / U.S. Dollar"
+    },
+    {
+        "name": "BTCUSD",
+        "current": "63,774.96",
+        "change": "+1,905.66",
+        "percentage": "+3.08%",
+        "logo": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC--big.svg",
+        "subName": "Bitcoin"
+    },
+    {
+        "name": "EURUSD",
+        "current": "1.0845",
+        "change": "+0.0006",
+        "percentage": "+0.0542%",
+        "logo": [
+            "https://s3-symbol-logo.tradingview.com/country/US--big.svg",
+            "https://s3-symbol-logo.tradingview.com/country/EU--big.svg"
+        ],
+        "subName": "Euro / U.S. Dollar"
+    },
+    {
+        "name": "AUDUSD",
+        "current": "0.6526",
+        "change": "+0.0000",
+        "percentage": "+0.0007%",
+        "logo": [
+            "https://s3-symbol-logo.tradingview.com/country/US--big.svg",
+            "https://s3-symbol-logo.tradingview.com/country/AU--big.svg"
+        ],
+        "subName": "Australian Dollar / U.S. Dollar"
+    },
+    {
+        "name": "USDJPY",
+        "current": "150.0780",
+        "change": "+0.0140",
+        "percentage": "+0.0093%",
+        "logo": [
+            "https://s3-symbol-logo.tradingview.com/country/JP--big.svg",
+            "https://s3-symbol-logo.tradingview.com/country/US--big.svg"
+        ],
+        "subName": "U.S. Dollar / Japanese Yen"
+    }
+]

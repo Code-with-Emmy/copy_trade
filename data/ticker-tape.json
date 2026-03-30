@@ -1,0 +1,53 @@
+[
+    {
+        "name": "NFLX",
+        "current": "619.34",
+        "change": "+16.42",
+        "percentage": "+2.72%",
+        "logo": "https://s3-symbol-logo.tradingview.com/netflix--big.svg"
+    },
+    {
+        "name": "XAUUSD",
+        "current": "2,089.50",
+        "change": "-6.20",
+        "percentage": "-0.30%",
+        "logo": "https://s3-symbol-logo.tradingview.com/metal/gold--big.svg"
+    },
+    {
+        "name": "BTCUSD",
+        "current": "63,264.79",
+        "change": "+1,483.57",
+        "percentage": "+2.40%",
+        "logo": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC--big.svg"
+    },
+    {
+        "name": "EURUSD",
+        "current": "1.0846",
+        "change": "+0.0007",
+        "percentage": "+0.0651%",
+        "logo": [
+            "https://s3-symbol-logo.tradingview.com/country/US--big.svg",
+            "https://s3-symbol-logo.tradingview.com/country/EU--big.svg"
+        ]
+    },
+    {
+        "name": "AUDUSD",
+        "current": "0.6521",
+        "change": "-0.0004",
+        "percentage": "-0.0646%",
+        "logo": [
+            "https://s3-symbol-logo.tradingview.com/country/US--big.svg",
+            "https://s3-symbol-logo.tradingview.com/country/AU--big.svg"
+        ]
+    },
+    {
+        "name": "USDJPY",
+        "current": "150.1250",
+        "change": "+0.0610",
+        "percentage": "+0.0407%",
+        "logo": [
+            "https://s3-symbol-logo.tradingview.com/country/JP--big.svg",
+            "https://s3-symbol-logo.tradingview.com/country/US--big.svg"
+        ]
+    }
+]

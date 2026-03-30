@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Theramanuel Brokerage Copy Trade, Finance and Investment ">
+	<meta name="keywords" content="Theramanuel, Brokerage, Copy, Trade, Finance, and, Investment">
+	<meta name="author" content="Warren Wong">
+	<meta name="theme-color" content="#E67300">
+	<!-- critical preload -->
+	<link rel="preload" href="{{ asset('js/vendors/bootstrap.bundle.min.js') }}" as="script">
+	<link rel="preload" href="{{ asset('css/style.css') }}" as="style">
+	<!-- icon preload -->
+	<link rel="preload" href="{{ asset('fonts/fa-brands-400.woff2') }}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{ asset('fonts/fa-solid-900.woff2') }}" as="font" type="font/woff2" crossorigin>
+	<!-- font preload -->
+	<link rel="preload" href="{{ asset('fonts/dm-sans-v11-latin-700.woff2') }}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{ asset('fonts/dm-sans-v11-latin-regular.woff2') }}" as="font" type="font/woff2" crossorigin>
+	<!-- stylesheet -->
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="{{ asset('storage/' . $settings->favicon) }}" type="image/x-icon">
+	<!-- Touch icon -->
+	<link rel="apple-touch-icon-precomposed" href="{{ asset('storage/' . $settings->favicon) }}">
+	<title>Blog - Theramanuel Brokerage</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+	<!-- page loader begin -->
+	<div class="page-loader w-100 h-100 bg-white d-flex justify-content-center align-items-center position-fixed overflow-hidden">
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+	</div>
+	<!-- page loader end -->
+	<!-- ticker content begin -->
+	<section class="bg-primary">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<h1 class="d-none">Stock price ticker</h1>
+					<ul class="ticker-tape"></ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ticker content end -->
+	<!-- header begin -->
+	<header class="navbar navbar-expand-lg navbar-light">
+		<div class="container">
+			<a class="navbar-brand" href="{{ route('home') }}">
+				<img src="{{ asset('storage/' . $settings->logo) }}" alt="logo" width="180" height="65" class="d-inline-block">
+			</a>
+			<div class="collapse navbar-collapse d-flex justify-content-between d-none d-xl-block" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('home') }}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('markets') }}">Markets</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="" id="dropdownCompany" data-bs-toggle="dropdown" aria-expanded="false">Company</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ route('about') }}">About</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('blog') }}">Blog</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('careers') }}">Careers</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('contact') }}">Contact</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('education') }}">Education</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="" id="dropdownResources" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Documentation<i class="fas fa-square-arrow-up-right fa-sm"></i></a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('faq') }}">Help Center</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('customers') }}">Customers</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('roadmap') }}">Roadmap</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('terms') }}">Legal Docs<i class="fas fa-gavel fa-sm"></i></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="optional-link d-flex align-items-center ms-4 d-none d-xl-block">
+					<a href="{{ route('login') }}" class="btn btn-link link-secondary text-decoration-none">Sign in</a>
+					<a href="{{ route('register') }}" class="btn btn-outline-primary rounded-pill">Get started<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<!-- breadcrumb content begin -->
+	<section class="section-breadcrumb">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 position-relative text-center">
+					<h1 class="mt-0 mb-1">Blog</h1>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb mb-0">
+							<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+						</ol>
+					</nav>
+					<img class="position-absolute card-decor animate-5" src="{{ asset('img/in-theramanuel-4-decor-1.svg') }}" alt="decor" style="top: 25%; left: 5%;">
+					<img class="position-absolute card-decor animate-6" src="{{ asset('img/in-theramanuel-4-decor-2.svg') }}" alt="decor" style="top: -22%; left: 30%;">
+					<img class="position-absolute card-decor animate-7" src="{{ asset('img/in-theramanuel-4-decor-3.svg') }}" alt="decor" style="top: -16%; left: 72%;">
+					<img class="position-absolute card-decor animate-6" src="{{ asset('img/in-theramanuel-4-decor-4.svg') }}" alt="decor" style="top: 89%; left: 94%;">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- breadcrumb content end -->
+	<main data-title="blog">
+		<!-- section content begin -->
+		<div class="py-5">
+			<div class="container">
+				<div class="row gy-3 gy-lg-0">
+					<div class="col-md-12 col-lg-8">
+						<article class="card mb-4">
+							<div class="card-body blog-card p-3 p-md-4">
+								<h3>
+									<a href="blog/shortfalls-of-some-cold-and-flu-meds-continue-amid.html" class="link-dark text-decoration-none">Shortfalls of some cold and flu meds continue amid shifting respiratory virus season</a>
+								</h3>
+								<p>Experts say there will likely be a post-holiday bump in respiratory virus numbers, and that could put an even greater strain on supplies of some medications that have been hard to find amid a severe illness season.</p>
+								<div class="blog-author d-flex align-items-center">
+									<img class="rounded-circle me-1" src="{{ asset('img/user/author-85z9UC.jpg') }}" alt="author" width="32" height="32">
+									<small class="text-muted">
+										Theramanuel<span class="mx-1">•</span>
+									</small>
+									<small class="text-muted">
+										December 29, 2022
+									</small>
+								</div>
+							</div>
+							<div class="card-footer blog-footer d-flex justify-content-between align-items-center px-3 px-md-4 py-2">
+								<span class="badge bg-primary">Health</span>
+								<a href="blog/shortfalls-of-some-cold-and-flu-meds-continue-amid.html" class="btn btn-link link-primary text-decoration-none p-0">Read more<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+							</div>
+						</article>
+						<!-- pagination begin -->
+						<ul class="pagination justify-content-center"></ul>
+						<!-- pagination end -->
+					</div>
+					<div class="col-md-12 col-lg-4 mt-md-3 mt-lg-0">
+						<!-- widget search begin -->
+						<aside class="mb-4">
+							<form name="blog-search" class="needs-validation" novalidate>
+								<div class="input-group">
+									<input type="search" class="form-control" placeholder="Search here..." required>
+									<button class="btn btn-primary px-2" type="submit"><i class="fas fa-magnifying-glass fa-sm"></i></button>
+								</div>
+							</form>
+						</aside>
+						<!-- widget search end -->
+						<!-- widget categories begin -->
+						<aside class="mb-4">
+							<div class="card">
+								<div class="card-body ps-4 pe-4 pb-4">
+									<h5 class="fw-bold">Categories</h5>
+									<ul class="widget-categories list-unstyled lh-lg mb-n1"></ul>
+								</div>
+							</div>
+						</aside>
+						<!-- widget categories end -->
+						<!-- widget popular begin -->
+						<aside class="mb-4">
+							<div class="card">
+								<div class="card-body ps-4 pe-4 pb-4">
+									<h5 class="fw-bold">Latest News</h5>
+									<ul class="widget-latest list-group list-group-flush mb-n3"></ul>
+								</div>
+							</div>
+						</aside>
+						<!-- widget popular end -->
+						<!-- widget tags begin -->
+						<aside class="mb-4">
+							<div class="card">
+								<div class="card-body ps-4 pe-4 pb-4">
+									<h5 class="fw-bold">Tags</h5>
+									<div class="widget-tag"></div>
+								</div>
+							</div>
+						</aside>
+						<!-- widget tags end -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- section content end -->
+	</main>
+	<!-- footer begin -->
+	<footer class="bg-light pb-4 in-theramanuel-footer">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gy-4 gy-lg-0">
+				<div class="col">
+					<h5>Overview</h5>
+					<ul class="list-unstyled">
+						<li><a href="{{ route('register') }}">Open account</a></li>
+						<li><a href="{{ route('about') }}">Our company</a></li>
+						<li><a href="{{ route('login') }}">Login</a></li>
+						<li><a href="{{ route('careers') }}">Careers</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Account</h5>
+					<ul class="list-unstyled">
+						<li><a href="#">Client services</a></li>
+						<li><a href="#">VIP offering</a></li>
+						<li><a href="#">Corporate account</a></li>
+						<li><a href="{{ route('faq') }}">Support center</a></li>
+						<li><a href="#">Refer a friend</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Others</h5>
+					<ul class="list-unstyled">
+						<li><a href="#">Trade inspirations</a></li>
+						<li><a href="#">Outrageous predictions</a></li>
+						<li><a href="#">Quarterly outlook</a></li>
+						<li><a href="#">Margin information</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Get in Touch</h5>
+					<p>Contact us any time for getting support.</p>
+					<a class="footer-email" href="mailto:support@theramanuel.com">support@theramanuel.com</a>
+					<!-- social media begin -->
+					<div class="social-media-list small hstack">
+						<div><a href="https://www.facebook.com/theramanuel" class="color-facebook text-decoration-none"><i class="fab fa-facebook"></i> Facebook</a></div>
+						<div><a href="https://x.com/theramanuel" class="color-twitter text-decoration-none"><i class="fab fa-x-twitter"></i> X</a></div>
+						<div><a href="https://www.instagram.com/theramanuel" class="color-instagram text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a></div>
+					</div>
+					<!-- social media end -->
+				</div>
+				<div class="col-md-12 col-lg-12 text-center small mt-4">
+					<div class="trade-warning">
+						<h6 class="mb-1"><span><i class="fas fa-triangle-exclamation fa-sm"></i>Risk warning</span></h6>
+						<p class="mb-0">The prices of securities fluctuate, sometimes dramatically. The price of a security may move up or down, and may become valueless. It is as likely that losses will be incurred rather than profit made as a result of buying and selling securities.</p>
+					</div>
+					<p class="copyright-text">Copyright ©2023 Theramanuel Ltd. All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer end -->
+	<!-- to top begin -->
+	<div class="d-none d-md-block">
+		<a href="#" class="to-top fas fa-arrow-up text-decoration-none text-white"></a>
+	</div>
+	<!-- to top end -->
+	<!-- javascript -->
+	<script src="{{ asset('js/vendors/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ asset('js/vendors/vanilla-marquee.min.js') }}"></script>
+	<script src="{{ asset('js/utilities.min.js') }}"></script>
+	<script src="{{ asset('js/config-theme.js') }}"></script>
+</body>
+
+</html>
