@@ -2,13 +2,13 @@
 @section('title', 'Connect Your Wallet')
 @section('content')
 
-    <div class="space-y-10 animate-fadeIn" x-data="walletConnectManager()">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="walletConnectManager()">
 
         {{-- Breadcrumb & Header --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

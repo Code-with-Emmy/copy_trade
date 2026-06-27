@@ -1,15 +1,15 @@
 @extends('layouts.dasht')
-@section('title', 'Execution Log')
+@section('title', 'Trade History')
 @section('content')
 
-    <div class="page-content-stack animate-fadeIn" x-data="{ activeFilter: 'all' }">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="{ activeFilter: 'all' }">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
-                    <span class="text-slate-300">Market Execution Log</span>
+                    <span class="text-slate-300">Market Trade History</span>
                 </div>
                 <h1 class="text-3xl font-black text-white tracking-tight">Strategy <span
                         class="gold-text">Performance</span></h1>
@@ -20,30 +20,30 @@
             <div class="flex items-center space-x-3">
                 <div class="flex items-center px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-slate-400">
                     <i data-lucide="activity" class="w-4 h-4 mr-2 text-emerald-500 animate-pulse"></i>
-                    <span class="text-[10px] font-black uppercase tracking-widest">Real-time Stream Active</span>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Live Data Connected</span>
                 </div>
             </div>
         </div>
 
-        <!-- Performance Pulse -->
+        <!-- Your Stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             <div class="dashboard-glass p-5 sm:p-6 border-white/5 group">
                 <div class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Total Cycles</div>
-                <div class="text-3xl font-black text-white italic tracking-tighter">{{ $t_history->total() }}</div>
+                <div class="text-3xl font-black text-white  tracking-tighter">{{ $t_history->total() }}</div>
             </div>
             <div class="dashboard-glass p-5 sm:p-6 border-white/5 group">
-                <div class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Win Delta</div>
-                <div class="text-3xl font-black text-emerald-400 italic tracking-tighter">
+                <div class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Winning Trades</div>
+                <div class="text-3xl font-black text-emerald-400  tracking-tighter">
                     {{ $t_history->where('type', 'WIN')->count() }}</div>
             </div>
             <div class="dashboard-glass p-5 sm:p-6 border-white/5 group">
-                <div class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Loss Delta</div>
-                <div class="text-3xl font-black text-rose-500 italic tracking-tighter">
+                <div class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Losing Trades</div>
+                <div class="text-3xl font-black text-rose-500  tracking-tighter">
                     {{ $t_history->where('type', 'LOSE')->count() }}</div>
             </div>
             <div class="dashboard-glass p-5 sm:p-6 border-white/5 group">
                 <div class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Win Rate</div>
-                <div class="text-3xl font-black gold-text italic tracking-tighter">
+                <div class="text-3xl font-black gold-text  tracking-tighter">
                     {{ $t_history->total() > 0 ? number_format(($t_history->where('type', 'WIN')->count() / $t_history->total()) * 100, 1) : 0 }}%
                 </div>
             </div>
@@ -64,17 +64,17 @@
             <button @click="activeFilter = 'LOSE'"
                 :class="activeFilter === 'LOSE' ? 'bg-rose-500 text-black shadow-rose-500/10' : 'bg-rose-500/5 text-rose-500 hover:bg-rose-500/10'"
                 class="px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-xl">
-                Retracted
+                Lost
             </button>
             <button @click="activeFilter = 'Buy'"
                 :class="activeFilter === 'Buy' ? 'bg-blue-500 text-black shadow-blue-500/10' : 'bg-blue-500/5 text-blue-500 hover:bg-blue-500/10'"
                 class="px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-xl">
-                Active Long
+                Buy Orders
             </button>
             <button @click="activeFilter = 'Sell'"
                 :class="activeFilter === 'Sell' ? 'bg-orange-500 text-black shadow-orange-500/10' : 'bg-orange-500/5 text-orange-500 hover:bg-orange-500/10'"
                 class="px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-xl">
-                Active Short
+                Sell Orders
             </button>
         </div>
 

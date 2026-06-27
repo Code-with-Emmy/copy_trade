@@ -2,12 +2,12 @@
 @section('title', 'Social Copy Command Center')
 @section('content')
 
-<div class="page-content-stack animate-fadeIn" x-data="{ allocationChart: null, growthChart: null }">
+<div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="{ allocationChart: null, growthChart: null }">
     <!-- Breadcrumb & Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
         <div>
             <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                 <i data-lucide="chevron-right" class="w-3 h-3"></i>
                 <span class="text-slate-300">Social Copy Command Center</span>
             </div>
@@ -45,7 +45,7 @@
         <div class="dashboard-glass p-6 sm:p-8 relative overflow-hidden group hover:border-yellow-500/20 transition-all">
             <div class="absolute -right-10 -top-10 w-32 h-32 bg-yellow-500/5 blur-[50px] pointer-events-none group-hover:bg-yellow-500/10 transition-all"></div>
             <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Portfolio NAV</span>
-            <div class="text-3xl font-black text-white italic tracking-tighter mb-2">{{ auth()->user()->currency }}{{ number_format($portfolio['portfolio_value'], 2) }}</div>
+            <div class="text-3xl font-black text-white  tracking-tighter mb-2">{{ auth()->user()->currency }}{{ number_format($portfolio['portfolio_value'], 2) }}</div>
             <div class="flex items-center text-[10px] font-bold text-slate-400 uppercase">
                 <i data-lucide="activity" class="w-3 h-3 mr-2 gold-text"></i>
                 Consolidated Balance
@@ -55,7 +55,7 @@
         <div class="dashboard-glass p-6 sm:p-8 relative overflow-hidden group hover:border-yellow-500/20 transition-all">
             <div class="absolute -right-10 -top-10 w-32 h-32 bg-yellow-500/5 blur-[50px] pointer-events-none group-hover:bg-yellow-500/10 transition-all"></div>
             <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Allocated Capitol</span>
-            <div class="text-3xl font-black gold-text italic tracking-tighter mb-2">{{ auth()->user()->currency }}{{ number_format($portfolio['allocated_capital'], 2) }}</div>
+            <div class="text-3xl font-black gold-text  tracking-tighter mb-2">{{ auth()->user()->currency }}{{ number_format($portfolio['allocated_capital'], 2) }}</div>
             <div class="flex items-center text-[10px] font-bold text-slate-400 uppercase">
                 <i data-lucide="lock" class="w-3 h-3 mr-2 gold-text"></i>
                 Deployed Resources
@@ -65,7 +65,7 @@
         <div class="dashboard-glass p-6 sm:p-8 relative overflow-hidden group hover:border-yellow-500/20 transition-all">
             <div class="absolute -right-10 -top-10 w-32 h-32 bg-yellow-500/5 blur-[50px] pointer-events-none group-hover:bg-yellow-500/10 transition-all"></div>
             <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Realized Yield</span>
-            <div class="text-3xl font-black italic tracking-tighter mb-2 {{ $portfolio['realized_pl'] >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
+            <div class="text-3xl font-black  tracking-tighter mb-2 {{ $portfolio['realized_pl'] >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
                 {{ $portfolio['realized_pl'] >= 0 ? '+' : '-' }}{{ auth()->user()->currency }}{{ number_format(abs($portfolio['realized_pl']), 2) }}
             </div>
             <div class="flex items-center text-[10px] font-bold text-slate-400 uppercase">
@@ -77,7 +77,7 @@
         <div class="dashboard-glass p-6 sm:p-8 relative overflow-hidden group hover:border-yellow-500/20 transition-all">
             <div class="absolute -right-10 -top-10 w-32 h-32 bg-yellow-500/5 blur-[50px] pointer-events-none group-hover:bg-yellow-500/10 transition-all"></div>
             <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Floating P/L</span>
-            <div class="text-3xl font-black italic tracking-tighter mb-2 {{ $portfolio['unrealized_pl'] >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
+            <div class="text-3xl font-black  tracking-tighter mb-2 {{ $portfolio['unrealized_pl'] >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
                  {{ $portfolio['unrealized_pl'] >= 0 ? '+' : '-' }}{{ auth()->user()->currency }}{{ number_format(abs($portfolio['unrealized_pl']), 2) }}
             </div>
             <div class="flex items-center text-[10px] font-bold text-slate-400 uppercase">
@@ -117,7 +117,7 @@
                     </div>
                 @empty
                     <div class="text-center py-6">
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest italic leading-relaxed">No risk data detected. Activate a subscription to initialize tracking.</span>
+                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest  leading-relaxed">No risk data detected. Activate a subscription to initialize tracking.</span>
                     </div>
                 @endforelse
             </div>
@@ -127,7 +127,7 @@
     <!-- Active Subscriptions Management -->
     <div class="space-y-8">
         <div class="flex items-center justify-between border-b border-white/5 pb-6">
-             <h2 class="text-xl font-black text-white italic tracking-tight uppercase">Live <span class="gold-text">Allocations</span></h2>
+             <h2 class="text-xl font-black text-white  tracking-tight uppercase">Live <span class="gold-text">Allocations</span></h2>
              <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">{{ $portfolio['active_subscriptions']->count() }} Synchronized Nodes</span>
         </div>
 
@@ -141,11 +141,11 @@
                                     @if($subscription->trader && $subscription->trader->photo)
                                         <img src="{{ asset('storage/' . $subscription->trader->photo) }}" class="h-full w-full rounded-[14px] object-cover">
                                     @else
-                                        <span class="text-xl font-black gold-text italic tracking-tighter">{{ strtoupper(substr($subscription->name, 0, 1)) }}</span>
+                                        <span class="text-xl font-black gold-text  tracking-tighter">{{ strtoupper(substr($subscription->name, 0, 1)) }}</span>
                                     @endif
                                 </div>
                                 <div>
-                                    <h4 class="text-lg font-black text-white uppercase italic tracking-tight">{{ $subscription->name }}</h4>
+                                    <h4 class="text-lg font-black text-white uppercase  tracking-tight">{{ $subscription->name }}</h4>
                                     <div class="flex items-center mt-1">
                                         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
                                         <span class="text-[9px] font-black text-emerald-500 uppercase tracking-widest">Active Node Relay</span>
@@ -201,13 +201,13 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="bg-black/40 border border-white/5 rounded-2xl p-4 flex flex-col justify-center">
                                         <span class="text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Current P/L</span>
-                                        <div class="text-xl font-black italic tracking-tighter {{ ($subscription->current_balance - $subscription->allocation_amount) >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
+                                        <div class="text-xl font-black  tracking-tighter {{ ($subscription->current_balance - $subscription->allocation_amount) >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
                                             {{ auth()->user()->currency }}{{ number_format($subscription->current_balance - $subscription->allocation_amount, 2) }}
                                         </div>
                                     </div>
                                     <div class="bg-black/40 border border-white/5 rounded-2xl p-4 flex flex-col justify-center">
                                         <span class="text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Maturity Age</span>
-                                        <div class="text-xl font-black italic tracking-tighter text-white">
+                                        <div class="text-xl font-black  tracking-tighter text-white">
                                             {{ optional($subscription->started_at)->diffInDays() ?? 0 }}D
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
                                     </form>
                                 </div>
 
-                                <div class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10 text-[9px] text-slate-500 font-medium leading-relaxed italic">
+                                <div class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10 text-[9px] text-slate-500 font-medium leading-relaxed">
                                     <i data-lucide="info" class="w-3 h-3 gold-text inline mr-1 mb-0.5"></i>
                                     Updating allocation values will immediately recalibrate the copy-ratio for upcoming trade executions on this node.
                                 </div>
@@ -286,7 +286,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-8 py-10 text-center italic text-slate-600 text-xs font-bold uppercase tracking-widest opacity-30">No open market positions discovered.</td>
+                                <td colspan="4" class="px-8 py-10 text-center  text-slate-600 text-xs font-bold uppercase tracking-widest opacity-30">No open market positions discovered.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -299,7 +299,7 @@
             <div class="h-[300px] w-full bg-black/40 rounded-3xl p-6 border border-white/5">
                 <canvas id="profitChart"></canvas>
             </div>
-            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-[9px] text-slate-500 font-medium leading-relaxed italic">
+            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-[9px] text-slate-500 font-medium leading-relaxed">
                 <i data-lucide="terminal" class="w-3 h-3 text-emerald-500 inline mr-1 mb-0.5"></i>
                 Performance metrics are calculated based on closed subscription cycles and historical trade logs matched against your node reference.
             </div>

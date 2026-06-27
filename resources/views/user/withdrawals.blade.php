@@ -2,12 +2,12 @@
 @section('title', 'Withdrawal')
 @section('content')
 
-<div class="page-content-stack animate-fadeIn" x-data="{ selectedMethod: '' }">
+<div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="{ selectedMethod: '' }">
     <!-- Breadcrumb & Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
         <div>
             <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                 <i data-lucide="chevron-right" class="w-3 h-3"></i>
                 <span class="text-slate-300">Withdrawal</span>
             </div>
@@ -63,7 +63,7 @@
         </div>
     @else
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-10">
-            <!-- Extraction Panel -->
+            <!-- Withdraw Funds -->
             <div class="lg:col-span-8 space-y-6 xl:space-y-8">
                 <div class="dashboard-glass border-white/5 p-6 sm:p-8 xl:p-10">
                     <form method="POST" action="{{ route('withdrawamount') }}" class="space-y-8">

@@ -33,12 +33,12 @@
             }
         }
     @endphp
-    <div class="page-content-stack animate-fadeIn" x-data="verificationForm()">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="verificationForm()">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('account.verify') }}" class="hover:text-yellow-500 transition-colors">Registry</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -131,7 +131,7 @@
                         x-transition:enter-end="opacity-100 translate-x-0" class="p-8 md:p-12 space-y-10">
 
                         <div class="border-b border-white/5 pb-6">
-                            <h3 class="text-xl font-black text-white italic uppercase tracking-tight mb-2">Personal <span
+                            <h3 class="text-xl font-black text-white  uppercase tracking-tight mb-2">Personal <span
                                     class="gold-text">Identity</span></h3>
                             <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Provide core identity
                                 data as documented on your government credentials.</p>
@@ -197,7 +197,7 @@
                         x-transition:enter-end="opacity-100 translate-x-0" class="p-8 md:p-12 space-y-10" x-cloak>
 
                         <div class="border-b border-white/5 pb-6">
-                            <h3 class="text-xl font-black text-white italic uppercase tracking-tight mb-2">Address <span
+                            <h3 class="text-xl font-black text-white  uppercase tracking-tight mb-2">Address <span
                                     class="gold-text">Info</span></h3>
                             <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Specify your primary
                                 residential address for your account.</p>
@@ -281,7 +281,7 @@
                                         <input type="text" name="ssn" x-bind:required="isUS" placeholder="XXX-XX-XXXX"
                                             class="w-full bg-black/50 border border-white/10 rounded-xl px-6 py-4 text-white text-lg font-black tracking-[0.3em] font-mono focus:outline-none focus:border-yellow-500/50 transition-all">
                                     </div>
-                                    <p class="text-[9px] text-slate-600 font-bold uppercase italic">Your SSN is securely
+                                    <p class="text-[9px] text-slate-600 font-bold uppercase">Your SSN is securely
                                         hashed and encrypted at rest.</p>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                         x-transition:enter-end="opacity-100 translate-x-0" class="p-8 md:p-12 space-y-10" x-cloak>
 
                         <div class="border-b border-white/5 pb-6">
-                            <h3 class="text-xl font-black text-white italic uppercase tracking-tight mb-2">Document <span
+                            <h3 class="text-xl font-black text-white  uppercase tracking-tight mb-2">Document <span
                                     class="gold-text">Upload</span></h3>
                             <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Upload clear photos of
                                 your identity document.</p>

@@ -14,7 +14,7 @@
                             class="h-full w-full rounded-[14px] object-cover">
                     @else
                         <span
-                            class="text-xl font-black gold-text italic tracking-tighter">{{ strtoupper(substr($trader->name, 0, 1)) }}</span>
+                            class="text-xl font-black gold-text  tracking-tighter">{{ strtoupper(substr($trader->name, 0, 1)) }}</span>
                     @endif
                 </div>
                 @if($trader->verification_status === 'verified')
@@ -26,7 +26,7 @@
             </div>
             <div>
                 <h3
-                    class="text-lg font-black text-white uppercase italic tracking-tight group-hover:gold-text transition-colors">
+                    class="text-lg font-black text-white uppercase  tracking-tight group-hover:gold-text transition-colors">
                     {{ $trader->name }}</h3>
                 <div class="flex items-center mt-1">
                     <span
@@ -48,27 +48,27 @@
     <div class="grid grid-cols-2 gap-4 mb-8">
         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">30D Return</span>
-            <div class="text-xl font-black italic tracking-tighter text-emerald-400 font-mono">
+            <div class="text-xl font-black  tracking-tighter text-emerald-400 font-mono">
                 +{{ number_format((float) $trader->monthly_roi, 2) }}%
             </div>
         </div>
         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Risk Factor</span>
             <div
-                class="text-xl font-black italic tracking-tighter {{ $trader->risk_level == 'low' ? 'text-emerald-400' : 'text-yellow-500' }} uppercase">
+                class="text-xl font-black  tracking-tighter {{ $trader->risk_level == 'low' ? 'text-emerald-400' : 'text-yellow-500' }} uppercase">
                 {{ $trader->risk_level ?: 'B1' }}
             </div>
         </div>
         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Max Drawdown</span>
-            <div class="text-lg font-black italic tracking-tighter text-rose-400 font-mono">
+            <div class="text-lg font-black  tracking-tighter text-rose-400 font-mono">
                 {{ number_format((float) $trader->max_drawdown, 2) }}%
             </div>
         </div>
         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Win
                 Probability</span>
-            <div class="text-lg font-black italic tracking-tighter text-white font-mono">
+            <div class="text-lg font-black  tracking-tighter text-white font-mono">
                 {{ number_format((float) $trader->win_rate, 1) }}%
             </div>
         </div>

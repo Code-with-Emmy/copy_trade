@@ -2,12 +2,12 @@
 @section('title', $title)
 @section('content')
 
-    <div class="space-y-12 animate-fadeIn" x-data="tradeMonitor()" x-cloak>
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="tradeMonitor()" x-cloak>
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('trade.index') }}" class="hover:text-yellow-500 transition-colors">Markets</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -45,7 +45,7 @@
                         @if ($instrument && $instrument->logo)
                             <img src="{{ $instrument->logo }}" alt="{{ $trade->assets }}" class="w-full h-full object-contain">
                         @else
-                            <span class="text-2xl font-black gold-text italic">{{ substr($trade->assets, 0, 2) }}</span>
+                            <span class="text-2xl font-black gold-text">{{ substr($trade->assets, 0, 2) }}</span>
                         @endif
                     </div>
                     <div>
@@ -67,17 +67,17 @@
                     @endphp
                     @if ($trade->active === 'yes')
                         <div
-                            class="px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-[10px] font-black gold-text uppercase tracking-widest italic animate-pulse">
+                            class="px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-[10px] font-black gold-text uppercase tracking-widest  animate-pulse">
                             Node Running
                         </div>
                     @else
                         <div
-                            class="px-4 py-1.5 rounded-full {{ $isSuccess ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-rose-500/10 border-rose-500/20 text-rose-400' }} text-[10px] font-black uppercase tracking-widest italic">
+                            class="px-4 py-1.5 rounded-full {{ $isSuccess ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-rose-500/10 border-rose-500/20 text-rose-400' }} text-[10px] font-black uppercase tracking-widest">
                             {{ $isSuccess ? 'Signal Success' : 'Signal Terminated' }}
                         </div>
                     @endif
 
-                    <div class="text-3xl font-black text-white italic tracking-tighter">
+                    <div class="text-3xl font-black text-white  tracking-tighter">
                         {{ Auth::user()->currency }}{{ number_format($trade->amount, 2) }}
                     </div>
                 </div>
@@ -93,10 +93,10 @@
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center space-x-3">
                                 <i data-lucide="zap" class="w-5 h-5 gold-text animate-pulse"></i>
-                                <span class="text-xs font-black text-white uppercase tracking-widest italic">Live Synchronicity
+                                <span class="text-xs font-black text-white uppercase tracking-widest">Live Synchronicity
                                     Telemetry</span>
                             </div>
-                            <div class="text-[10px] font-black text-slate-500 uppercase tracking-widest italic">
+                            <div class="text-[10px] font-black text-slate-500 uppercase tracking-widest">
                                 Time to Termination: <span class="gold-text ml-2" x-text="timeLeft"></span>
                             </div>
                         </div>
@@ -115,12 +115,12 @@
                                 <div class="flex mb-2 items-center justify-between">
                                     <div>
                                         <span
-                                            class="text-[10px] font-black uppercase tracking-widest py-1 px-2 rounded-lg bg-white/5 border border-white/10 gold-text italic">
+                                            class="text-[10px] font-black uppercase tracking-widest py-1 px-2 rounded-lg bg-white/5 border border-white/10 gold-text">
                                             Deployment Pattern: {{ number_format($progress, 1) }}%
                                         </span>
                                     </div>
                                     <div class="text-right">
-                                        <span class="text-[10px] font-black text-slate-600 uppercase tracking-widest italic">
+                                        <span class="text-[10px] font-black text-slate-600 uppercase tracking-widest">
                                             Established {{ $start->diffForHumans() }}
                                         </span>
                                     </div>
@@ -136,7 +136,7 @@
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
                                 <div class="bg-black/30 p-5 rounded-2xl border border-white/5 text-center group-hover:border-yellow-500/10 transition-all">
                                     <div class="text-[9px] font-black text-slate-600 uppercase tracking-widest mb-2">Duration</div>
-                                    <div class="text-sm font-black text-white italic">{{ $trade->inv_duration ?? 'N/A' }}</div>
+                                    <div class="text-sm font-black text-white">{{ $trade->inv_duration ?? 'N/A' }}</div>
                                 </div>
                                 <div class="bg-black/30 p-5 rounded-2xl border border-white/5 text-center group-hover:border-yellow-500/10 transition-all">
                                     <div class="text-[9px] font-black text-slate-600 uppercase tracking-widest mb-2">Unrealized P/L</div>
@@ -144,7 +144,7 @@
                                         $pnl = $trade->profit_earned ?? 0;
                                         $isProfit = $pnl >= 0;
                                     @endphp
-                                    <div class="text-sm font-black {{ $isProfit ? 'text-emerald-400' : 'text-rose-400' }} italic">
+                                    <div class="text-sm font-black {{ $isProfit ? 'text-emerald-400' : 'text-rose-400' }}">
                                         {{ $isProfit ? '+' : '' }}{{ Auth::user()->currency }}{{ number_format(abs($pnl), 2) }}
                                     </div>
                                 </div>
@@ -153,13 +153,13 @@
                                     @php
                                         $roe = $trade->amount > 0 ? ($pnl / $trade->amount) * 100 : 0;
                                     @endphp
-                                    <div class="text-sm font-black {{ $roe >= 0 ? 'text-emerald-400' : 'text-rose-400' }} italic">
+                                    <div class="text-sm font-black {{ $roe >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
                                         {{ $roe >= 0 ? '+' : '' }}{{ number_format($roe, 2) }}%
                                     </div>
                                 </div>
                                 <div class="bg-black/30 p-5 rounded-2xl border border-white/5 text-center group-hover:border-yellow-500/10 transition-all">
                                     <div class="text-[9px] font-black text-slate-600 uppercase tracking-widest mb-2">Leverage Vector</div>
-                                    <div class="text-sm font-black text-white italic">1:{{ $trade->leverage ?? 'N/A' }}</div>
+                                    <div class="text-sm font-black text-white">1:{{ $trade->leverage ?? 'N/A' }}</div>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                 <div class="dashboard-glass p-8 border-white/5">
                     <div class="flex items-center space-x-3 mb-8">
                         <i data-lucide="clipboard-list" class="w-5 h-5 gold-text"></i>
-                        <span class="text-xs font-black text-white uppercase tracking-widest italic">Execution Configuration Ledger</span>
+                        <span class="text-xs font-black text-white uppercase tracking-widest">Execution Configuration Ledger</span>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
@@ -187,7 +187,7 @@
                                 <i data-lucide="{{ $item['icon'] }}" class="w-4 h-4 text-slate-600"></i>
                                 <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">{{ $item['label'] }}</span>
                             </div>
-                            <span class="text-xs font-black {{ $item['color'] ?? 'text-white' }} italic tracking-tight">{{ $item['value'] }}</span>
+                            <span class="text-xs font-black {{ $item['color'] ?? 'text-white' }}  tracking-tight">{{ $item['value'] }}</span>
                         </div>
                         @endforeach
                         
@@ -197,7 +197,7 @@
                                     <i data-lucide="terminal" class="w-4 h-4 text-rose-400"></i>
                                     <span class="text-[10px] font-black text-rose-400 uppercase tracking-widest">Final Audit Yield</span>
                                 </div>
-                                <span class="text-sm font-black {{ $isSuccess ? 'text-emerald-400' : 'text-rose-400' }} italic tracking-tighter">
+                                <span class="text-sm font-black {{ $isSuccess ? 'text-emerald-400' : 'text-rose-400' }}  tracking-tighter">
                                     {{ $isSuccess ? '+' : '' }}{{ Auth::user()->currency }}{{ number_format(abs($trade->profit_earned ?? 0), 2) }}
                                 </span>
                             </div>
@@ -209,7 +209,7 @@
                 @if($relatedTrades->count() > 0)
                 <div class="dashboard-glass border-white/5 overflow-hidden">
                     <div class="p-6 border-b border-white/5 bg-white/[0.01]">
-                        <span class="text-xs font-black text-white uppercase tracking-widest italic">Related Signal Artifacts</span>
+                        <span class="text-xs font-black text-white uppercase tracking-widest">Related Signal Artifacts</span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
@@ -228,7 +228,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-5 font-mono text-xs text-slate-400 italic">
+                                    <td class="px-6 py-5 font-mono text-xs text-slate-400">
                                         {{ Auth::user()->currency }}{{ number_format($relatedTrade->amount, 2) }}
                                     </td>
                                     <td class="px-6 py-5 text-right">
@@ -264,7 +264,7 @@
                                 <i data-lucide="{{ $stat['icon'] }}" class="w-4 h-4 text-slate-600 group-hover/item:text-yellow-500/50 transition-colors"></i>
                                 <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">{{ $stat['label'] }}</span>
                             </div>
-                            <span class="text-xs font-black {{ $stat['color'] ?? 'text-white' }} italic tracking-tighter">{{ $stat['value'] }}</span>
+                            <span class="text-xs font-black {{ $stat['color'] ?? 'text-white' }}  tracking-tighter">{{ $stat['value'] }}</span>
                         </div>
                         @endforeach
                     </div>
@@ -272,7 +272,7 @@
 
                 <!-- Strategic Command Actions -->
                 <div class="dashboard-glass p-8 border-white/10">
-                    <h3 class="text-xs font-black text-white uppercase tracking-[0.2em] mb-8 italic">Available Commands</h3>
+                    <h3 class="text-xs font-black text-white uppercase tracking-[0.2em] mb-8">Available Commands</h3>
                     <div class="space-y-4">
                         @if($instrument)
                         <a href="{{ route('trade.single', $instrument->id) }}" 
@@ -300,7 +300,7 @@
                 <div class="p-8 rounded-3xl bg-yellow-500/5 border border-yellow-500/10 flex items-start space-x-4 group">
                     <i data-lucide="shield-alert" class="w-5 h-5 gold-text mt-1 group-hover:scale-110 transition-all"></i>
                     <div>
-                        <h4 class="text-[10px] font-black text-white uppercase tracking-widest mb-2 italic">Institutional Grade Shielding</h4>
+                        <h4 class="text-[10px] font-black text-white uppercase tracking-widest mb-2">Institutional Grade Shielding</h4>
                         <p class="text-[9px] text-slate-500 font-bold uppercase leading-relaxed tracking-tighter grayscale group-hover:grayscale-0 transition-all">
                             Node synchronization utilizes end-to-end encryption. All execution artifacts are logged on our distributed ledger for immutable auditing.
                         </p>

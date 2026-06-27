@@ -2,11 +2,11 @@
 @section('title', $title)
 
 @section('content')
-    <div class="page-content-stack animate-fadeIn" x-cloak>
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-cloak>
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('user.bots.index') }}" class="hover:text-yellow-500 transition-colors">Bot Trading</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>

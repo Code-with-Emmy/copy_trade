@@ -2,7 +2,7 @@
 @section('title', 'Deposit')
 @section('content')
 
-    <div class="page-content-stack animate-fadeIn"
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000"
         x-data="{ amount: 0, setAmount(val) { this.amount = val; $refs.amountInput.focus(); } }">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">

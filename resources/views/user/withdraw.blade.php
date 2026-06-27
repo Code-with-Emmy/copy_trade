@@ -2,13 +2,13 @@
 @section('title', 'Settlement Authorization')
 @section('content')
 
-    <div class="page-content-stack animate-fadeIn"
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000"
         x-data="{ showConfirmModal: false, amount: '', confirmArmed: false }">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('withdrawalsdeposits') }}" class="hover:text-yellow-500 transition-colors">Off-Ramp</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -137,7 +137,7 @@
                                         class="w-full bg-black/40 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm font-mono text-white focus:outline-none focus:border-yellow-500/50 transition-all"
                                         placeholder="ENTER VALID ADDRESS FOR SETTLEMENT...">
                                 </div>
-                                <p class="text-[9px] text-rose-500/80 font-black uppercase tracking-widest italic ml-1">
+                                <p class="text-[9px] text-rose-500/80 font-black uppercase tracking-widest  ml-1">
                                     CRITICAL: VERIFY ADDRESS ACCURACY. INCORRECT PATHWAYS RESULT IN IRREVERSIBLE LOSS.</p>
                             </div>
                         @endif

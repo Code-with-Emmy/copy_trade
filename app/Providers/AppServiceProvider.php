@@ -35,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Force HTTPS in production to prevent CSS breaking (mixed content errors)
+        if (env('APP_ENV') !== 'local') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         // FacadesStorage::extend('sftp', function ($app, $config) {
         //     return new Filesystem(new SftpAdapter($config));
         // });

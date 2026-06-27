@@ -2,12 +2,12 @@
 @section('title', 'Social Alpha Portfolio')
 @section('content')
 
-    <div class="space-y-12 animate-fadeIn">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('mcopytradings') }}" class="hover:text-yellow-500 transition-colors uppercase">Alpha Experts</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -40,7 +40,7 @@
                     </div>
                     <div>
                         <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Active Relays</span>
-                        <div class="text-2xl font-black text-white italic tracking-tighter">{{ $stats['active_copies'] }}</div>
+                        <div class="text-2xl font-black text-white  tracking-tighter">{{ $stats['active_copies'] }}</div>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div>
                         <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Committed Asset</span>
-                        <div class="text-2xl font-black text-white italic tracking-tighter">{{ auth()->user()->currency }}{{ number_format($stats['total_invested'], 2) }}</div>
+                        <div class="text-2xl font-black text-white  tracking-tighter">{{ auth()->user()->currency }}{{ number_format($stats['total_invested'], 2) }}</div>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div>
                         <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Aggregate Yield</span>
-                        <div class="text-2xl font-black text-emerald-400 italic tracking-tighter">+{{ auth()->user()->currency }}{{ number_format($stats['total_profit'], 2) }}</div>
+                        <div class="text-2xl font-black text-emerald-400  tracking-tighter">+{{ auth()->user()->currency }}{{ number_format($stats['total_profit'], 2) }}</div>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                     </div>
                     <div>
                         <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Efficiency Rating</span>
-                        <div class="text-2xl font-black text-white italic tracking-tighter">{{ number_format($stats['success_rate'], 1) }}%</div>
+                        <div class="text-2xl font-black text-white  tracking-tighter">{{ number_format($stats['success_rate'], 1) }}%</div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <h3 class="text-xs font-black text-white uppercase tracking-widest">Synchronized Expert Ledger</h3>
                 <div class="flex items-center space-x-2">
                     <span class="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest italic">Matrix Synchronized</span>
+                    <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Matrix Synchronized</span>
                 </div>
             </div>
 
@@ -121,14 +121,14 @@
                                         </div>
                                         <div>
                                             <div class="text-sm font-bold text-white group-hover:gold-text transition-colors capitalize">{{ $trade->name }}</div>
-                                            <div class="text-[9px] font-black text-slate-600 uppercase tracking-widest mt-0.5 italic">{{ $trade->tag ?? 'Expert Trader' }}</div>
+                                            <div class="text-[9px] font-black text-slate-600 uppercase tracking-widest mt-0.5">{{ $trade->tag ?? 'Expert Trader' }}</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-6 font-mono text-sm text-white italic">
+                                <td class="px-6 py-6 font-mono text-sm text-white">
                                     {{ auth()->user()->currency }}{{ number_format($trade->price, 2) }}
                                 </td>
-                                <td class="px-6 py-6 font-mono text-sm text-white italic">
+                                <td class="px-6 py-6 font-mono text-sm text-white">
                                     {{ auth()->user()->currency }}{{ number_format($trade->current_balance ?? $trade->price, 2) }}
                                 </td>
                                 <td class="px-6 py-6">

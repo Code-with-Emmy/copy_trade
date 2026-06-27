@@ -5,12 +5,12 @@
             copyModal: { open: false, id: null, name: '', minAllocation: 0, copyRatio: 1, riskPreference: 'balanced', maxDrawdown: 10 },
             openCopyModal(payload) { this.copyModal = { open: true, ...payload }; },
             currency(value) { return '{{ auth()->user()->currency ?? '$' }}' + Number(value || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-        }" class="page-content-stack animate-fadeIn">
+        }" class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000">
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('copy.dashboard') }}" class="hover:text-yellow-500 transition-colors">Social Copy</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -133,7 +133,7 @@
                                                 class="h-full w-full rounded-[14px] object-cover">
                                         @else
                                             <span
-                                                class="text-xl font-black gold-text italic tracking-tighter">{{ strtoupper(substr($trader->name, 0, 1)) }}</span>
+                                                class="text-xl font-black gold-text  tracking-tighter">{{ strtoupper(substr($trader->name, 0, 1)) }}</span>
                                         @endif
                                     </div>
                                     @if($trader->verification_status === 'verified')
@@ -151,7 +151,7 @@
                             </div>
 
                             <h3
-                                class="text-xl font-black text-white mb-2 italic tracking-tight uppercase underline decoration-yellow-500/30 underline-offset-4">
+                                class="text-xl font-black text-white mb-2  tracking-tight uppercase underline decoration-yellow-500/30 underline-offset-4">
                                 {{ $trader->name }}</h3>
                             <p class="text-xs text-slate-400 font-medium mb-6 line-clamp-2 leading-relaxed">
                                 {{ $trader->bio ?: $trader->description }}</p>
@@ -220,7 +220,7 @@
         <!-- Marketplace Grid -->
         <div class="space-y-6 sm:space-y-8 mt-8 sm:mt-12">
             <div class="flex items-center justify-between border-b border-white/5 pb-6">
-                <h2 class="text-xl font-black text-white italic tracking-tight uppercase">Strategy <span
+                <h2 class="text-xl font-black text-white  tracking-tight uppercase">Strategy <span
                         class="gold-text">Marketplace</span></h2>
                 <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">{{ $traders->total() }} Nodes
                     Available</p>

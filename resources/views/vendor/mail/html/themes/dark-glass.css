@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Base */
+body, body *:not(html):not(style):not(br):not(tr):not(code) {
+    box-sizing: border-box;
+    font-family: 'Outfit', -apple-system, sans-serif;
+    position: relative;
+    font-style: normal !important;
+}
+
+body {
+    background-color: #070b12;
+    color: #f8fafc;
+    height: 100%;
+    margin: 0;
+    line-height: 1.6;
+    -webkit-text-size-adjust: none;
+    width: 100% !important;
+}
+
+.wrapper {
+    background-color: #070b12;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 100%;
+}
+
+.content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 100%;
+}
+
+/* Header */
+.header {
+    padding: 25px 0;
+    text-align: center;
+}
+
+.header a {
+    color: #f0b90a;
+    font-size: 19px;
+    font-weight: 800;
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+}
+
+/* Body */
+.body {
+    background-color: #070b12;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 100%;
+}
+
+.inner-body {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    padding: 32px;
+    width: 570px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 570px;
+}
+
+/* Subcopy */
+.subcopy {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 25px;
+    padding-top: 25px;
+}
+
+.subcopy p {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Footer */
+.footer {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    width: 570px;
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 570px;
+}
+
+.footer p {
+    color: #64748b;
+    font-size: 12px;
+    text-align: center;
+}
+
+.footer a {
+    color: #94a3b8;
+    text-decoration: underline;
+}
+
+/* Tables */
+.table table {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin: 30px auto;
+    width: 100%;
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 100%;
+}
+
+.table th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #f8fafc;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 12px;
+}
+
+.table td {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 12px;
+    font-weight: 500;
+}
+
+/* Buttons */
+.action {
+    margin: 30px auto;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 100%;
+}
+
+.button {
+    border-radius: 12px;
+    color: #000;
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(to right, #f0b90a, #d4a000);
+    box-shadow: 0 10px 20px rgba(240, 185, 10, 0.2);
+    border: none;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 15px 30px;
+}
+
+.button-primary {
+    background: linear-gradient(to right, #f0b90a, #d4a000);
+    color: #000;
+}
+
+.button-success {
+    background-color: #10b981;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+}
+
+.button-error {
+    background-color: #f43f5e;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(244, 63, 94, 0.2);
+}
+
+/* Typography */
+h1 {
+    color: #f8fafc;
+    font-size: 24px;
+    font-weight: 900;
+    margin-top: 0;
+    text-align: left;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    color: #f0b90a;
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 0;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6em;
+    margin-top: 0;
+    text-align: left;
+    font-weight: 400;
+}
+
+.gold-text {
+    color: #f0b90a;
+}

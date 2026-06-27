@@ -12,12 +12,12 @@
         $hasCurrencyDetails = filled($bankName) || filled($accountName) || filled($accountNumber) || filled($swiftCode);
     @endphp
 
-    <div class="page-content-stack animate-fadeIn" x-data="paymentHandler()">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="paymentHandler()">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('deposits') }}" class="hover:text-yellow-500 transition-colors">Funding</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -78,7 +78,7 @@
                                         <div id="card-element" class="p-4 bg-white/5 rounded-xl border border-white/5"></div>
                                         <div id="card-errors" role="alert" class="mt-4 text-[10px] font-bold text-rose-500 uppercase tracking-wider"></div>
                                     </div>
-                                    <p class="text-[9px] text-slate-600 font-bold uppercase italic leading-relaxed">
+                                    <p class="text-[9px] text-slate-600 font-bold uppercase  leading-relaxed">
                                         Encryption provided by Stripe Global Node. {{ $settings->site_name ?? config('app.name') }} does not store primary authentication keys.
                                     </p>
                                 </div>

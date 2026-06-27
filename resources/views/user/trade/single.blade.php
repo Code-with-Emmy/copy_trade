@@ -2,12 +2,12 @@
 @section('title', 'Trade ' . $instrument->name)
 @section('content')
 
-    <div class="space-y-12 animate-fadeIn" x-data="tradingSingle()" x-cloak>
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="tradingSingle()" x-cloak>
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('trade.index') }}" class="hover:text-yellow-500 transition-colors">Markets</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -45,7 +45,7 @@
                                 @if($instrument->logo)
                                     <img src="{{ $instrument->logo }}" alt="{{ $instrument->name }}" class="w-full h-full object-contain">
                                 @else
-                                    <span class="text-2xl font-black gold-text italic">{{ substr($instrument->symbol, 0, 2) }}</span>
+                                    <span class="text-2xl font-black gold-text">{{ substr($instrument->symbol, 0, 2) }}</span>
                                 @endif
                             </div>
                             <div>
@@ -59,11 +59,11 @@
                         </div>
 
                         <div class="flex flex-row md:flex-col items-end gap-3 md:gap-1">
-                            <div class="text-4xl font-black text-white italic tracking-tighter">
+                            <div class="text-4xl font-black text-white  tracking-tighter">
                                 ${{ number_format($instrument->price, $instrument->price >= 1 ? 2 : 6) }}
                             </div>
                             <div class="flex items-center space-x-3">
-                                <span class="flex items-center {{ $instrument->percent_change_24h >= 0 ? 'text-emerald-400' : 'text-rose-400' }} text-sm font-black italic">
+                                <span class="flex items-center {{ $instrument->percent_change_24h >= 0 ? 'text-emerald-400' : 'text-rose-400' }} text-sm font-black">
                                     <i data-lucide="{{ $instrument->percent_change_24h >= 0 ? 'trending-up' : 'trending-down' }}" class="w-4 h-4 mr-1"></i>
                                     {{ number_format($instrument->percent_change_24h, 2) }}%
                                 </span>
@@ -80,7 +80,7 @@
                     <div class="p-6 border-b border-white/5 bg-white/[0.01] flex items-center justify-between">
                         <div class="flex items-center space-x-3">
                             <i data-lucide="bar-chart-2" class="w-4 h-4 gold-text"></i>
-                            <span class="text-xs font-black text-white uppercase tracking-widest italic">Temporal Price Matrix</span>
+                            <span class="text-xs font-black text-white uppercase tracking-widest">Temporal Price Matrix</span>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest">Precision Level: Institutional</span>
@@ -122,7 +122,7 @@
                                 <i data-lucide="{{ $stat['icon'] }}" class="w-3 h-3 mr-2 opacity-30"></i>
                                 {{ $stat['label'] }}
                             </div>
-                            <div class="text-base font-black text-white italic tracking-tighter">{{ $stat['value'] }}</div>
+                            <div class="text-base font-black text-white  tracking-tighter">{{ $stat['value'] }}</div>
                         </div>
                     @endforeach
                 </div>
@@ -163,7 +163,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <div class="text-lg font-black text-white italic tracking-tighter">{{ Auth::user()->currency }}{{ number_format($trade->amount, 2) }}</div>
+                                                    <div class="text-lg font-black text-white  tracking-tighter">{{ Auth::user()->currency }}{{ number_format($trade->amount, 2) }}</div>
                                                     <div class="text-[9px] font-black text-slate-600 uppercase tracking-widest mt-0.5">{{ \Carbon\Carbon::parse($trade->created_at)->diffForHumans() }}</div>
                                                 </div>
                                             </div>
@@ -172,7 +172,7 @@
                                                 <div class="bg-black/30 rounded-xl p-4 border border-white/5">
                                                     <div class="flex justify-between items-center mb-2">
                                                         <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Synchronization Progress</span>
-                                                        <span class="text-[9px] font-black gold-text uppercase tracking-widest italic animate-pulse">Running</span>
+                                                        <span class="text-[9px] font-black gold-text uppercase tracking-widest  animate-pulse">Running</span>
                                                     </div>
                                                     <div class="w-full bg-white/5 rounded-full h-1 overflow-hidden">
                                                         <div class="gold-gradient-bg h-full animate-progress-reveal rounded-full" style="width: 65%"></div>
@@ -182,11 +182,11 @@
                                                 <div class="grid grid-cols-2 gap-4">
                                                     <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-center">
                                                         <div class="text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Leverage</div>
-                                                        <div class="text-xs font-black text-white italic">1:{{ $trade->leverage ?? 'N/A' }}</div>
+                                                        <div class="text-xs font-black text-white">1:{{ $trade->leverage ?? 'N/A' }}</div>
                                                     </div>
                                                     <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-center">
                                                         <div class="text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Unrealized P/L</div>
-                                                        <div class="text-xs font-black {{ ($trade->profit_earned ?? 0) >= 0 ? 'text-emerald-400' : 'text-rose-400' }} italic">
+                                                        <div class="text-xs font-black {{ ($trade->profit_earned ?? 0) >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
                                                             {{ ($trade->profit_earned ?? 0) >= 0 ? '+' : '' }}{{Auth::user()->currency}}{{ number_format($trade->profit_earned ?? 0, 2) }}
                                                         </div>
                                                     </div>
@@ -241,11 +241,11 @@
                                                             <div class="text-[11px] font-bold text-white uppercase tracking-tight">{{ $trade->type }} {{ $trade->assets }}</div>
                                                         </div>
                                                     </td>
-                                                    <td class="px-6 py-5 font-mono text-xs text-slate-300 italic">
+                                                    <td class="px-6 py-5 font-mono text-xs text-slate-300">
                                                         {{ Auth::user()->currency }}{{ number_format($trade->amount, 2) }}
                                                     </td>
                                                     <td class="px-6 py-5">
-                                                        <div class="text-xs font-black {{ $isWin ? 'text-emerald-400' : 'text-rose-400' }} italic">
+                                                        <div class="text-xs font-black {{ $isWin ? 'text-emerald-400' : 'text-rose-400' }}">
                                                             {{ $isWin ? '+' : '' }}{{ Auth::user()->currency }}{{ number_format($pnl, 2) }}
                                                         </div>
                                                         <div class="text-[8px] font-bold text-slate-600 uppercase tracking-widest mt-0.5">
@@ -306,7 +306,7 @@
 
                             <div class="space-y-4">
                                 <div>
-                                    <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3 italic">Execution Layer</label>
+                                    <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">Execution Layer</label>
                                     <div class="relative">
                                         <select x-model="tradeType" name="trade_type" 
                                             class="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-[11px] font-bold text-white uppercase focus:border-yellow-500/50 focus:outline-none transition-all appearance-none cursor-pointer">
@@ -320,7 +320,7 @@
 
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3 italic">Leverage</label>
+                                        <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">Leverage</label>
                                         <div class="relative">
                                             <select name="leverage" id="leverage" required
                                                 class="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-xs font-bold text-white focus:border-yellow-500/50 focus:outline-none transition-all appearance-none cursor-pointer">
@@ -333,7 +333,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3 italic">TTL</label>
+                                        <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">TTL</label>
                                         <div class="relative">
                                             <select name="expire" id="expire" required
                                                 class="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-[10px] font-bold text-white uppercase focus:border-yellow-500/50 focus:outline-none transition-all appearance-none cursor-pointer">
@@ -349,16 +349,16 @@
                                 </div>
 
                                 <div x-show="tradeType !== 'market'" x-transition.opacity>
-                                    <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3 italic">Target Value ($)</label>
+                                    <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">Target Value ($)</label>
                                     <input type="number" x-model="price" name="price" step="any"
-                                        class="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-xs font-black text-white focus:border-yellow-500/50 focus:outline-none transition-all font-mono italic">
+                                        class="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-xs font-black text-white focus:border-yellow-500/50 focus:outline-none transition-all font-mono">
                                 </div>
 
                                 <div>
-                                    <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3 italic">Deployment Assets ($)</label>
+                                    <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">Deployment Assets ($)</label>
                                     <div class="relative">
                                         <input type="number" x-model="amount" name="amount" step="0.01" required placeholder="0.00"
-                                            class="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-xs font-black text-white focus:border-yellow-500/50 focus:outline-none transition-all font-mono italic placeholder:text-slate-800">
+                                            class="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-xs font-black text-white focus:border-yellow-500/50 focus:outline-none transition-all font-mono  placeholder:text-slate-800">
                                         <div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center space-x-2">
                                             <button type="button" @click="setQuickAmount(100)" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-[8px] font-black text-slate-400 uppercase tracking-widest transition-all">Max</button>
                                         </div>
@@ -370,16 +370,16 @@
                             <div class="p-6 rounded-2xl bg-black/40 border border-white/10 space-y-3 relative overflow-hidden group">
                                 <div class="absolute -right-4 -top-4 w-12 h-12 bg-emerald-500/5 blur-xl group-hover:bg-emerald-500/10 transition-all pointer-events-none"></div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest italic">Computed Units</span>
-                                    <span class="text-xs font-black text-white italic tracking-tighter" x-text="formatUnits()"></span>
+                                    <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest">Computed Units</span>
+                                    <span class="text-xs font-black text-white  tracking-tighter" x-text="formatUnits()"></span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest italic">Operational Power</span>
-                                    <span class="text-xs font-black text-emerald-400 italic tracking-tighter" x-text="'$' + (amount ? (amount * (document.getElementById('leverage')?.value || 1)).toLocaleString() : '0.00')"></span>
+                                    <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest">Operational Power</span>
+                                    <span class="text-xs font-black text-emerald-400  tracking-tighter" x-text="'$' + (amount ? (amount * (document.getElementById('leverage')?.value || 1)).toLocaleString() : '0.00')"></span>
                                 </div>
                                 <div class="pt-2 mt-2 border-t border-white/5 flex justify-between items-center">
-                                    <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest italic">Vault Balance</span>
-                                    <span class="text-xs font-black text-white italic tracking-tighter">${{ number_format(Auth::user()->account_bal, 2) }}</span>
+                                    <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest">Vault Balance</span>
+                                    <span class="text-xs font-black text-white  tracking-tighter">${{ number_format(Auth::user()->account_bal, 2) }}</span>
                                 </div>
                             </div>
 
@@ -395,7 +395,7 @@
 
                         <div class="flex items-center space-x-3 p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10">
                             <i data-lucide="shield-check" class="w-4 h-4 gold-text"></i>
-                            <p class="text-[8px] font-black text-slate-500 uppercase leading-relaxed tracking-widest italic">Encrypted execution active. Positions are synchronized with Global Tier 1 liquidity clusters.</p>
+                            <p class="text-[8px] font-black text-slate-500 uppercase leading-relaxed tracking-widest">Encrypted execution active. Positions are synchronized with Global Tier 1 liquidity clusters.</p>
                         </div>
                     </div>
                 </div>
@@ -468,7 +468,7 @@
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-[10px] uppercase font-black tracking-widest">Assets</span>
-                                    <span class="text-xs font-bold text-white italic">${this.formatAmount()}</span>
+                                    <span class="text-xs font-bold text-white">${this.formatAmount()}</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-[10px] uppercase font-black tracking-widest">Leverage</span>

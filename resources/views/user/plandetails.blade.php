@@ -2,12 +2,12 @@
 @section('title', $title)
 @section('content')
 
-<div class="space-y-10 animate-fadeIn" x-data="{ showCancelModal: false }">
+<div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="{ showCancelModal: false }">
     <!-- Header Section -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
             <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                 <i data-lucide="chevron-right" class="w-3 h-3"></i>
                 <a href="{{ route('myplans', 'All') }}" class="hover:text-yellow-500 transition-colors">Portfolios</a>
                 <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -50,7 +50,7 @@
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-1">
-                                <h2 class="text-3xl font-black text-white italic tracking-tighter uppercase">
+                                <h2 class="text-3xl font-black text-white  tracking-tighter uppercase">
                                     {{ $plan->uplan->name }}
                                 </h2>
                                 @if ($plan->active == 'yes')
@@ -64,7 +64,7 @@
                                         class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[8px] font-black text-slate-500 uppercase tracking-widest">Standby</span>
                                 @endif
                             </div>
-                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] italic">
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">
                                 Protocol:
                                 {{ $plan->uplan->increment_type == 'Fixed' ? Auth::user()->currency : '' }}{{ $plan->uplan->increment_amount }}{{ $plan->uplan->increment_type == 'Percentage' ? '%' : '' }}
                                 {{ $plan->uplan->increment_interval }} Yield for {{ $plan->uplan->expiration }} cycle
@@ -87,21 +87,21 @@
             <div class="p-10 text-center group hover:bg-white/[0.02] transition-colors">
                 <span class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-3">Capital
                     Commitment</span>
-                <div class="text-3xl font-black text-white italic tracking-tighter">
+                <div class="text-3xl font-black text-white  tracking-tighter">
                     {{ Auth::user()->currency }}{{ number_format($plan->amount, 2) }}
                 </div>
             </div>
             <div class="p-10 text-center group hover:bg-white/[0.02] transition-colors">
                 <span class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-3">Alpha Yield
                     Recaptured</span>
-                <div class="text-3xl font-black text-emerald-400 italic tracking-tighter">
+                <div class="text-3xl font-black text-emerald-400  tracking-tighter">
                     +{{ Auth::user()->currency }}{{ number_format($plan->profit_earned, 2) }}
                 </div>
             </div>
             <div class="p-10 text-center group hover:bg-white/[0.02] transition-colors">
                 <span class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-3">Net Realized
                     Equity</span>
-                <div class="text-3xl font-black gold-text italic tracking-tighter">
+                <div class="text-3xl font-black gold-text  tracking-tighter">
                     @if ($settings->return_capital)
                         {{ Auth::user()->currency }}{{ number_format($plan->amount + $plan->profit_earned, 2) }}
                     @else
@@ -134,7 +134,7 @@
                                 class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Maturity
                                 Window</span>
                             <span
-                                class="text-xs font-black text-white uppercase italic tracking-tight">{{ $plan->uplan->expiration }}</span>
+                                class="text-xs font-black text-white uppercase  tracking-tight">{{ $plan->uplan->expiration }}</span>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                                 class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Inception
                                 Timestamp</span>
                             <span
-                                class="text-xs font-black text-white uppercase italic tracking-tight">{{ $plan->created_at->addHour()->toDayDateTimeString() }}</span>
+                                class="text-xs font-black text-white uppercase  tracking-tight">{{ $plan->created_at->addHour()->toDayDateTimeString() }}</span>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
                                 class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Expiration
                                 Manifest</span>
                             <span
-                                class="text-xs font-black text-white uppercase italic tracking-tight">{{ \Carbon\Carbon::parse($plan->expire_date)->addHour()->toDayDateTimeString() }}</span>
+                                class="text-xs font-black text-white uppercase  tracking-tight">{{ \Carbon\Carbon::parse($plan->expire_date)->addHour()->toDayDateTimeString() }}</span>
                         </div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                                 class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Oscillation
                                 Interval</span>
                             <span
-                                class="text-xs font-black text-white uppercase italic tracking-tight">{{ $plan->uplan->increment_interval }}</span>
+                                class="text-xs font-black text-white uppercase  tracking-tight">{{ $plan->uplan->increment_interval }}</span>
                         </div>
                     </div>
                 </div>
@@ -206,14 +206,14 @@
                             class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-2 text-center">Lower
                             Alpha Floor</span>
                         <span
-                            class="text-2xl font-black text-emerald-400 italic tracking-tighter">{{ $plan->uplan->minr }}%</span>
+                            class="text-2xl font-black text-emerald-400  tracking-tighter">{{ $plan->uplan->minr }}%</span>
                     </div>
                     <div class="p-6 rounded-2xl bg-black/40 border border-white/5 text-center">
                         <span
                             class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-2 text-center">Upper
                             Alpha Ceiling</span>
                         <span
-                            class="text-2xl font-black gold-text italic tracking-tighter">{{ $plan->uplan->maxr }}%</span>
+                            class="text-2xl font-black gold-text  tracking-tighter">{{ $plan->uplan->maxr }}%</span>
                     </div>
                 </div>
             </div>
@@ -246,13 +246,13 @@
                                 <div class="h-6 w-6 rounded-md bg-emerald-500/10 flex items-center justify-center">
                                     <i data-lucide="trending-up" class="w-3 h-3 text-emerald-500"></i>
                                 </div>
-                                <span class="text-[10px] font-black text-white uppercase tracking-tight italic">Yield
+                                <span class="text-[10px] font-black text-white uppercase tracking-tight">Yield
                                     Reinjection #{{ $history->id }}</span>
                             </td>
-                            <td class="px-8 py-5 text-xs font-black text-slate-400 uppercase italic tracking-tighter">
+                            <td class="px-8 py-5 text-xs font-black text-slate-400 uppercase  tracking-tighter">
                                 {{ $history->created_at->addHour()->format('M d, Y / H:i:s') }}
                             </td>
-                            <td class="px-8 py-5 text-right font-mono text-sm font-black italic text-emerald-400">
+                            <td class="px-8 py-5 text-right font-mono text-sm font-black  text-emerald-400">
                                 +{{ Auth::user()->currency }}{{ number_format($history->amount, 2) }}
                             </td>
                         </tr>
@@ -301,10 +301,10 @@
                     class="w-10 h-10 text-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.3)]"></i>
             </div>
 
-            <h3 class="text-2xl font-black text-white italic uppercase tracking-tight mb-4">Protocol Termination</h3>
-            <p class="text-[11px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed mb-10 italic">
+            <h3 class="text-2xl font-black text-white  uppercase tracking-tight mb-4">Protocol Termination</h3>
+            <p class="text-[11px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed mb-10">
                 You are about to initiate the deactivation protocol for <span
-                    class="text-white font-black italic underline gold-text decoration-yellow-500/30">{{ $plan->uplan->name }}</span>.
+                    class="text-white font-black  underline gold-text decoration-yellow-500/30">{{ $plan->uplan->name }}</span>.
                 This action is irreversible within the current cycle.
             </p>
 

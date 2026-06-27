@@ -2,12 +2,12 @@
 @section('title', 'Investment Strategies')
 @section('content')
 
-<div class="space-y-10 animate-fadeIn" x-data="{ selectedPlanId: null }">
+<div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="{ selectedPlanId: null }">
     <!-- Breadcrumb & Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
             <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                 <i data-lucide="chevron-right" class="w-3 h-3"></i>
                 <span class="text-slate-300">Investment Plans</span>
             </div>
@@ -135,7 +135,7 @@
                     <i data-lucide="info" class="w-4 h-4"></i>
                     <span>Allocation Guide</span>
                 </div>
-                <h2 class="text-3xl font-black text-white mb-4 italic tracking-tight underline decoration-yellow-500 decoration-4 underline-offset-8">Risk <span class="gold-text">Mitigation</span> Protocol</h2>
+                <h2 class="text-3xl font-black text-white mb-4  tracking-tight underline decoration-yellow-500 decoration-4 underline-offset-8">Risk <span class="gold-text">Mitigation</span> Protocol</h2>
                 <p class="text-slate-400 text-sm font-medium leading-relaxed">
                     Our multi-node execution architecture ensures your capital is protected by institutional-grade liquidity filters. Diversification across multiple strategies is recommended for optimal yield stability.
                 </p>

@@ -1,14 +1,13 @@
-@extends('layouts.dasht')
-@section('title', 'Identity Registry')
-@section('content')
+<?php $__env->startSection('title', 'Identity Registry'); ?>
+<?php $__env->startSection('content'); ?>
 
     <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000"
-        x-data="{ showDetailedProtocol: false, showStatusModal: {{ in_array(Auth::user()->account_verify, ['Verified', 'Under review']) ? 'true' : 'false' }} }">
+        x-data="{ showDetailedProtocol: false, showStatusModal: <?php echo e(in_array(Auth::user()->account_verify, ['Verified', 'Under review']) ? 'true' : 'false'); ?> }">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
+                    <a href="<?php echo e(route('dashboard')); ?>" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <span class="text-slate-300">Verification Status</span>
                 </div>
@@ -28,9 +27,51 @@
         </div>
 
         <!-- Alert Messages -->
-        <x-danger-alert />
-        <x-success-alert />
-        <x-error-alert />
+        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.danger-alert','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('danger-alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.success-alert','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('success-alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.error-alert','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('error-alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
 
         <!-- Main Verification Gateway -->
         <div class="max-w-4xl mx-auto">
@@ -47,8 +88,8 @@
                         <i data-lucide="fingerprint" class="w-12 h-12 gold-text"></i>
                     </div>
 
-                    @if (Auth::user()->account_verify == 'Verified')
-                        <h2 class="text-3xl font-black text-white uppercase  tracking-tight mb-4">Identity <span
+                    <?php if(Auth::user()->account_verify == 'Verified'): ?>
+                        <h2 class="text-3xl font-black text-white uppercase italic tracking-tight mb-4">Identity <span
                                 class="text-emerald-400">Verified</span></h2>
                         <p
                             class="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mb-12 max-w-sm mx-auto leading-relaxed">
@@ -60,8 +101,8 @@
                             <i data-lucide="check-circle" class="w-4 h-4"></i>
                             <span>Full Account Access Enabled</span>
                         </div>
-                    @elseif (Auth::user()->account_verify == 'Under review')
-                        <h2 class="text-3xl font-black text-white uppercase  tracking-tight mb-4">Verification <span
+                    <?php elseif(Auth::user()->account_verify == 'Under review'): ?>
+                        <h2 class="text-3xl font-black text-white uppercase italic tracking-tight mb-4">Verification <span
                                 class="text-yellow-500">Pending</span></h2>
                         <p
                             class="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mb-12 max-w-sm mx-auto leading-relaxed">
@@ -74,8 +115,8 @@
                             <i data-lucide="refresh-cw" class="w-4 h-4 animate-spin text-yellow-500"></i>
                             <span>Reviewing Documents...</span>
                         </div>
-                    @else
-                        <h2 class="text-3xl font-black text-white uppercase  tracking-tight mb-4">Account <span
+                    <?php else: ?>
+                        <h2 class="text-3xl font-black text-white uppercase italic tracking-tight mb-4">Account <span
                                 class="gold-text">Verification</span></h2>
                         <p
                             class="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mb-12 max-w-md mx-auto leading-relaxed">
@@ -83,7 +124,7 @@
                         </p>
 
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <a href="{{ route('kycform') }}"
+                            <a href="<?php echo e(route('kycform')); ?>"
                                 class="h-16 px-10 rounded-2xl gold-gradient-bg text-black font-black text-xs uppercase tracking-[0.3em] shadow-2xl shadow-yellow-500/20 hover:scale-[1.05] transform transition-all flex items-center justify-center space-x-3">
                                 <span>Start Verification</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -94,7 +135,7 @@
                                 View Requirements
                             </button>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
 
                 <!-- Footer Stats -->
@@ -170,7 +211,7 @@
                             need help with verification.</p>
                     </div>
                 </div>
-                <a href="{{ route('support') }}"
+                <a href="<?php echo e(route('support')); ?>"
                     class="px-8 py-3 rounded-xl bg-white/5 text-slate-300 font-black text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all">Support
                     Desk</a>
             </div>
@@ -193,7 +234,7 @@
                 </div>
 
                 <div class="px-6 sm:px-8 py-8 text-center">
-                    @if (Auth::user()->account_verify == 'Verified')
+                    <?php if(Auth::user()->account_verify == 'Verified'): ?>
                         <div
                             class="h-16 w-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto mb-5">
                             <i data-lucide="shield-check" class="w-8 h-8 text-emerald-400"></i>
@@ -202,7 +243,7 @@
                         <p class="text-sm text-slate-400 leading-relaxed">
                             Your KYC verification was approved. All account features are unlocked.
                         </p>
-                    @elseif (Auth::user()->account_verify == 'Under review')
+                    <?php elseif(Auth::user()->account_verify == 'Under review'): ?>
                         <div
                             class="h-16 w-16 rounded-2xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center mx-auto mb-5">
                             <i data-lucide="clock-3" class="w-8 h-8 text-yellow-400"></i>
@@ -211,7 +252,7 @@
                         <p class="text-sm text-slate-400 leading-relaxed">
                             Your submitted documents are under review. You will be notified once the review is complete.
                         </p>
-                    @endif
+                    <?php endif; ?>
                 </div>
 
                 <div class="px-6 sm:px-8 pb-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -219,7 +260,7 @@
                         class="h-12 rounded-xl border border-white/10 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white/10 transition-all">
                         Close
                     </button>
-                    <a href="{{ route('dashboard') }}"
+                    <a href="<?php echo e(route('dashboard')); ?>"
                         class="h-12 rounded-xl gold-gradient-bg text-black text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center hover:scale-[1.01] transition-all">
                         Back To Dashboard
                     </a>
@@ -228,12 +269,14 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.dasht', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\hp\Downloads\CopyTrader\resources\views/user/verify.blade.php ENDPATH**/ ?>

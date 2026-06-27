@@ -23,7 +23,7 @@
                 <div>
                     <span class="text-[9px] font-black text-yellow-500 uppercase tracking-[0.2em] mb-2 block">Module
                         Calibration</span>
-                    <h3 class="text-2xl font-black text-white uppercase italic tracking-tight" x-text="copyModal.name">
+                    <h3 class="text-2xl font-black text-white uppercase  tracking-tight" x-text="copyModal.name">
                     </h3>
                 </div>
                 <button @click="copyModal.open = false"
@@ -49,7 +49,7 @@
                         <div class="flex justify-between px-1">
                             <span class="text-[9px] font-bold text-slate-600 uppercase">Min Barrier: <span
                                     x-text="currency(copyModal.minAllocation)"></span></span>
-                            <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-tighter italic">Live
+                            <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-tighter">Live
                                 Node Sync Active</span>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
 
                 <div class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10 flex items-start space-x-3">
                     <i data-lucide="shield-alert" class="w-4 h-4 gold-text flex-shrink-0 mt-0.5"></i>
-                    <p class="text-[10px] text-slate-500 font-medium leading-relaxed italic uppercase tracking-tighter">
+                    <p class="text-[10px] text-slate-500 font-medium leading-relaxed  uppercase tracking-tighter">
                         Synchronization requires clear capitol liquidity. System will execute trades proportionally
                         based on assigned copy factor and risk guardrails.
                     </p>

@@ -7,12 +7,12 @@
 @endsection
 
 @section('content')
-    <div class="space-y-10 animate-fadeIn">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000">
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <span class="text-slate-300">Legacy Alpha Marketplace</span>
                 </div>
@@ -45,7 +45,7 @@
                     <div>
                         <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Global
                             Nodes</span>
-                        <div class="text-2xl font-black text-white italic tracking-tighter">{{ count($copytradings) }}
+                        <div class="text-2xl font-black text-white  tracking-tighter">{{ count($copytradings) }}
                             Verified</div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <div>
                         <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Alpha
                             Yield</span>
-                        <div class="text-2xl font-black text-white italic tracking-tighter">87% Avg</div>
+                        <div class="text-2xl font-black text-white  tracking-tighter">87% Avg</div>
                     </div>
                 </div>
                 <div class="flex items-center text-[9px] font-bold text-emerald-400 uppercase tracking-widest">
@@ -87,7 +87,7 @@
                     <div>
                         <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Entry
                             Threshold</span>
-                        <div class="text-2xl font-black text-white italic tracking-tighter">{{ $settings->currency }}50.00
+                        <div class="text-2xl font-black text-white  tracking-tighter">{{ $settings->currency }}50.00
                         </div>
                     </div>
                 </div>
@@ -102,14 +102,14 @@
         <div class="space-y-4">
             @if(session('success'))
                 <div
-                    class="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 text-[11px] font-black text-emerald-400 uppercase tracking-widest italic animate-pulse">
+                    class="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 text-[11px] font-black text-emerald-400 uppercase tracking-widest  animate-pulse">
                     <i data-lucide="check" class="w-4 h-4 inline mr-2 mb-0.5"></i>
                     {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
                 <div
-                    class="p-6 rounded-2xl bg-rose-500/5 border border-rose-500/10 text-[11px] font-black text-rose-400 uppercase tracking-widest italic">
+                    class="p-6 rounded-2xl bg-rose-500/5 border border-rose-500/10 text-[11px] font-black text-rose-400 uppercase tracking-widest">
                     <i data-lucide="alert-triangle" class="w-4 h-4 inline mr-2 mb-0.5"></i>
                     {{ session('error') }}
                 </div>
@@ -136,7 +136,7 @@
                                     @else
                                         <div class="h-full w-full flex items-center justify-center">
                                             <span
-                                                class="text-2xl font-black gold-text italic tracking-tighter">{{ strtoupper(substr($copytrading->name, 0, 1)) }}</span>
+                                                class="text-2xl font-black gold-text  tracking-tighter">{{ strtoupper(substr($copytrading->name, 0, 1)) }}</span>
                                         </div>
                                     @endif
                                 </div>
@@ -148,9 +148,9 @@
                             </div>
                             <div>
                                 <span
-                                    class="px-2 py-0.5 rounded-md bg-yellow-500/10 border border-yellow-500/20 text-[8px] font-black gold-text uppercase tracking-widest mb-2 inline-block italic">{{ $copytrading->tag ?: 'PRO' }}</span>
+                                    class="px-2 py-0.5 rounded-md bg-yellow-500/10 border border-yellow-500/20 text-[8px] font-black gold-text uppercase tracking-widest mb-2 inline-block">{{ $copytrading->tag ?: 'PRO' }}</span>
                                 <h3
-                                    class="text-xl font-black text-white italic tracking-tighter uppercase group-hover:gold-text transition-colors">
+                                    class="text-xl font-black text-white  tracking-tighter uppercase group-hover:gold-text transition-colors">
                                     {{ $copytrading->name }}</h3>
                                 <div class="flex items-center mt-1 space-x-1">
                                     @for ($i = 1; $i <= 5; $i++)
@@ -166,28 +166,28 @@
                         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
                             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Sub
                                 Nodes</span>
-                            <div class="text-xl font-black italic tracking-tighter text-white font-mono">
+                            <div class="text-xl font-black  tracking-tighter text-white font-mono">
                                 {{ number_format($copytrading->followers) }}
                             </div>
                         </div>
                         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
                             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">ROE
                                 Map</span>
-                            <div class="text-xl font-black italic tracking-tighter text-emerald-400 font-mono">
+                            <div class="text-xl font-black  tracking-tighter text-emerald-400 font-mono">
                                 +{{ $copytrading->equity }}%
                             </div>
                         </div>
                         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
                             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Entry
                                 barrier</span>
-                            <div class="text-lg font-black italic tracking-tighter text-white font-mono">
+                            <div class="text-lg font-black  tracking-tighter text-white font-mono">
                                 {{ $settings->currency }}{{ number_format($copytrading->price) }}
                             </div>
                         </div>
                         <div class="bg-black/40 border border-white/5 rounded-2xl p-4">
                             <span class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Signal
                                 Cap</span>
-                            <div class="text-lg font-black italic tracking-tighter text-emerald-400 font-mono">
+                            <div class="text-lg font-black  tracking-tighter text-emerald-400 font-mono">
                                 {{ $settings->currency }}{{ number_format($copytrading->total_profit) }}
                             </div>
                         </div>
@@ -218,7 +218,7 @@
     <script>
         function openInvestModal(expertId, expertName, minAmount) {
             Swal.fire({
-                title: `<div class='text-white font-black italic uppercase tracking-tight text-2xl mb-2'>SYNC NODAL PROTOCOL</div>`,
+                title: `<div class='text-white font-black  uppercase tracking-tight text-2xl mb-2'>SYNC NODAL PROTOCOL</div>`,
                 html: `
                     <div class="text-left space-y-6 p-2">
                         <p class="text-[10px] text-slate-500 font-black uppercase tracking-widest leading-relaxed">Configuring synchronization barrier for <span class='gold-text italic'>${expertName}</span>. Allocation will be deployed proportionally to market signals.</p>
@@ -234,7 +234,7 @@
                                        value="${minAmount}">
                             </div>
                         </div>
-                        <div class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10 text-[9px] text-slate-500 font-medium leading-relaxed italic uppercase tracking-tighter">
+                        <div class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10 text-[9px] text-slate-500 font-medium leading-relaxed  uppercase tracking-tighter">
                             <i data-lucide="shield-alert" class="w-3 h-3 gold-text inline mr-1 mb-0.5"></i>
                             Alpha copying utilizes high-frequency relay vectors. Past yield does not guarantee forward returns. Deploy responsible capitol only.
                         </div>

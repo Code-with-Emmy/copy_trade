@@ -2,12 +2,12 @@
 @section('title', 'Markets')
 @section('content')
 
-    <div class="space-y-12 animate-fadeIn" x-data="tradingMarkets()" x-cloak>
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="tradingMarkets()" x-cloak>
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <span class="text-slate-300">Live Markets</span>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="h-12 px-6 rounded-xl bg-white/5 border border-white/10 flex items-center space-x-4">
                     <div class="flex items-center space-x-2">
                         <span class="text-[9px] font-black text-slate-600 uppercase">Assets</span>
-                        <span class="text-[10px] font-black text-white" x-text="totalInstruments"></span>
+                        <span class="text-[10px] font-black text-white" x-text="totalMarkets"></span>
                     </div>
                     <div class="w-px h-4 bg-white/10"></div>
                     <div class="flex items-center space-x-2">
@@ -76,7 +76,7 @@
             </div>
 
             <!-- Empty State -->
-            <div x-show="!loading && filteredInstruments.length === 0"
+            <div x-show="!loading && filteredMarkets.length === 0"
                 class="dashboard-glass border-white/5 py-24 text-center">
                 <i data-lucide="search-x" class="w-16 h-16 text-slate-800 mx-auto mb-6"></i>
                 <h3 class="text-xl font-black text-white uppercase tracking-widest">No Results Found</h3>
@@ -87,8 +87,8 @@
                     Search</button>
             </div>
 
-            <!-- Instruments Matrix -->
-            <template x-for="(typeGroup, type) in groupedInstruments" :key="type">
+            <!-- Market List -->
+            <template x-for="(typeGroup, type) in groupedMarkets" :key="type">
                 <div x-show="(selectedType === 'all' || selectedType === type) && typeGroup.length > 0" class="space-y-6">
                     <!-- Category Header -->
                     <div class="flex items-center space-x-4 px-2">
@@ -193,11 +193,11 @@
                 searchQuery: '',
                 loading: false,
 
-                get totalInstruments() {
+                get totalMarkets() {
                     return this.instruments.length;
                 },
 
-                get filteredInstruments() {
+                get filteredMarkets() {
                     let filtered = this.instruments;
 
                     if (this.searchQuery) {
@@ -215,9 +215,9 @@
                     return filtered;
                 },
 
-                get groupedInstruments() {
+                get groupedMarkets() {
                     const grouped = {};
-                    this.filteredInstruments.forEach(instrument => {
+                    this.filteredMarkets.forEach(instrument => {
                         if (!grouped[instrument.type]) {
                             grouped[instrument.type] = [];
                         }

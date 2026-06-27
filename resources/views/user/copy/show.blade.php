@@ -6,12 +6,12 @@
         $metric = $profile['metric'];
     @endphp
 
-    <div class="space-y-10 animate-fadeIn" x-data="{ openCopy: false }">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000" x-data="{ openCopy: false }">
         <!-- Header & Profile Card -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('copy.experts') }}" class="hover:text-yellow-500 transition-colors">Marketplace</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
@@ -48,7 +48,7 @@
                             @else
                                 <div class="h-full w-full flex items-center justify-center">
                                     <span
-                                        class="text-4xl font-black gold-text italic tracking-tighter">{{ strtoupper(substr($trader->name, 0, 1)) }}</span>
+                                        class="text-4xl font-black gold-text  tracking-tighter">{{ strtoupper(substr($trader->name, 0, 1)) }}</span>
                                 </div>
                             @endif
                         </div>
@@ -70,10 +70,10 @@
                                     class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[9px] font-black text-slate-300 uppercase tracking-widest">{{ ucfirst($profile['risk_label']) }}
                                     Risk Tier</span>
                             </div>
-                            <h2 class="text-4xl font-black text-white italic tracking-tighter uppercase">{{ $trader->name }}
+                            <h2 class="text-4xl font-black text-white  tracking-tighter uppercase">{{ $trader->name }}
                             </h2>
                         </div>
-                        <p class="text-sm text-slate-400 font-medium leading-loose max-w-2xl italic">
+                        <p class="text-sm text-slate-400 font-medium leading-loose max-w-2xl">
                             "{{ $trader->bio ?: $trader->description }}"</p>
                         <div class="flex flex-wrap justify-center lg:justify-start gap-4">
                             <div class="flex items-center text-[10px] font-black text-slate-600 uppercase tracking-widest">
@@ -95,14 +95,14 @@
                                     class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Entry
                                     Barrier</span>
                                 <span
-                                    class="text-xl font-black text-white italic tracking-tighter">{{ auth()->user()->currency }}{{ number_format(max((float) $trader->price, (float) ($trader->minimum_allocation ?: 0)), 2) }}</span>
+                                    class="text-xl font-black text-white  tracking-tighter">{{ auth()->user()->currency }}{{ number_format(max((float) $trader->price, (float) ($trader->minimum_allocation ?: 0)), 2) }}</span>
                             </div>
                             <div>
                                 <span
                                     class="block text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">Protocol
                                     Fee</span>
                                 <span
-                                    class="text-xl font-black gold-text italic tracking-tighter">{{ number_format((float) $trader->performance_fee_percent, 2) }}%</span>
+                                    class="text-xl font-black gold-text  tracking-tighter">{{ number_format((float) $trader->performance_fee_percent, 2) }}%</span>
                             </div>
                         </div>
                         <div class="space-y-4">
@@ -127,33 +127,33 @@
                     <span
                         class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-2 group-hover:text-slate-400 transition-colors">Nodes
                         Active</span>
-                    <div class="text-2xl font-black text-white italic tracking-tighter">
+                    <div class="text-2xl font-black text-white  tracking-tighter">
                         {{ number_format($profile['performance']['followers']) }}</div>
                 </div>
                 <div class="p-8 text-center group">
                     <span
                         class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-2 group-hover:text-slate-400 transition-colors">30D
                         Matrix</span>
-                    <div class="text-2xl font-black text-emerald-400 italic tracking-tighter">
+                    <div class="text-2xl font-black text-emerald-400  tracking-tighter">
                         +{{ number_format($profile['performance']['monthly_roi'], 2) }}%</div>
                 </div>
                 <div class="p-8 text-center group">
                     <span
                         class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-2 group-hover:text-slate-400 transition-colors">Annualized</span>
-                    <div class="text-2xl font-black gold-text italic tracking-tighter">
+                    <div class="text-2xl font-black gold-text  tracking-tighter">
                         {{ number_format($profile['performance']['yearly_roi'], 2) }}%</div>
                 </div>
                 <div class="p-8 text-center group">
                     <span
                         class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-2 group-hover:text-slate-400 transition-colors">Equity
                         AUM</span>
-                    <div class="text-2xl font-black text-white italic tracking-tighter">
+                    <div class="text-2xl font-black text-white  tracking-tighter">
                         ${{ number_format($profile['performance']['aum'], 0) }}</div>
                 </div>
                 <div class="p-8 text-center group">
                     <span
                         class="block text-[10px] font-black text-slate-600 uppercase tracking-widest mb-2 group-hover:text-slate-400 transition-colors">Consistency</span>
-                    <div class="text-2xl font-black text-white italic tracking-tighter">
+                    <div class="text-2xl font-black text-white  tracking-tighter">
                         {{ number_format($profile['performance']['win_rate'], 1) }}%</div>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                                     <div class="flex justify-between items-end mb-2">
                                         <span
                                             class="text-[9px] font-black text-slate-400 uppercase tracking-widest">{{ ucwords(str_replace('_', ' ', $label)) }}</span>
-                                        <span class="text-xs font-black gold-text italic">{{ $score }}%</span>
+                                        <span class="text-xs font-black gold-text">{{ $score }}%</span>
                                     </div>
                                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                                         <div class="h-full gold-gradient-bg shadow-[0_0_10px_rgba(240,185,10,0.3)]"
@@ -205,7 +205,7 @@
                     </div>
                     <div class="space-y-4 pt-4">
                         <div
-                            class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10 text-[10px] text-slate-500 font-medium leading-loose italic">
+                            class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10 text-[10px] text-slate-500 font-medium leading-loose">
                             Strategic profile calibrated for <span
                                 class="text-white font-black uppercase">{{ $metric->recommended_investor_profile }}</span>.
                             Node demonstrates an average execution maturity of
@@ -222,7 +222,7 @@
                                 class="flex items-center justify-between p-4 rounded-xl bg-white/[0.02] border border-white/5 group hover:border-yellow-500/20 transition-all">
                                 <div class="flex items-center space-x-4">
                                     <div
-                                        class="h-8 w-8 rounded-lg bg-black flex items-center justify-center border border-white/10 text-[9px] font-black italic gold-text">
+                                        class="h-8 w-8 rounded-lg bg-black flex items-center justify-center border border-white/10 text-[9px] font-black  gold-text">
                                         {{ $trade->symbol }}</div>
                                     <div>
                                         <div class="text-[10px] font-black text-white uppercase">{{ $trade->direction }} Vector
@@ -233,7 +233,7 @@
                                 </div>
                                 <div class="text-right">
                                     <div
-                                        class="text-xs font-black italic {{ $trade->profit_loss >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
+                                        class="text-xs font-black  {{ $trade->profit_loss >= 0 ? 'text-emerald-400' : 'text-rose-400' }}">
                                         {{ auth()->user()->currency }}{{ number_format((float) $trade->profit_loss, 2) }}</div>
                                 </div>
                             </div>
@@ -272,9 +272,9 @@
                     <tbody class="divide-y divide-white/5">
                         @foreach($profile['monthly_table'] as $row)
                             <tr class="group hover:bg-white/[0.02] transition-colors">
-                                <td class="px-8 py-5 text-xs font-black text-white italic">{{ $row['period'] }}</td>
+                                <td class="px-8 py-5 text-xs font-black text-white">{{ $row['period'] }}</td>
                                 <td
-                                    class="px-8 py-5 text-xs font-black italic {{ $row['return_percentage'] >= 0 ? 'text-emerald-400' : 'text-rose-400' }} font-mono">
+                                    class="px-8 py-5 text-xs font-black  {{ $row['return_percentage'] >= 0 ? 'text-emerald-400' : 'text-rose-400' }} font-mono">
                                     {{ $row['return_percentage'] >= 0 ? '+' : '' }}{{ number_format($row['return_percentage'], 2) }}%
                                 </td>
                                 <td class="px-8 py-5 text-xs font-black text-rose-400 font-mono">

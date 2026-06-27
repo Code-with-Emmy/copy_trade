@@ -17,14 +17,36 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
+    :root {
+        --dash-bg: #070b12;
+        --dash-surface: rgba(11, 18, 32, 0.96);
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.05);
+        --dash-text: #f8fafc;
+        --dash-text-muted: #94a3b8;
+        --dash-text-faint: #64748b;
+        --dash-border-subtle: rgba(255, 255, 255, 0.06);
+        --accent-gold: #f0b90a;
+        --dash-nav-bg: rgba(7, 11, 18, 0.85);
+        --dash-bg-hover: rgba(255, 255, 255, 0.04);
+        --dash-scrollbar-track: rgba(0, 0, 0, 0.2);
+        --dash-scrollbar-thumb: rgba(255, 255, 255, 0.1);
+    }
+    
     body {
       background-color: var(--dash-bg);
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Outfit', -apple-system, sans-serif;
       color: var(--dash-text);
       overflow-x: hidden;
+    }
+
+    * {
+      font-style: normal !important;
     }
 
     .dashboard-glass {

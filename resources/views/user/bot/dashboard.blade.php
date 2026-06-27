@@ -2,12 +2,12 @@
 @section('title', 'Trading Analytics')
 @section('content')
 
-    <div class="space-y-12 animate-fadeIn">
+    <div class="page-content-stack animate-in fade-in slide-in-from-bottom-6 duration-1000">
         <!-- Breadcrumb & Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Dashboard</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <a href="{{ route('user.bots.index') }}" class="hover:text-yellow-500 transition-colors uppercase">Trading
                         Bots</a>
@@ -241,7 +241,7 @@
                     @else
                         <div class="text-center py-12">
                             <i data-lucide="radio" class="w-8 h-8 text-slate-800 mx-auto mb-4"></i>
-                            <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest italic">Scanning
+                            <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest">Scanning
                                 Frequency...</p>
                         </div>
                     @endif
@@ -251,14 +251,14 @@
                             <i data-lucide="info" class="w-3 h-3 gold-text"></i>
                             <h4 class="text-[9px] font-black text-slate-500 uppercase">System Intelligence</h4>
                         </div>
-                        <p class="text-[8px] text-slate-600 font-bold uppercase leading-relaxed italic">
+                        <p class="text-[8px] text-slate-600 font-bold uppercase leading-relaxed">
                             All algorithmic nodes operate on sub-millisecond response latency. Throughput is verified via
                             decentralized ledger synchronization.
                         </p>
                     </div>
                 </div>
 
-                <!-- Control Console -->
+                <!-- Dashboard -->
                 <div class="dashboard-glass border-white/5 p-8 overflow-hidden relative group">
                     <div class="flex items-center space-x-4 mb-8">
                         <div class="h-10 w-10 rounded-xl bg-black border border-white/10 flex items-center justify-center">
