@@ -176,7 +176,7 @@
                     <p class="text-[10px] font-black uppercase leading-relaxed mb-6 opacity-80">Clients with portfolios exceeding {{Auth::user()->currency}}100k get direct access to a dedicated account manager.</p>
                     <div class="flex items-center space-x-3">
                         <div class="h-10 w-10 rounded-full border-2 border-black/20 overflow-hidden">
-                            <img src="https://ui-avatars.com/api/?name=BitCloven+Elite&background=000&color=f0b90a"
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode(($settings->site_name ?? config('app.name')) . ' Elite') }}&background=000&color=f0b90a"
                                 alt="Elite Support">
                         </div>
                         <span class="text-[9px] font-black uppercase tracking-widest">Contact VIP Support</span>

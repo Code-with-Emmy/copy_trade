@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', 'About BitCloven')
-@section('meta_description', 'Learn about BitCloven, the social copy trading platform built for transparency, confidence, and elite strategy replication.')
+@section('title', 'About ' . ($settings->site_name ?? config('app.name')))
+@section('meta_description', 'Learn about ' . ($settings->site_name ?? config('app.name')) . ', the social copy trading platform built for transparency, confidence, and elite strategy replication.')
 
 @section('content')
     <!-- About Hero -->
@@ -9,7 +9,7 @@
         <div class="container about-hero-grid">
             <div class="about-hero-content">
                 <h1>Built for investors who want confidence in every copied trade.</h1>
-                <p>We launched BitCloven to bridge elite strategy and everyday investors. Our platform gives you deep
+                <p>We launched {{ $settings->site_name ?? config('app.name') }} to bridge elite strategy and everyday investors. Our platform gives you deep
                     transparency, responsive automation, and risk controls that keep your capital aligned with your goals.
                 </p>
                 <div class="about-hero-actions">

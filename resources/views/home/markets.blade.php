@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Global Asset Markets | BitCloven Institutional</title>
+	<title>Global Asset Markets | {{ $settings->site_name ?? config('app.name') }} Institutional</title>
 	<link rel="stylesheet" href="{{ asset('styles.css') }}">
 	<link rel="icon" href="{{ asset('storage/' . $settings->favicon) }}" type="image/x-icon">
 	<script src="https://cdn.tailwindcss.com"></script>
@@ -99,7 +99,7 @@
 		class="fixed top-0 left-0 right-0 z-[100] bg-black/60 backdrop-blur-xl border-b border-white/5 h-20 flex items-center">
 		<div class="container mx-auto px-6 flex items-center justify-between">
 			<a href="{{ route('home') }}" class="flex items-center space-x-3">
-				<img src="{{ asset('storage/' . $settings->logo)}}" alt="BitCloven" class="h-9 w-auto">
+				<img src="{{ asset('storage/' . $settings->logo)}}" alt="{{ $settings->site_name ?? config('app.name') }}" class="h-9 w-auto">
 			</a>
 
 			<nav class="hidden lg:flex items-center space-x-10">
@@ -293,7 +293,7 @@
 		<div class="container mx-auto px-6">
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
 				<div class="space-y-8">
-					<img src="{{ asset('storage/' . $settings->logo)}}" alt="BitCloven" class="h-8 opacity-80">
+					<img src="{{ asset('storage/' . $settings->logo)}}" alt="{{ $settings->site_name ?? config('app.name') }}" class="h-8 opacity-80">
 					<p class="text-slate-500 text-sm font-medium leading-relaxed">
 						Redefining social asset management through institutional-grade technology and transparent
 						execution.
@@ -364,7 +364,7 @@
 
 			<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
 				<p class="text-slate-600 text-[10px] font-black uppercase tracking-widest">
-					&copy; 2026 BitCloven Institutional Group. Distributed Data Infrastructure.
+					&copy; {{ date('Y') }} {{ $settings->site_name ?? config('app.name') }} Institutional Group. Distributed Data Infrastructure.
 				</p>
 				<div class="flex items-center space-x-8">
 					<span class="text-slate-600 text-[10px] font-black uppercase tracking-widest">Global HQ:

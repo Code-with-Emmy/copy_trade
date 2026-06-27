@@ -5,7 +5,7 @@
 @extends('layouts.public')
 
 @section('title', 'Establish Account')
-@section('meta_description', 'Begin your journey with BitCloven. Join a global network of elite traders and mirror high-performance strategies.')
+@section('meta_description', 'Begin your journey with ' . ($settings->site_name ?? config('app.name')) . '. Join a global network of elite traders and mirror high-performance strategies.')
 
 @section('content')
     <section class="min-h-[90vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
@@ -15,13 +15,13 @@
                 <div
                     class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0b90a]/10 border border-[#f0b90a]/20 mb-6">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#f0b90a] animate-pulse"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-[#f0b90a]">Open Architecture</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-[#f0b90a]">Get Started</span>
                 </div>
                 <h1 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">
-                    Join the <span class="text-[#f0b90a]">elite</span> network.
+                    Create your free account.
                 </h1>
                 <p class="text-slate-400 max-w-2xl mx-auto">
-                    Configure your investor environment and start mirroring world-class performance in minutes.
+                    Sign up quickly with your details and start using the platform today.
                 </p>
             </div>
 
@@ -36,10 +36,9 @@
                         <div class="grid gap-6 sm:grid-cols-2">
                             <div class="space-y-2">
                                 <label for="name"
-                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Full
-                                    Name</label>
+                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
                                 <input id="name" type="text" name="name" value="{{ old('name') }}" required
-                                    placeholder="John Doe"
+                                    placeholder="Enter your full name"
                                     class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
                                 @error('name')<p class="text-[10px] text-rose-500 mt-1 ml-1">{{ $message }}</p>@enderror
                             </div>
@@ -47,7 +46,7 @@
                                 <label for="username"
                                     class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Username</label>
                                 <input id="username" type="text" name="username" value="{{ old('username') }}" required
-                                    placeholder="johndoe_fx"
+                                    placeholder="Choose a username, e.g. johndoe123"
                                     class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
                                 @error('username')<p class="text-[10px] text-rose-500 mt-1 ml-1">{{ $message }}</p>@enderror
                             </div>
@@ -57,19 +56,17 @@
                         <div class="grid gap-6 sm:grid-cols-2">
                             <div class="space-y-2">
                                 <label for="email"
-                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Email
-                                    Address</label>
+                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
                                 <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                                    placeholder="john@example.com"
+                                    placeholder="Enter your email address"
                                     class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
                                 @error('email')<p class="text-[10px] text-rose-500 mt-1 ml-1">{{ $message }}</p>@enderror
                             </div>
                             <div class="space-y-2">
                                 <label for="phone"
-                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Contact
-                                    Number</label>
+                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Phone Number</label>
                                 <input id="phone" type="text" name="phone" value="{{ old('phone') }}" required
-                                    placeholder="+1 234 567 890"
+                                    placeholder="Enter your phone number"
                                     class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
                                 @error('phone')<p class="text-[10px] text-rose-500 mt-1 ml-1">{{ $message }}</p>@enderror
                             </div>
@@ -78,8 +75,7 @@
                         {{-- Region --}}
                         <div class="space-y-2">
                             <label for="country"
-                                class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Residential
-                                Region</label>
+                                class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Country</label>
                             <div class="relative">
                                 <select id="country" name="country" required
                                     class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-white appearance-none focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
@@ -100,18 +96,16 @@
                         <div class="grid gap-6 sm:grid-cols-2">
                             <div class="space-y-2">
                                 <label for="password"
-                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Security
-                                    Key</label>
-                                <input id="password" type="password" name="password" required placeholder="••••••••"
+                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Password</label>
+                                <input id="password" type="password" name="password" required placeholder="Create a password"
                                     class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
                                 @error('password')<p class="text-[10px] text-rose-500 mt-1 ml-1">{{ $message }}</p>@enderror
                             </div>
                             <div class="space-y-2">
                                 <label for="password_confirmation"
-                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Verify
-                                    Key</label>
+                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Confirm Password</label>
                                 <input id="password_confirmation" type="password" name="password_confirmation" required
-                                    placeholder="••••••••"
+                                    placeholder="Type password again"
                                     class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
                             </div>
                         </div>
@@ -163,10 +157,8 @@
                                 </svg>
                             </div>
                             <span class="text-xs font-medium text-slate-400 leading-relaxed">
-                                By establishing this account, I confirm my agreement to the <a href="{{ route('terms') }}"
-                                    class="text-[#f0b90a] font-bold hover:underline">Investment Terms</a> and acknowledge
-                                the <a href="{{ route('privacy') }}" class="text-[#f0b90a] font-bold hover:underline">Data
-                                    Protection Policy</a>.
+                                I agree to the <a href="{{ route('terms') }}" class="text-[#f0b90a] font-bold hover:underline">Terms</a>
+                                and <a href="{{ route('privacy') }}" class="text-[#f0b90a] font-bold hover:underline">Privacy Policy</a>.
                             </span>
                         </label>
 
@@ -177,7 +169,7 @@
                         <div class="flex flex-col sm:flex-row items-center gap-6">
                             <button type="submit"
                                 class="w-full sm:flex-1 h-16 bg-[#f0b90a] hover:bg-[#c99408] text-black font-extrabold text-lg rounded-2xl transition-all shadow-xl shadow-[#f0b90a]/10 flex items-center justify-center gap-2 group">
-                                <span>Initialize Workspace</span>
+                                <span>Create Account</span>
                                 <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

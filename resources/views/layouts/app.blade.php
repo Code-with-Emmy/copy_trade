@@ -54,6 +54,7 @@
     <script src="{{ asset('dash/js/plugin/sweetalert/sweetalert.min.js') }} "></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+    
     {{--
     <script src="{{ asset('js/app.js') }}"></script> --}}
     <!--PayPal-->
@@ -760,6 +761,8 @@
 </head>
 
 <body data-background-color="light" class="{{ $isAdminShell ? 'admin-app-shell antialiased' : '' }}" @if ($isAdminShell) x-data="{ sidebarOpen: false, fabOpen: false }" @endif>
+
+    
 
     <div id="app">
         <div>

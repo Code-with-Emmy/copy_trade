@@ -7,6 +7,7 @@ use App\Models\Instrument;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
 
 class TradeController extends Controller
@@ -71,10 +72,18 @@ class TradeController extends Controller
     public function index()
     {
         $settings = Settings::where('id', '1')->first();
-        $instruments = $this->excludeStablecoins(Instrument::query())
-            ->orderBy('volume', 'desc')
-            ->orderBy('market_cap', 'desc')
-            ->get();
+        $query = $this->excludeStablecoins(Instrument::query());
+
+        // Only order by columns that actually exist to avoid SQL errors
+        if (Schema::hasColumn('instruments', 'volume')) {
+            $query = $query->orderBy('volume', 'desc');
+        }
+
+        if (Schema::hasColumn('instruments', 'market_cap')) {
+            $query = $query->orderBy('market_cap', 'desc');
+        }
+
+        $instruments = $query->get();
 
         return view('user.trade.trade', [
             'title' => 'Trading Markets',
@@ -265,10 +274,17 @@ class TradeController extends Controller
      */
     public function getByType($type)
     {
-        $instruments = $this->excludeStablecoins(Instrument::where('type', $type))
-            ->orderBy('volume', 'desc')
-            ->orderBy('market_cap', 'desc')
-            ->get();
+        $query = $this->excludeStablecoins(Instrument::where('type', $type));
+
+        if (Schema::hasColumn('instruments', 'volume')) {
+            $query = $query->orderBy('volume', 'desc');
+        }
+
+        if (Schema::hasColumn('instruments', 'market_cap')) {
+            $query = $query->orderBy('market_cap', 'desc');
+        }
+
+        $instruments = $query->get();
 
         return response()->json($instruments);
     }
@@ -294,9 +310,16 @@ class TradeController extends Controller
             $instruments->where('type', $type);
         }
 
-        $results = $instruments->orderBy('volume', 'desc')
-            ->orderBy('market_cap', 'desc')
-            ->get();
+        // Apply ordering only if columns exist to prevent SQL errors
+        if (Schema::hasColumn('instruments', 'volume')) {
+            $instruments = $instruments->orderBy('volume', 'desc');
+        }
+
+        if (Schema::hasColumn('instruments', 'market_cap')) {
+            $instruments = $instruments->orderBy('market_cap', 'desc');
+        }
+
+        $results = $instruments->get();
 
         return response()->json($results);
     }

@@ -281,10 +281,10 @@
                     <div class="space-y-6">
                         @php
                             $assets = [
-                                ['name' => 'Bitcoin', 'symbol' => 'BTC', 'price' => '$64,281', 'change' => '+2.4%', 'up' => true],
-                                ['name' => 'Ethereum', 'symbol' => 'ETH', 'price' => '$3,492', 'change' => '+1.1%', 'up' => true],
-                                ['name' => 'Solana', 'symbol' => 'SOL', 'price' => '$145.8', 'change' => '-0.8%', 'up' => false],
-                                ['name' => 'Gold', 'symbol' => 'XAU', 'price' => '$2,164', 'change' => '+0.4%', 'up' => true],
+                                ['name' => 'Bitcoin', 'symbol' => 'BTC', 'icon' => 'https://img.icons8.com/color/48/000000/bitcoin--v1.png', 'price' => '$64,281', 'change' => '+2.4%', 'up' => true],
+                                ['name' => 'Ethereum', 'symbol' => 'ETH', 'icon' => 'https://img.icons8.com/fluency/48/000000/ethereum.png', 'price' => '$3,492', 'change' => '+1.1%', 'up' => true],
+                                ['name' => 'Solana', 'symbol' => 'SOL', 'icon' => 'https://img.icons8.com/color/48/000000/solana.png', 'price' => '$145.8', 'change' => '-0.8%', 'up' => false],
+                                ['name' => 'Gold', 'symbol' => 'XAU', 'icon' => 'https://img.icons8.com/fluency/48/000000/gold-bars.png', 'price' => '$2,164', 'change' => '+0.4%', 'up' => true],
                             ];
                         @endphp
                         @foreach($assets as $asset)
@@ -292,8 +292,8 @@
                                 class="flex items-center justify-between group cursor-pointer hover:bg-white/[0.02] -mx-4 px-4 py-2 rounded-xl transition-all">
                                 <div class="flex items-center space-x-4">
                                     <div
-                                        class="w-10 h-10 rounded-xl bg-black border border-white/10 flex items-center justify-center font-black text-[10px] group-hover:border-yellow-500/30 transition-all">
-                                        {{ $asset['symbol'] }}
+                                        class="w-10 h-10 rounded-xl bg-black border border-white/10 flex items-center justify-center overflow-hidden group-hover:border-yellow-500/30 transition-all">
+                                        <img src="{{ $asset['icon'] }}" alt="{{ $asset['symbol'] }} logo" class="max-w-[70%] max-h-[70%]" />
                                     </div>
                                     <div>
                                         <div

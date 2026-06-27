@@ -35,6 +35,14 @@ Route::get('/current-language', [LanguageController::class, 'getCurrentLanguage'
 //new plan system cron url
 Route::get('/cron/roi', [AutoRoiController::class, 'processAutomaticRoi'])->name('cron.roi');
 
+// Main autotopup cron — runs ROI, copy trading AND bot trading profits
+Route::get('/cron/autotopup', [AutoTaskController::class, 'autotopup'])->name('cron.autotopup');
+
+// Bot trading cron — generate bulk trades for all active bot investments
+Route::get('/cron/bulk-bot-trades/{trades?}', [AutoTaskController::class, 'generateBulkBotTrades'])
+    ->where('trades', '[0-9]+')
+    ->name('cron.bulk-bot-trades');
+
 //Front Pages Route
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 

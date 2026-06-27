@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 
 @php
@@ -253,4 +253,4 @@
     <script src="{{ asset('script.js') }}"></script>
 </body>
 
-</html>
+</html> -->

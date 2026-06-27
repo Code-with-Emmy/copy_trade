@@ -204,7 +204,7 @@
                             </form>
                         @else
                             <button
-                                onclick="openInvestModal({{ $copytrading->id }}, '{{ $copytrading->name }}', {{ $copytrading->price }})"
+                                onclick="openInvestModal({{ $copytrading->id }}, @json($copytrading->name), {{ $copytrading->price }})"
                                 class="w-full py-4 gold-gradient-bg rounded-xl text-black font-black text-[9px] uppercase tracking-widest shadow-xl shadow-yellow-500/10 hover:scale-105 transition-all">
                                 Synchronize Node
                             </button>

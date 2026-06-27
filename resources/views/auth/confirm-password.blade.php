@@ -32,15 +32,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
-                                        @if ($errors->any())
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li class="text-danger">{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </div>
                                     <!--end col-->
 
                                     <div class="mb-0 col-lg-12">

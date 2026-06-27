@@ -15,7 +15,7 @@
                         'a' => 'Copy trading lets you automatically mirror the trades of lead traders. It can help you learn or earn passively, but it still carries risk—the copied strategy can generate losses as well as gains.'
                     ],
                     [
-                        'q' => 'How does BitCloven copy work?',
+                        'q' => 'How does ' . ($settings->site_name ?? config('app.name')) . ' copy work?',
                         'a' => 'After selecting a trader and setting your copy-trading preferences, the platform instantly mirrors eligible trades within your parameters. Missed trades show in your timeline, and Autocopy stays active until you pause it or the trader stops.'
                     ],
                     [

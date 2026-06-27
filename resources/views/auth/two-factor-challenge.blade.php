@@ -1,28 +1,18 @@
-@extends('layouts.guest1')
-@section('title', 'Two Factor Authentication - Secure Login')
+@extends('layouts.public')
+@section('title', 'Two-Factor Authentication')
+@section('meta_description', 'Enter the 6-digit code sent to your email to complete sign in.')
 @section('content')
 
-<!-- Modern 2FA Authentication -->
-<div class="min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-
-        <!-- 2FA Authentication Card -->
-        <div class="bg-gray-900 rounded-2xl p-8 shadow-2xl border border-gray-700">
-
-            <!-- Header Section -->
-            <div class="text-center mb-8">
-                <!-- Security Icon -->
-                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500/10 mb-4">
-                    <i data-lucide="shield-check" class="h-8 w-8 text-blue-400"></i>
+<section class="min-h-[80vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-3xl">
+        <div class="glass-bright rounded-[40px] p-1 sm:p-2 shadow-2xl">
+            <div class="bg-black/40 rounded-[38px] p-8 sm:p-12">
+                <div class="text-center mb-10">
+                    <h1 class="font-display text-4xl lg:text-5xl font-bold text-white mb-4">Enter your 2FA code</h1>
+                    <p class="text-slate-400 max-w-2xl mx-auto">
+                        A 6-digit code was sent to your email. Enter it below to finish signing in.
+                    </p>
                 </div>
-
-                <h1 class="text-2xl md:text-3xl font-bold text-white mb-2">
-                    Two-Factor Authentication
-                </h1>
-                <p class="text-gray-400 text-sm md:text-base">
-                    Secure your trading account with an additional layer of protection
-                </p>
-            </div>
 
             <!-- Security Notice -->
             <div class="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">

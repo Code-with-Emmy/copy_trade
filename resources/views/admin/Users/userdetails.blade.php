@@ -247,7 +247,7 @@
                                 <div>
                                     <label class="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Current State</label>
                                     <div class="rounded-2xl border border-white/10 bg-black/20 px-4 py-4 text-sm text-slate-300">
-                                        {{ data_get($user, 'notify_status', $user->notify ?: 'off') }}
+                                        {{ data_get($user->getAttributes(), 'notify_status', 'off') }}
                                     </div>
                                 </div>
                             </div>

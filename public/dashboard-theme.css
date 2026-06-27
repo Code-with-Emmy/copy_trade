@@ -1,0 +1,365 @@
+/* Dashboard light/dark theme tokens */
+:root,
+html.dark {
+  --dash-bg: #000000;
+  --dash-bg-elevated: #0d0d0d;
+  --dash-bg-subtle: rgba(255, 255, 255, 0.03);
+  --dash-bg-muted: rgba(255, 255, 255, 0.05);
+  --dash-bg-hover: rgba(255, 255, 255, 0.08);
+  --dash-text: #ffffff;
+  --dash-text-secondary: #cbd5e1;
+  --dash-text-muted: #94a3b8;
+  --dash-text-faint: #64748b;
+  --dash-border: rgba(255, 255, 255, 0.1);
+  --dash-border-subtle: rgba(255, 255, 255, 0.05);
+  --dash-sidebar-from: #040507;
+  --dash-sidebar-via: #05080d;
+  --dash-sidebar-to: #000000;
+  --dash-nav-bg: rgba(0, 0, 0, 0.8);
+  --dash-overlay: rgba(0, 0, 0, 0.6);
+  --dash-input-bg: rgba(0, 0, 0, 0.3);
+  --dash-scrollbar-track: #000;
+  --dash-scrollbar-thumb: #333;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent-gold: #f0b90a;
+  --bg-dark: #000000;
+  --bg-card: #1a1a1a;
+  --bg-section: #0f0f0f;
+  --dark-text: #ffffff;
+  --light-text: #b0b0b0;
+  --border-color: #333333;
+}
+
+html.light {
+  color-scheme: light;
+  --dash-bg: #f1f5f9;
+  --dash-bg-elevated: #ffffff;
+  --dash-bg-subtle: rgba(255, 255, 255, 0.92);
+  --dash-bg-muted: rgba(15, 23, 42, 0.04);
+  --dash-bg-hover: rgba(15, 23, 42, 0.07);
+  --dash-text: #0f172a;
+  --dash-text-secondary: #334155;
+  --dash-text-muted: #64748b;
+  --dash-text-faint: #94a3b8;
+  --dash-border: rgba(15, 23, 42, 0.12);
+  --dash-border-subtle: rgba(15, 23, 42, 0.08);
+  --dash-sidebar-from: #ffffff;
+  --dash-sidebar-via: #f8fafc;
+  --dash-sidebar-to: #f1f5f9;
+  --dash-nav-bg: rgba(255, 255, 255, 0.92);
+  --dash-overlay: rgba(15, 23, 42, 0.35);
+  --dash-input-bg: #ffffff;
+  --dash-scrollbar-track: #e2e8f0;
+  --dash-scrollbar-thumb: #94a3b8;
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --accent-gold: #c99408;
+  --bg-dark: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-section: #f8fafc;
+  --dark-text: #0f172a;
+  --light-text: #64748b;
+  --border-color: #e2e8f0;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Layout shell overrides */
+html.light body {
+  background-color: var(--dash-bg) !important;
+  color: var(--dash-text) !important;
+}
+
+html.light .top-nav {
+  background: var(--dash-nav-bg) !important;
+  border-bottom-color: var(--dash-border-subtle) !important;
+}
+
+html.light .dashboard-glass {
+  background: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+  box-shadow: 0 4px 24px -8px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .sidebar-link {
+  color: var(--dash-text-muted) !important;
+}
+
+html.light .sidebar-link:hover {
+  background: var(--dash-bg-hover) !important;
+  color: var(--dash-text) !important;
+}
+
+html.light .sidebar-link.active {
+  background: rgba(240, 185, 10, 0.12) !important;
+  color: var(--accent-gold) !important;
+}
+
+html.light .sidebar-section-label,
+html.light .translator-label {
+  color: var(--dash-text-faint) !important;
+}
+
+html.light aside[class*="bg-gradient-to-b"],
+html.light aside.sidebar,
+html.light .admin-sidebar {
+  background: linear-gradient(to bottom, var(--dash-sidebar-from), var(--dash-sidebar-via), var(--dash-sidebar-to)) !important;
+  border-color: var(--dash-border-subtle) !important;
+}
+
+html.light .hover\:text-white:hover {
+  color: var(--dash-text) !important;
+}
+
+html.light .text-black {
+  color: #0f172a !important;
+}
+
+html.light .gold-gradient-bg.text-black {
+  color: #0f172a !important;
+}
+
+html.light .bg-yellow-500\/\[0\.02\],
+html.light .bg-amber-50,
+html.light .from-amber-50,
+html.light .to-yellow-50 {
+  filter: none;
+}
+
+html.light .border-amber-500,
+html.light .border-red-500,
+html.light .border-l-4 {
+  border-color: inherit;
+}
+
+/* Common Tailwind text utilities */
+html.light .text-white,
+html.light .text-white\/50,
+html.light .text-white\/60 {
+  color: var(--dash-text) !important;
+}
+
+html.light .text-slate-300 {
+  color: var(--dash-text-secondary) !important;
+}
+
+html.light .text-slate-400,
+html.light .text-slate-500 {
+  color: var(--dash-text-muted) !important;
+}
+
+html.light .text-slate-600,
+html.light .text-slate-700,
+html.light .text-slate-800 {
+  color: var(--dash-text-faint) !important;
+}
+
+/* Background utilities */
+html.light .bg-black,
+html.light .bg-\[\#0d0d0d\] {
+  background-color: var(--dash-bg-elevated) !important;
+}
+
+html.light .bg-black\/20,
+html.light .bg-black\/30,
+html.light .bg-black\/60 {
+  background-color: var(--dash-bg-muted) !important;
+}
+
+html.light .bg-white\/5,
+html.light .bg-white\/\[0\.02\],
+html.light .bg-white\/\[0\.03\] {
+  background-color: var(--dash-bg-muted) !important;
+}
+
+html.light .hover\:bg-white\/10:hover,
+html.light .hover\:bg-white\/\[0\.03\]:hover,
+html.light .hover\:bg-white\/\[0\.05\]:hover {
+  background-color: var(--dash-bg-hover) !important;
+}
+
+html.light .from-\[\#040507\],
+html.light .via-\[\#05080d\],
+html.light .to-black {
+  --tw-gradient-from: var(--dash-sidebar-from) !important;
+  --tw-gradient-via: var(--dash-sidebar-via) !important;
+  --tw-gradient-to: var(--dash-sidebar-to) !important;
+}
+
+/* Borders */
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: var(--dash-border-subtle) !important;
+}
+
+html.light .border-b.border-white\/5,
+html.light .border-t.border-white\/5,
+html.light .border-b.border-white\/10,
+html.light .border-t.border-white\/10 {
+  border-color: var(--dash-border-subtle) !important;
+}
+
+/* Form controls in dashboard pages */
+html.light input:not([type="checkbox"]):not([type="radio"]),
+html.light select,
+html.light textarea,
+html.light .form-control {
+  background-color: var(--dash-input-bg) !important;
+  color: var(--dash-text) !important;
+  border-color: var(--dash-border) !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: var(--dash-text-faint) !important;
+}
+
+/* Dropdowns & modals */
+html.light [class*="shadow-black"] {
+  box-shadow: 0 20px 50px -20px rgba(15, 23, 42, 0.2) !important;
+}
+
+html.light .fixed.inset-0[class*="bg-black"] {
+  background-color: var(--dash-overlay) !important;
+}
+
+/* Scrollbar */
+html.light ::-webkit-scrollbar-track {
+  background: var(--dash-scrollbar-track) !important;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: var(--dash-scrollbar-thumb) !important;
+}
+
+/* Admin Bootstrap bridge (legacy pages) */
+html.light .page-shell .card,
+html.light .page-shell .modal-content,
+html.light .page-shell .dropdown-menu {
+  background-color: var(--dash-bg-elevated) !important;
+  color: var(--dash-text) !important;
+  border-color: var(--dash-border) !important;
+}
+
+html.light .page-shell .table,
+html.light .page-shell .table td,
+html.light .page-shell .table th {
+  color: var(--dash-text-secondary) !important;
+  border-color: var(--dash-border-subtle) !important;
+}
+
+html.light .page-shell .table thead th {
+  color: var(--dash-text-muted) !important;
+  background: var(--dash-bg-muted) !important;
+}
+
+html.light .page-shell .legacy-hero-card,
+html.light .page-shell .page-header,
+html.light .page-shell .page-inner > .mt-2,
+html.light .page-shell .page-inner > .mb-4,
+html.light .page-shell .legacy-stat-card,
+html.light .page-shell .tab-content > .tab-pane > .row,
+html.light .page-shell .tab-content > .tab-pane > form,
+html.light .page-shell .tab-content > .tab-pane > .table-responsive {
+  background: var(--glass-bg) !important;
+  border-color: var(--dash-border) !important;
+  box-shadow: 0 4px 24px -8px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .page-shell .legacy-hero-card .subtitle,
+html.light .page-shell .legacy-stat-card .meta,
+html.light .page-shell .legacy-stat-card .eyebrow,
+html.light .page-shell .breadcrumbs li,
+html.light .page-shell .breadcrumbs a {
+  color: var(--dash-text-muted) !important;
+}
+
+html.light .page-shell .legacy-stat-card .value,
+html.light .page-shell .tab-content > .tab-pane > .row > [class*="col-"] > h4,
+html.light .page-shell .tab-content > .tab-pane > .row > [class*="col-"] > h5 {
+  color: var(--dash-text) !important;
+}
+
+html.light .page-shell .form-control:focus,
+html.light .page-shell select:focus,
+html.light .page-shell textarea:focus {
+  border-color: rgba(201, 148, 8, 0.45) !important;
+  box-shadow: 0 0 0 3px rgba(240, 185, 10, 0.12) !important;
+}
+
+html.light .page-shell .text-muted {
+  color: var(--dash-text-muted) !important;
+}
+
+html.light .page-shell .btn-light,
+html.light .page-shell .btn-secondary {
+  background: var(--dash-bg-muted) !important;
+  color: var(--dash-text) !important;
+  border-color: var(--dash-border) !important;
+}
+
+html.light .select2-container--default .select2-selection--single,
+html.light .select2-container--default .select2-selection--multiple,
+html.light .select2-dropdown {
+  background-color: var(--dash-input-bg) !important;
+  border-color: var(--dash-border) !important;
+  color: var(--dash-text) !important;
+}
+
+html.light .select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: rgba(240, 185, 10, 0.15) !important;
+  color: var(--dash-text) !important;
+}
+
+html.light .dataTables_wrapper .dataTables_length select,
+html.light .dataTables_wrapper .dataTables_filter input {
+  background: var(--dash-input-bg) !important;
+  color: var(--dash-text) !important;
+  border-color: var(--dash-border) !important;
+}
+
+/* Theme toggle button */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  border: 1px solid var(--dash-border-subtle);
+  background: var(--dash-bg-muted);
+  color: var(--dash-text-muted);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--accent-gold);
+  border-color: rgba(240, 185, 10, 0.3);
+  background: var(--dash-bg-hover);
+}
+
+.theme-toggle-btn .theme-icon-sun,
+.theme-toggle-btn .theme-icon-moon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+html.dark .theme-toggle-btn .theme-icon-sun {
+  display: none;
+}
+
+html.dark .theme-toggle-btn .theme-icon-moon {
+  display: block;
+}
+
+html.light .theme-toggle-btn .theme-icon-sun {
+  display: block;
+}
+
+html.light .theme-toggle-btn .theme-icon-moon {
+  display: none;
+}

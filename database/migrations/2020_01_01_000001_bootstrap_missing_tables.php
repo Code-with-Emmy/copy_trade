@@ -21,6 +21,8 @@ class BootstrapMissingTables extends Migration
                     $table->string('ref_by')->nullable();
                 if (!Schema::hasColumn('users', 'status'))
                     $table->string('status')->default('active');
+                if (!Schema::hasColumn('users', 'email_verified_at'))
+                    $table->timestamp('email_verified_at')->nullable();
                 if (!Schema::hasColumn('users', 'taxtype'))
                     $table->string('taxtype')->nullable();
                 if (!Schema::hasColumn('users', 'taxamount'))

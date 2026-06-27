@@ -164,7 +164,7 @@
             <div
                 class="h-[80px] flex items-center justify-between px-10 border-b border-white/5 bg-black/30 backdrop-blur-md">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img src="{{ asset('storage/' . $settings->logo)}}" alt="BitCloven"
+                    <img src="{{ asset('storage/' . $settings->logo)}}" alt="{{ $settings->site_name ?? config('app.name') }}"
                         class="h-9 w-auto object-contain">
                 </a>
                 <button @click="sidebarOpen = false"

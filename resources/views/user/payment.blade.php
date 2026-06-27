@@ -79,7 +79,7 @@
                                         <div id="card-errors" role="alert" class="mt-4 text-[10px] font-bold text-rose-500 uppercase tracking-wider"></div>
                                     </div>
                                     <p class="text-[9px] text-slate-600 font-bold uppercase italic leading-relaxed">
-                                        Encryption provided by Stripe Global Node. BitCloven does not store primary authentication keys.
+                                        Encryption provided by Stripe Global Node. {{ $settings->site_name ?? config('app.name') }} does not store primary authentication keys.
                                     </p>
                                 </div>
                                 

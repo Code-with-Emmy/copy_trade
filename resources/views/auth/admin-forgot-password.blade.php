@@ -34,17 +34,6 @@
             <x-danger-alert />
             <x-success-alert />
 
-            @if (session('status'))
-                <div class="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
-                    <div class="flex items-start gap-3">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
-                        <div class="text-sm">
-                            <p class="text-green-300 font-bold mb-1">Recovery Email Sent</p>
-                            <p class="text-gray-300">{{ session('status') }}</p>
-                        </div>
-                    </div>
-                </div>
-            @endif
 
             <!-- Recovery Instructions -->
             <div class="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">

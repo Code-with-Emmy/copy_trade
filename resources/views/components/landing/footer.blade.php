@@ -21,12 +21,12 @@
                 <h4>Contact us</h4>
                 <ul>
                     <li><a href="{{ route('login') }}">Help Center</a></li>
-                    <li><a href="mailto:support@BitCloven.com">support@BitCloven.com</a></li>
+                    <li><a href="mailto:{{ $settings->contact_email ?? 'support@' . (parse_url(config('app.url', ''), PHP_URL_HOST) ?? 'example.com') }}">{{ $settings->contact_email ?? 'support@' . (parse_url(config('app.url', ''), PHP_URL_HOST) ?? 'example.com') }}</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span>{{ date('Y') }}</span> BitCloven. All rights reserved.</p>
+            <p>&copy; <span>{{ date('Y') }}</span> {{ $settings->site_name ?? config('app.name') }}. All rights reserved.</p>
             <a href="{{ route('register') }}" target="_blank" class="btn-footer">Copy Now</a>
         </div>
     </div>

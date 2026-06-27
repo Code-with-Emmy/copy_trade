@@ -194,7 +194,8 @@ trait Coinpayment
             $this->ch = curl_init('https://www.coinpayments.net/api.php');
             curl_setopt($this->ch, CURLOPT_FAILONERROR, TRUE);
             curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
-            curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 1);
+            curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, 2);
         }
         curl_setopt($this->ch, CURLOPT_HTTPHEADER, array('HMAC: ' . $hmac));
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, $post_data);
@@ -210,8 +211,8 @@ trait Coinpayment
             if ($dec !== NULL && count($dec)) {
                 return $dec;
             } else {
-                // If you are using PHP 5.5.0 or higher you can use json_last_error_msg() for a better error message
-                return array('error' => 'Unable to parse JSON result (' . json_last_error() . ')');
+                $message = function_exists('json_last_error_msg') ? json_last_error_msg() : json_last_error();
+                return array('error' => 'Unable to parse JSON result (' . $message . ')');
             }
         } else {
             return array('error' => 'cURL error: ' . curl_error($this->ch));

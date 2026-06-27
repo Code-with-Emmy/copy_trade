@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('title', 'Credential Recovery')
-@section('meta_description', 'Recover access to your BitCloven account. Enter your registered email to receive a secure reset link.')
+@section('meta_description', 'Recover access to your ' . ($settings->site_name ?? config('app.name')) . ' account. Enter your registered email to receive a secure reset link.')
 
 @section('content')
     <section class="min-h-[70vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
@@ -30,13 +30,6 @@
 
                         <form action="{{ route('password.email') }}" method="POST" class="space-y-6 text-left">
                             @csrf
-
-                            @if (session('status'))
-                                <div
-                                    class="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm mb-6">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
 
                             <div class="space-y-2">
                                 <label for="email"

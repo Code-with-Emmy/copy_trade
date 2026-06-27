@@ -6,8 +6,7 @@
             {{-- Left Intro --}}
             <div class="reveal">
                 <span
-                    class="inline-block px-4 py-1.5 rounded-full border border-[#f0b90a]/30 bg-[#f0b90a]/10 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f0b90a] mb-6">BitCloven
-                    COPY</span>
+                    class="inline-block px-4 py-1.5 rounded-full border border-[#f0b90a]/30 bg-[#f0b90a]/10 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f0b90a] mb-6">{{ $settings->site_name ?? config('app.name') }} COPY</span>
                 <h2 class="font-display text-4xl font-bold text-white mb-6 lg:text-5xl leading-[1.1]">
                     Smart Strategy<br>Replication
                 </h2>

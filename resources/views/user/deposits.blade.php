@@ -8,7 +8,7 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
             <div>
                 <div class="flex items-center space-x-2 text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
-                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Console</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-yellow-500 transition-colors">Add Money</a>
                     <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     <span class="text-slate-300">Deposit</span>
                 </div>
@@ -43,20 +43,19 @@
 
                         <!-- Amount Selection -->
                         <div class="space-y-6">
-                            <div class="flex items-center justify-between">
-                                <label
-                                    class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Allocation
+                            <div class="flex items-center justify-between gap-4">
+                                <label class="text-[10px] font-black text-slate-500 tracking-[0.12em] ml-1">
                                     Amount</label>
-                                <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Available in
+                                <span class="text-[10px] font-bold text-slate-600 tracking-[0.08em]">Available in
                                     {{ Auth::user()->currency }}</span>
                             </div>
 
-                            <div class="relative group">
+                            <div class="relative group rounded-2xl border border-white/10 focus-within:border-yellow-500/50 focus-within:ring-4 focus-within:ring-yellow-500/5 transition-all bg-black/50 overflow-hidden">
                                 <div
-                                    class="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-black gold-text select-none">
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 text-xl font-black gold-text select-none pointer-events-none">
                                     {{ Auth::user()->currency }}</div>
-                                <input type="number" name="amount" x-model="amount" x-ref="amountInput"
-                                    class="w-full bg-black/50 border border-white/10 rounded-2xl py-6 pl-16 pr-8 text-3xl font-black text-white focus:outline-none focus:border-yellow-500/50 focus:ring-4 focus:ring-yellow-500/5 transition-all font-mono"
+                                <input type="number" name="amount" x-model="amount" x-ref="amountInput" inputmode="decimal" autocomplete="off"
+                                    class="w-full block bg-transparent border-0 py-5 pl-16 pr-44 text-2xl leading-[1.05] font-black text-white placeholder:text-slate-500 focus:outline-none focus:ring-0 transition-all appearance-none font-mono min-h-[72px]"
                                     placeholder="0.00" required step="0.01">
                             </div>
 

@@ -320,8 +320,8 @@
         });
 
         function shareToSocial(platform) {
-            const url = '{{ Auth::user()->ref_link }}';
-            const text = 'Join me on BitCloven and start investing today: ';
+                const url = '{{ Auth::user()->ref_link }}';
+                const text = @json('Join me on ' . ($settings->site_name ?? config('app.name')) . ' and start investing today: ');
             let shareUrl = '';
 
             switch (platform) {

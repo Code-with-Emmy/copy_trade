@@ -32,30 +32,6 @@
                 </p>
             </div>
 
-            <!-- Status Messages -->
-            @if (Session::has('status'))
-                <div class="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
-                    <div class="flex items-start gap-3">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
-                        <div class="text-sm">
-                            <p class="text-green-300 font-bold mb-1">Success</p>
-                            <p class="text-gray-300">{{ session('status') }}</p>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            @if (Session::has('message'))
-                <div class="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
-                    <div class="flex items-start gap-3">
-                        <i data-lucide="info" class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0"></i>
-                        <div class="text-sm">
-                            <p class="text-blue-300 font-bold mb-1">Information</p>
-                            <p class="text-gray-300">{{ Session::get('message') }}</p>
-                        </div>
-                    </div>
-                </div>
-            @endif
 
             <!-- Security Notice -->
             <div class="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">

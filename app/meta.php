@@ -8,13 +8,6 @@ class meta
 	
 	public function verify_license(){
 		return true;
-		$website = $_SERVER['HTTP_HOST'];
-		$url = "https://app.getonlinetrader.pro/api/v1/check-license/$website";
-		$curl = curl_init($url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		$res = curl_exec($curl);
-		curl_close($curl);
-		return $res;
 	}
  
 }

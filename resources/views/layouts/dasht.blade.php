@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
+@include('partials.theme-init')
 
 <head>
   <meta charset="utf-8">
@@ -9,6 +10,7 @@
 
   {{-- BitCloven Core Assets --}}
   <link rel="stylesheet" href="{{ asset('styles.css') }}">
+  <link rel="stylesheet" href="{{ asset('dashboard-theme.css') }}">
   <link rel="icon" href="{{ asset('storage/' . $settings->favicon) }}" type="image/x-icon">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,17 +20,10 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
-    :root {
-      --bg-dark: #000000;
-      --accent-gold: #f0b90a;
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.1);
-    }
-
     body {
-      background-color: var(--bg-dark);
+      background-color: var(--dash-bg);
       font-family: 'Inter', -apple-system, sans-serif;
-      color: #ffffff;
+      color: var(--dash-text);
       overflow-x: hidden;
     }
 
@@ -54,15 +49,15 @@
       padding: 0.8rem 1rem;
       margin: 0.2rem 0;
       border-radius: 14px;
-      color: #94a3b8;
+      color: var(--dash-text-muted);
       transition: all 0.2s ease;
       font-size: 0.875rem;
       line-height: 1.25rem;
     }
 
     .sidebar-link:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: #ffffff;
+      background: var(--dash-bg-hover);
+      color: var(--dash-text);
     }
 
     .sidebar-link.active {
@@ -84,13 +79,13 @@
       font-weight: 800;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #64748b;
+      color: var(--dash-text-faint);
     }
 
     .top-nav {
-      background: rgba(0, 0, 0, 0.8);
+      background: var(--dash-nav-bg);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--dash-border-subtle);
       height: 70px;
     }
 
@@ -118,16 +113,16 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: #000;
+      background: var(--dash-scrollbar-track);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #333;
+      background: var(--dash-scrollbar-thumb);
       border-radius: 10px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #444;
+      background: var(--dash-text-faint);
     }
 
     [x-cloak] {
@@ -196,7 +191,7 @@
       font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #64748b;
+      color: var(--dash-text-faint);
     }
   </style>
 </head>
@@ -212,21 +207,21 @@
 
   <!-- Mobile Sidebar Backdrop -->
   <div x-show="sidebarOpen" @click="sidebarOpen = false"
-    class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden"
+    class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm lg:hidden"
     x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300"
     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"></div>
 
   <!-- Sidebar Container -->
   <aside
-    class="fixed inset-y-0 left-0 z-[70] w-72 border-r border-white/10 bg-gradient-to-b from-[#040507] via-[#05080d] to-black transform lg:translate-x-0 transition-transform duration-300 ease-in-out"
+    class="fixed inset-y-0 left-0 z-[100] w-72 border-r border-white/10 bg-gradient-to-b from-[#040507] via-[#05080d] to-black transform lg:translate-x-0 transition-transform duration-300 ease-in-out"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
     <div class="flex flex-col h-full">
       <!-- Sidebar Header / Logo -->
       <div class="h-[78px] flex items-center justify-between px-6 border-b border-white/5 bg-black/30 backdrop-blur-md">
         <a href="{{ route('home') }}" class="flex items-center">
-          <img src="{{ asset('storage/' . $settings->logo)}}" alt="BitCloven" class="h-9 w-auto object-contain">
+          <img src="{{ asset('storage/' . $settings->logo)}}" alt="logo" class="h-9 w-auto object-contain">
         </a>
         <button @click="sidebarOpen = false"
           class="lg:hidden h-10 w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-500 hover:text-white transition-all">
@@ -403,6 +398,8 @@
               x-text="'$' + (cryptoData.eth ? cryptoData.eth.toLocaleString() : '...')"></span>
           </div>
         </div>
+
+        @include('partials.theme-toggle')
 
         <!-- Functional Notification Bell -->
         <div class="relative" x-data="{ open: false }">
@@ -612,18 +609,29 @@
 
   @stack('scripts')
   @yield('scripts')
+  <script src="{{ asset('theme-toggle.js') }}"></script>
   <script>
     lucide.createIcons();
 
+    const getSwalTheme = () => {
+      const isLight = document.documentElement.classList.contains('light');
+      return {
+        background: isLight ? '#ffffff' : '#090b10',
+        color: isLight ? '#0f172a' : '#e2e8f0',
+        backdrop: isLight ? 'rgba(15,23,42,0.35)' : 'rgba(2,6,23,0.8)',
+      };
+    };
+
     const firePremiumAlert = (title, text, icon = 'info') => {
       if (!text) return;
+      const theme = getSwalTheme();
       Swal.fire({
         title,
         text,
         icon,
-        background: '#090b10',
-        color: '#e2e8f0',
-        backdrop: 'rgba(2,6,23,0.8)',
+        background: theme.background,
+        color: theme.color,
+        backdrop: theme.backdrop,
         confirmButtonColor: '#f0b90a',
         customClass: {
           popup: 'rounded-3xl border border-white/10',

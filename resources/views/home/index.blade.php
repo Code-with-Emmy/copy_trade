@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BitCloven - Social Copy Trading Platform</title>
+    <title>{{ $settings->site_name ?? config('app.name') }} - Social Copy Trading Platform</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
 </head>
@@ -18,43 +18,7 @@
             : asset('images/logo.png');
     @endphp
 
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container nav-wrapper">
-            <a href="{{ route('home') }}" class="nav-brand" aria-label="BitCloven">
-                <img src="{{ $brandLogo }}" alt="BitCloven logo" class="nav-logo">
-            </a>
-            <nav class="nav-desktop">
-                <a class="nav-link" href="{{ route('about') }}">About</a>
-                <a class="nav-link" href="#features">Features</a>
-                <a class="nav-link" href="#copy-features">Copy</a>
-                <a class="nav-link" href="#explore">Explore</a>
-                <a class="nav-link" href="#faq">FAQ</a>
-            </nav>
-            <div class="nav-cta">
-                <a class="nav-link nav-login-link" href="{{ route('login') }}">Log In</a>
-                <a class="nav-btn btn-nav-primary" href="{{ route('register') }}">Get Started</a>
-            </div>
-            <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-        <div class="mobile-menu" aria-hidden="true">
-            <nav class="mobile-nav-links">
-                <a class="nav-link" href="{{ route('about') }}">About</a>
-                <a class="nav-link" href="#features">Features</a>
-                <a class="nav-link" href="#copy-features">Copy</a>
-                <a class="nav-link" href="#explore">Explore</a>
-                <a class="nav-link" href="#faq">FAQ</a>
-            </nav>
-            <div class="mobile-nav-cta">
-                <a class="nav-btn btn-nav-outline" href="{{ route('login') }}">Log In</a>
-                <a class="nav-btn btn-nav-primary" href="{{ route('register') }}">Get Started</a>
-            </div>
-        </div>
-    </header>
+    <x-landing.navbar />
 
     <!-- Hero Section -->
     <section class="hero">
@@ -133,7 +97,7 @@
         <div class="container">
             <div class="benefits-grid">
                 <div class="benefit-card benefit-left">
-                    <h3>BitCloven Edge</h3>
+                    <h3>{{ $settings->site_name ?? config('app.name') }} Edge</h3>
                     <p>We unite proven traders with modern automation. Monitor your mirrored positions with granular
                         trade logs, customizable alerts, and advanced performance insights.</p>
                 </div>
@@ -173,7 +137,7 @@
     <!-- Smart Earn Section -->
     <section class="smart-earn">
         <div class="container">
-            <h2>BitCloven: Follow, Automate, Earn.</h2>
+            <h2>{{ $settings->site_name ?? config('app.name') }}: Follow, Automate, Earn.</h2>
             <p>Mirror seasoned traders with the safeguards you need</p>
             <div class="earn-features">
                 <div class="earn-item">
@@ -213,7 +177,7 @@
         <div class="container">
             <div class="copy-overview-grid">
                 <div class="copy-overview-intro">
-                    <span class="copy-kicker">BitCloven COPY</span>
+                    <span class="copy-kicker">{{ $settings->site_name ?? config('app.name') }} COPY</span>
                     <h2>Smart Strategy Replication</h2>
                     <p>Replicate successful trading strategies from top-performing traders. Diversify your portfolio and
                         maximize profits with our intelligent copy-trading platform.</p>
@@ -429,7 +393,7 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-toggle" aria-expanded="false">
-                        <span class="faq-question">How does BitCloven copy work?</span>
+                        <span class="faq-question">How does {{ $settings->site_name ?? config('app.name') }} copy work?</span>
                         <span class="faq-chevron" aria-hidden="true"></span>
                     </button>
                     <div class="faq-answer" role="region">
@@ -531,12 +495,12 @@
                     <h4>Contact us</h4>
                     <ul>
                         <li><a href="{{ route('login') }}">Help Center</a></li>
-                        <li><a href="mailto:support@BitCloven.com">support@BitCloven.com</a></li>
+                        <li><a href="mailto:{{ $settings->contact_email ?? 'support@' . (parse_url(config('app.url', ''), PHP_URL_HOST) ?? 'example.com') }}">{{ $settings->contact_email ?? 'support@' . (parse_url(config('app.url', ''), PHP_URL_HOST) ?? 'example.com') }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> BitCloven. All rights reserved.</p>
+                <p>&copy; <span id="currentYear"></span> {{ $settings->site_name ?? config('app.name') }}. All rights reserved.</p>
                 <a href="{{ route('register') }}" target="_blank" class="btn-footer">Copy Now</a>
             </div>
         </div>

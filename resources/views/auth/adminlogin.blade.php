@@ -37,24 +37,6 @@
                     </p>
                 </div>
 
-                <!-- Alert Messages -->
-                @if (session('message'))
-                    <div class="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400">
-                        <div class="flex items-center">
-                            <i data-lucide="alert-circle" class="w-5 h-5 mr-3 flex-shrink-0"></i>
-                            <span class="text-sm font-medium">{{ session('message') }}</span>
-                        </div>
-                    </div>
-                @endif
-
-                @if (session('success'))
-                    <div class="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400">
-                        <div class="flex items-center">
-                            <i data-lucide="check-circle" class="w-5 h-5 mr-3 flex-shrink-0"></i>
-                            <span class="text-sm font-medium">{{ session('success') }}</span>
-                        </div>
-                    </div>
-                @endif
                 <!-- Login Form -->
                 <form method="POST" action="{{ route('adminlogin') }}" class="space-y-6">
                     @csrf

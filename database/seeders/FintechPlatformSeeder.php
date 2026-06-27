@@ -31,7 +31,7 @@ class FintechPlatformSeeder extends Seeder
         }
 
         Trader::query()->get()->each(function (Trader $trader, int $index) {
-            TraderMetric::factory()->updateOrCreate(
+            TraderMetric::query()->updateOrCreate(
                 ['copytrading_id' => $trader->getKey()],
                 TraderMetric::factory()->make(['copytrading_id' => $trader->getKey()])->toArray()
             );
@@ -109,7 +109,7 @@ class FintechPlatformSeeder extends Seeder
             }
         });
 
-        if (Schema::hasTable('referrals')) {
+        if (Schema::hasTable('referrals') && Schema::hasColumn('users', 'referral_code')) {
             User::query()->whereNotNull('referral_code')->limit(8)->get()->each(function (User $user) {
                 Referral::query()->firstOrCreate([
                     'referrer_user_id' => $user->getKey(),

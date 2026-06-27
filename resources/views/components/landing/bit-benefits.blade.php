@@ -7,7 +7,7 @@
             <div
                 class="reveal glass-bright relative overflow-hidden rounded-[24px] p-10 border border-white/5 bg-black transition-all hover:border-[#f0b90a]/20">
                 <div class="relative z-10">
-                    <h3 class="text-3xl font-bold text-white mb-6">BitCloven Edge</h3>
+                    <h3 class="text-3xl font-bold text-white mb-6">{{ $settings->site_name ?? config('app.name') }} Edge</h3>
                     <p class="text-lg text-slate-400 leading-relaxed mb-8">
                         We unite proven traders with modern automation. Monitor your mirrored positions with granular
                         trade logs, customizable alerts, and advanced performance insights.

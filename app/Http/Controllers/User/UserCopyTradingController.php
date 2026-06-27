@@ -133,6 +133,7 @@ class UserCopyTradingController extends Controller
                 'price' => $amount,
                 'current_balance' => $amount,
                 'active' => 'yes',
+                'status' => 'active',
                 'name' => $expert->name,
                 'tag' => $expert->tag ?? '',
                 'type' => $expert->type ?? 'expert',
@@ -143,6 +144,10 @@ class UserCopyTradingController extends Controller
                 'winning_trades' => 0,
                 'profit_percentage' => 0,
             ]);
+
+            if (! $copyTrade) {
+                throw new \Exception('Failed to create copy trade record');
+            }
 
             // Record transaction
             TpTransaction::create([

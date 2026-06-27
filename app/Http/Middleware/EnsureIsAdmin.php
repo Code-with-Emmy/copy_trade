@@ -24,13 +24,11 @@ class EnsureIsAdmin
         if (Auth::guard('admin')->check()) {
             
             $res = $api->verify_license();
-            if($res != true){
-              die("
-              <h3>Sorry for interrupting! Please check back later.</h3>
-              ");
+            if ($res != true) {
+                abort(503, 'Sorry for interrupting! Please check back later.');
             }
 
-        return $next($request);
+            return $next($request);
         } else {
             return redirect()->route('validate_admin');
         }

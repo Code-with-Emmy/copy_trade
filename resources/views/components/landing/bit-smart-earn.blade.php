@@ -3,7 +3,7 @@
 
         <div class="max-w-3xl mx-auto text-center mb-20 reveal">
             <h2 class="font-display text-3xl font-bold text-white sm:text-4xl">
-                BitCloven: Follow, Automate, Earn.
+                {{ $settings->site_name ?? config('app.name') }}: Follow, Automate, Earn.
             </h2>
             <p class="mt-4 text-slate-400">
                 Mirror seasoned traders with the safeguards you need

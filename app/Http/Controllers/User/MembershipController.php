@@ -49,8 +49,6 @@ class MembershipController extends Controller
 
         $info = json_decode($response);
 
-        // dd($info);
-
         return view("user.membership.mycourse-details", [
             'title' => 'Course Details',
             'course' => $info->data,

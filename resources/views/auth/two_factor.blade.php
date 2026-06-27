@@ -61,19 +61,6 @@
                     </div>
                 </div>
 
-                <!-- Error Messages -->
-                @if ($errors->any())
-                    <div class="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                        <div class="space-y-2">
-                            @foreach ($errors->all() as $error)
-                                <div class="flex items-center gap-3">
-                                    <i data-lucide="alert-circle" class="w-5 h-5 text-red-400 flex-shrink-0"></i>
-                                    <span class="text-red-300 text-sm font-medium">{{ $error }}</span>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
                 <form method="POST" action="{{ route('two-factor.login') }}">
                     @csrf
                     <div class="row">

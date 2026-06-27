@@ -61,7 +61,6 @@ class FlutterwaveController extends Controller
 
             $transactionID = Flutterwave::getTransactionIDFromCallback();
             $data = Flutterwave::verifyTransaction($transactionID);
-            // dd($data);
             $amount = $data['data']['amount'];
         } elseif ($status ==  'cancelled') {
             return redirect()->route('payment')->with('message', 'Something went wrong, please try payment again');

@@ -632,9 +632,6 @@ class ViewsController extends Controller
                         ]);
                 }
             }
-            //    dd($now->lessThanOrEqualTo($trade->expire_date));
-
-
         }
     }
 }

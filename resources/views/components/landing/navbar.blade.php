@@ -1,13 +1,14 @@
 @php
-    $brandLogo = !empty(data_get($settings ?? null, 'logo'))
-        ? asset('storage/' . data_get($settings, 'logo'))
+    $brandName = optional($settings)->site_name ?: config('app.name');
+    $brandLogo = optional($settings)->logo
+        ? asset('storage/' . $settings->logo)
         : asset('images/logo.png');
 @endphp
 
 <header class="site-header">
     <div class="container nav-wrapper">
-        <a href="{{ route('home') }}" class="nav-brand" aria-label="BitCloven">
-            <img src="{{ $brandLogo }}" alt="BitCloven logo" class="nav-logo">
+        <a href="{{ route('home') }}" class="nav-brand" aria-label="{{ $brandName }}">
+            <img src="{{ $brandLogo }}" alt="{{ $brandName }} logo" class="nav-logo">
         </a>
         <nav class="nav-desktop">
             <a class="nav-link" href="{{ route('about') }}">About</a>

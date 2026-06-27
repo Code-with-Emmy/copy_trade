@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Adverts::factory(7)->create();
+        if (\Illuminate\Support\Facades\Schema::hasTable('adverts')) {
+            Adverts::factory(7)->create();
+        }
 
         $this->call([
             CopytradingSeeder::class,

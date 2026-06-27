@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
+@include('partials.theme-init')
 
 <head>
     <meta charset="utf-8">
@@ -8,6 +9,7 @@
     <title>{{ $title ?? trim($__env->yieldContent('title')) ?: 'Admin Dashboard' }} | {{ $settings->site_name }}</title>
 
     <link rel="stylesheet" href="{{ asset('styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard-theme.css') }}">
     <link rel="icon" href="{{ asset('storage/' . $settings->favicon) }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('dash/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dash/css/fonts.min.css') }}">
@@ -27,17 +29,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #000000;
-            --accent-gold: #f0b90a;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(240, 185, 10, 0.05);
-        }
-
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--dash-bg);
             font-family: 'Inter', -apple-system, sans-serif;
-            color: #ffffff;
+            color: var(--dash-text);
             overflow-x: hidden;
         }
 
@@ -52,7 +47,7 @@
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            border-radius: 2px;
             box-shadow: 0 24px 60px -46px rgba(0, 0, 0, 0.9);
         }
 
@@ -66,15 +61,15 @@
 
         .sidebar-link {
             display: grid;
-            grid-template-columns: 2.5rem minmax(0, 1fr);
+            grid-template-columns: 2.2rem minmax(0, 1fr);
             align-items: center;
-            column-gap: 0.85rem;
+            column-gap: 0.75rem;
             width: 100%;
-            min-height: 3.25rem;
-            padding: 0.7rem 0.95rem;
-            margin: 0.14rem 0;
-            border-radius: 16px;
-            color: #94a3b8;
+            min-height: 2.3rem;
+            padding: 0.35rem 0.75rem;
+            margin: 0.08rem 0;
+            border-radius: 12px;
+            color: var(--dash-text-muted);
             transition: all 0.2s ease;
             font-size: 0.875rem;
             line-height: 1.25rem;
@@ -82,8 +77,8 @@
         }
 
         .sidebar-link:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
+            background: var(--dash-bg-hover);
+            color: var(--dash-text);
         }
 
         .sidebar-link.active {
@@ -93,24 +88,24 @@
         }
 
         .sidebar-link i {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 10rem;
+            height: 2rem;
             opacity: 0.9;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0.95rem;
+            border-radius: 0.75rem;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 0.7rem;
+            padding: 0.45rem;
             transition: all 0.2s ease;
         }
 
         .sidebar-link span {
             min-width: 0;
             display: block;
-            font-size: 0.79rem;
+            font-size: 0.81rem;
             font-weight: 800;
             letter-spacing: 0.01em;
             line-height: 1.25rem;
@@ -128,31 +123,31 @@
         }
 
         .sidebar-section-label {
-            margin: 1.2rem 0 0.6rem;
-            padding: 0 0.95rem;
+            margin: 0.85rem 0 0.4rem;
+            padding: 0 0.75rem;
             font-size: 0.625rem;
             font-weight: 800;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #64748b;
+            color: var(--dash-text-faint);
         }
 
         .top-nav {
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--dash-nav-bg);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(240, 185, 10, 0.04);
+            border-bottom: 1px solid var(--dash-border-subtle);
             height: 70px;
         }
 
-        .border-white\/5,
-        .border-white\/10 {
+        html.dark .border-white\/5,
+        html.dark .border-white\/10 {
             border-color: rgba(240, 185, 10, 0.04) !important;
         }
 
-        .border-b.border-white\/5,
-        .border-t.border-white\/5,
-        .border-b.border-white\/10,
-        .border-t.border-white\/10 {
+        html.dark .border-b.border-white\/5,
+        html.dark .border-t.border-white\/5,
+        html.dark .border-b.border-white\/10,
+        html.dark .border-t.border-white\/10 {
             border-color: rgba(240, 185, 10, 0.04) !important;
         }
 
@@ -1017,7 +1012,7 @@
     @endphp
     @include('admin.sidebar')
 
-    <div class="lg:ml-72 flex flex-col min-h-screen">
+    <div class="lg:ml-80 flex flex-col min-h-screen">
         @include('admin.topmenu')
 
         <main class="flex-1 p-4 sm:p-6 lg:p-10 pb-32 lg:pb-10">
@@ -1041,18 +1036,29 @@
 
     @stack('scripts')
     @yield('scripts')
+    <script src="{{ asset('theme-toggle.js') }}"></script>
     <script>
         lucide.createIcons();
 
+        const getSwalTheme = () => {
+            const isLight = document.documentElement.classList.contains('light');
+            return {
+                background: isLight ? '#ffffff' : '#090b10',
+                color: isLight ? '#0f172a' : '#e2e8f0',
+                backdrop: isLight ? 'rgba(15,23,42,0.35)' : 'rgba(2,6,23,0.8)',
+            };
+        };
+
         const firePremiumAlert = (title, text, icon = 'info') => {
             if (!text) return;
+            const theme = getSwalTheme();
             Swal.fire({
                 title,
                 text,
                 icon,
-                background: '#090b10',
-                color: '#e2e8f0',
-                backdrop: 'rgba(2,6,23,0.8)',
+                background: theme.background,
+                color: theme.color,
+                backdrop: theme.backdrop,
                 confirmButtonColor: '#f0b90a',
                 customClass: {
                     popup: 'rounded-3xl border border-white/10',

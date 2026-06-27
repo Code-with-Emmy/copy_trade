@@ -176,8 +176,10 @@ trait BinanceApi
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
         $result = curl_exec($ch);
-        if (curl_errno($ch)) {
-            echo 'Error:' . curl_error($ch);
+        if ($result === false) {
+            $error = curl_error($ch);
+            curl_close($ch);
+            return json_encode(['error' => $error]);
         }
         curl_close($ch);
 

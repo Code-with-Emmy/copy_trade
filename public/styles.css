@@ -30,6 +30,11 @@ body {
   line-height: 1.6;
 }
 
+/* Remove all uppercase text transforms from the UI */
+* {
+  text-transform: none !important;
+}
+
 body.nav-open {
   overflow: hidden;
 }
@@ -1328,15 +1333,18 @@ a.btn-secondary {
 }
 
 .about-hero-actions {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   width: 100%;
-  max-width: 360px;
+  max-width: 560px;
+  align-items: center;
 }
 
 .about-hero-actions .btn-primary,
 .about-hero-actions .btn-secondary {
-  width: 100%;
+  width: auto;
+  flex: 1 1 170px;
 }
 
 .about-hero-metrics {

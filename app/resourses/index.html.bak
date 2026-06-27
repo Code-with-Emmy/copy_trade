@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Theramanuel Brokerage Copy Trade, Finance and Investment ">
+	<meta name="keywords" content="Theramanuel, Brokerage, Copy, Trade, Finance, and, Investment">
+	<meta name="author" content="Warren Wong">
+	<meta name="theme-color" content="#E67300">
+	<!-- critical preload -->
+	<link rel="preload" href="js/vendors/bootstrap.bundle.min.js" as="script">
+	<link rel="preload" href="css/style.css" as="style">
+	<!-- icon preload -->
+	<link rel="preload" href="fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+	<!-- font preload -->
+	<link rel="preload" href="fonts/dm-sans-v11-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="fonts/dm-sans-v11-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+	<!-- stylesheet -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<!-- Touch icon -->
+	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon.png">
+	<title>Homepage - Theramanuel Brokerage</title>
+</head>
+
+<body>
+	<!-- page loader begin -->
+	<div class="page-loader w-100 h-100 bg-white d-flex justify-content-center align-items-center position-fixed overflow-hidden">
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+		<div class="spinner-grow spinner-grow-sm text-primary"></div>
+	</div>
+	<!-- page loader end -->
+	<!-- ticker content begin -->
+	<section class="bg-primary">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<h1 class="d-none">Stock price ticker</h1>
+					<ul class="ticker-tape"></ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ticker content end -->
+	<!-- header begin -->
+	<header class="navbar navbar-expand-lg navbar-light">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">
+				<img src="img/user/header-logo-UZmx21.svg" alt="logo" width="110" height="40" class="d-inline-block">
+			</a>
+			<div class="collapse navbar-collapse d-flex justify-content-between d-none d-xl-block" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="markets.html">Markets</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="" id="dropdownCompany" data-bs-toggle="dropdown" aria-expanded="false">Company</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="about.html">About</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="blog.html">Blog</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="careers.html">Careers</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="contact.html">Contact</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="education.html">Education</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="" id="dropdownResources" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Documentation<i class="fas fa-square-arrow-up-right fa-sm"></i></a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="help-center.html">Help Center</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="customers.html">Customers</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="roadmap.html">Roadmap</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="legal-docs.html">Legal Docs<i class="fas fa-gavel fa-sm"></i></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="optional-link d-flex align-items-center ms-4 d-none d-xl-block">
+					<a href="signin.html" class="btn btn-link link-secondary text-decoration-none">Sign in</a>
+					<a href="#" class="btn btn-outline-primary rounded-pill">Get started<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main>
+		<!-- slideshow content begin -->
+		<section>
+			<div id="slideshow" class="carousel slide">
+				<div class="carousel-inner">
+					<div class="carousel-item">
+						<div class="carousel-caption d-flex align-items-center">
+							<div class="container">
+								<div class="row g-0 align-items-md-center">
+									<div class="col-md-5 col-lg-5 order-first">
+										<h1 class="fw-bold display-4">Master the Markets with Theramanuel</h1>
+										<p class="lead mb-3 d-none d-lg-block">Automatically mirror the strategies of top-performing investors. Start growing your portfolio with as little as $100.</p>
+										<a href="#" class="btn btn-primary rounded-pill d-none d-sm-inline">Start Copying<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+									</div>
+									<div class="col-md-7 col-lg-7 order-last position-relative">
+										<img src="img/in-slide-img-1.svg" class="image-slide" alt="image-slide">
+										<div class="card position-absolute symbol-slide animate-1 p-responsive-1" style="top: -70px; left: -50px;">
+											<div>
+												<img src="img/in-slide-symbol-1.svg" alt="icon" width="30" height="30">
+												<div>
+													<span class="h6">42%<i class="fas fa-arrow-trend-up fa-sm"></i></span><br>profit gain
+												</div>
+											</div>
+										</div>
+										<div class="card position-absolute symbol-slide animate-2 p-responsive-2" style="top: -230px; left: 150px;">
+											<div>
+												<img src="img/in-slide-symbol-2.svg" alt="icon" width="30" height="30">
+												<div>
+													<span class="h6">22%<i class="fas fa-arrow-trend-up fa-sm"></i></span><br>profit gain
+												</div>
+											</div>
+										</div>
+										<div class="card position-absolute symbol-slide animate-3 p-responsive-3" style="top: -210px; left: 430px;">
+											<div>
+												<img src="img/in-slide-symbol-3.svg" alt="icon" width="30" height="30">
+												<div>
+													<span class="h6">10%<i class="fas fa-arrow-trend-down fa-sm"></i></span><br>floating loss
+												</div>
+											</div>
+										</div>
+										<div class="card position-absolute symbol-slide animate-4 p-responsive-4" style="top: -45px; left: 605px;">
+											<div>
+												<img src="img/in-slide-symbol-4.svg" alt="icon" width="30" height="30">
+												<div>
+													<span class="h6">32%<i class="fas fa-arrow-trend-up fa-sm"></i></span><br>profit gain
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="carousel-caption d-flex align-items-center">
+							<div class="container">
+								<div class="row g-0 align-items-md-center">
+									<div class="col-md-5 col-lg-5 order-first">
+										<h1 class="fw-bold display-4">Institutional-Grade Execution & Security</h1>
+										<p class="lead mb-3 d-none d-lg-block">Trade with confidence on a regulated platform offering ultra-low latency, deep liquidity, and top-tier asset protection.</p>
+										<a href="#" class="btn btn-primary rounded-pill d-none d-sm-inline">Open Account<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+									</div>
+									<div class="col-md-7 col-lg-7 order-last position-relative">
+										<img src="img/in-slide-img-2.svg" class="image-slide" alt="image-slide">
+										<div class="card position-absolute symbol-slide animate-1 p-responsive-5" style="top: -70px; left: -20px;">
+											<div>
+												<img src="img/in-slide-symbol-5.svg" alt="icon" width="30" height="30">
+												<div>
+													<span class="h6">27%<i class="fas fa-arrow-trend-up fa-sm"></i></span><br>profit gain
+												</div>
+											</div>
+										</div>
+										<div class="card position-absolute symbol-slide animate-2 p-responsive-6" style="top: -210px; left: 190px;">
+											<div>
+												<img src="img/in-slide-symbol-6.svg" alt="icon" width="30" height="26">
+												<div>
+													<span class="h6">18%<i class="fas fa-arrow-trend-up fa-sm"></i></span><br>profit gain
+												</div>
+											</div>
+										</div>
+										<div class="card position-absolute symbol-slide animate-3 p-responsive-7" style="top: -40px; left: 350px;">
+											<div>
+												<img src="img/in-slide-symbol-7.svg" alt="icon" width="30" height="30">
+												<div>
+													<span class="h6">7%<i class="fas fa-arrow-trend-down fa-sm"></i></span><br>floating loss
+												</div>
+											</div>
+										</div>
+										<div class="card position-absolute symbol-slide animate-4 p-responsive-8" style="top: -190px; left: 605px;">
+											<div>
+												<img src="img/in-slide-symbol-8.svg" alt="icon" width="30" height="30">
+												<div>
+													<span class="h6">25%<i class="fas fa-arrow-trend-up fa-sm"></i></span><br>profit gain
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- slideshow content end -->
+		<!-- section content begin -->
+		<section class="pb-5 in-theramanuel-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="card border-0">
+							<div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
+								<div class="col-md-3 col-lg-auto border-end-lg">
+									<div class="pe-lg-3">
+										<h6 class="mb-md-0 mb-lg-0">Various trusted media</h6>
+										<p class="text-muted mb-0 d-none d-lg-block">have covered us</p>
+									</div>
+								</div>
+								<div class="col-md-9 col-lg-10">
+									<div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 d-flex align-items-center gx-0">
+										<div class="col text-center">
+											<img class="opacity-75 my-2 my-md-1 my-lg-1" src="img/in-theramanuel-press-1.svg" alt="client-logo" width="127" height="19">
+										</div>
+										<div class="col text-center">
+											<img class="opacity-75 my-2 my-md-1 my-lg-1" src="img/in-theramanuel-press-2.svg" alt="client-logo" width="126" height="23">
+										</div>
+										<div class="col text-center d-none d-lg-block">
+											<img class="opacity-75 my-2 my-md-1 my-lg-1" src="img/in-theramanuel-press-3.svg" alt="client-logo" width="155" height="23">
+										</div>
+										<div class="col text-center d-none d-lg-block">
+											<img class="opacity-75 my-2 my-md-1 my-lg-1" src="img/in-theramanuel-press-4.svg" alt="client-logo" width="102" height="29">
+										</div>
+										<div class="col text-center">
+											<img class="opacity-75 my-2 my-md-1 my-lg-1" src="img/in-theramanuel-press-5.svg" alt="client-logo" width="124" height="29">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section content end -->
+		<!-- section content begin -->
+		<section class="py-5 in-theramanuel-6">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12 col-lg-10">
+						<div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 gx-2 text-center mt-1">
+							<div class="col">
+								<div class="icon-wrap icon-wrap-large bg-primary rounded-circle flex-shrink-0 mb-2">
+									<img src="img/in-theramanuel-6-icon-1.png" alt="icon" width="54" height="54">
+								</div>
+								<h6 class="text-secondary">Wide Range of Trading Instruments</h6>
+							</div>
+							<div class="col">
+								<div class="icon-wrap icon-wrap-large bg-primary rounded-circle flex-shrink-0 mb-2">
+									<img src="img/in-theramanuel-6-icon-2.png" alt="icon" width="54" height="54">
+								</div>
+								<h6 class="text-secondary">Unparalled Trading Conditions</h6>
+							</div>
+							<div class="col">
+								<div class="icon-wrap icon-wrap-large bg-primary rounded-circle flex-shrink-0 mb-2">
+									<img src="img/in-theramanuel-6-icon-3.png" alt="icon" width="54" height="54">
+								</div>
+								<h6 class="text-secondary">Globaly Licensed &amp; Regulated</h6>
+							</div>
+							<div class="col">
+								<div class="icon-wrap icon-wrap-large bg-primary rounded-circle flex-shrink-0 mb-2">
+									<img src="img/in-theramanuel-6-icon-4.png" alt="icon" width="54" height="54">
+								</div>
+								<h6 class="text-secondary">Commited to Forex Education</h6>
+							</div>
+							<div class="col d-none d-lg-block">
+								<div class="icon-wrap icon-wrap-large bg-primary rounded-circle flex-shrink-0 mb-2">
+									<img src="img/in-theramanuel-6-icon-5.png" alt="icon" width="54" height="54">
+								</div>
+								<h6 class="text-secondary">Regular Contents &amp; Promotions</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row row-cols-md-2 row-cols-lg-3 mt-3 mt-md-5 gy-4 gy-md-0">
+					<div class="col d-md-none d-lg-block">
+						<div class="card card-body">
+							<div class="col d-flex justify-content-between align-items-start">
+								<div>
+									<h3 class="mb-0">Learn</h3>
+									<p class="text-muted">Knowledge to get started</p>
+								</div>
+								<div class="icon-wrap bg-primary rounded-circle flex-shrink-0 ms-2">
+									<i class="fas fa-graduation-cap fa-lg text-primary"></i>
+								</div>
+							</div>
+							<ul class="fa-ul lh-lg mt-2 mb-4">
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>FREE Demo Account</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Step-by step tutorials &amp; articles</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Online webinars &amp; local seminars</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Your own Account Manager</li>
+							</ul>
+							<a href="#" class="btn btn-outline-primary rounded-pill">Demo account<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card card-body">
+							<div class="col d-flex justify-content-between align-items-start">
+								<div>
+									<h3 class="mb-0">Trade</h3>
+									<p class="text-muted">Take your first profit</p>
+								</div>
+								<div class="icon-wrap bg-primary rounded-circle flex-shrink-0 ms-2">
+									<i class="fas fa-chart-area fa-lg text-primary"></i>
+								</div>
+							</div>
+							<ul class="fa-ul lh-lg mt-2 mb-4">
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Tight spreads</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Superfast trade execution</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Hi-tech forex trading tools</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Ultimate risk protection &amp; security</li>
+							</ul>
+							<a href="#" class="btn btn-outline-primary rounded-pill">Real account<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card card-body">
+							<div class="col d-flex justify-content-between align-items-start">
+								<div>
+									<h3 class="mb-0">Invest</h3>
+									<p class="text-muted">Choose the best portfolio</p>
+								</div>
+								<div class="icon-wrap bg-primary rounded-circle flex-shrink-0 ms-2">
+									<i class="fas fa-chart-pie fa-lg text-primary"></i>
+								</div>
+							</div>
+							<ul class="fa-ul lh-lg mt-2 mb-4">
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>No need to be an experienced</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Large number of strategies</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Profit whenever Managers earn</li>
+								<li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Full control of your Investment</li>
+							</ul>
+							<a href="#" class="btn btn-outline-primary rounded-pill">Start following<i class="fas fa-arrow-right fa-sm ms-1"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section content end -->
+		<!-- section content begin -->
+		<section class="pt-md-3 pt-lg-0 pb-5 in-theramanuel-7">
+			<div class="container">
+				<div class="row d-flex align-items-center gx-5 gy-5 gy-lg-0 mb-3">
+					<div class="col-md-12 col-lg-7 mt-md-5">
+						<div class="card card-body me-lg-5">
+							<ul class="market-list"></ul>
+						</div>
+					</div>
+					<div class="col-md-12 col-lg-5 mb-0 mb-md-3 mb-lg-0">
+						<span class="badge bg-primary mb-2">Popular instruments</span>
+						<h1 class="mt-2 mb-1"><span class="text-highlight">Live prices</span> on popular markets</h1>
+						<p class="lead text-muted mb-4">Inform your decisions with timely dispatches from our team of global analysts.</p>
+						<div class="d-flex align-items-center position-relative">
+							<div class="icon-wrap rounded-circle flex-shrink-0">
+								<img src="img/in-theramanuel-7-icon-1.png" alt="icon" width="82" height="82">
+							</div>
+							<div class="award-text">
+								<h6 class="mb-0 text-secondary">Best Execution Broker</h6>
+								<p class="mb-0 small text-uppercase text-secondary">Forex Expo Dubai 2022</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section content end -->
+		<!-- section content begin -->
+		<section class="pb-5 in-theramanuel-4">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12 col-lg-9 position-relative">
+						<div class="card card-body text-center">
+							<div id="testimoni" class="carousel slide">
+								<div class="carousel-inner">
+									<div class="carousel-item">
+										<h2>“Theramanuel is my first choice for investing”</h2>
+										<p class="lead text-muted">I’ve been a client for 7 years. I am very happy with the platform, pricing, answers to my requests. I am also very happy with the professionalism and the effectiveness of my account manager.</p>
+										<h6 class="mt-2 mb-0">Christy Costa</h6>
+										<p class="text-muted">Theramanuel Investor</p>
+									</div>
+									<div class="carousel-item">
+										<h2>“Extremely satisfied with the service”</h2>
+										<p class="lead text-muted">The whole process was seamless and very easy. The best part of it is the actual annualised return on the investment. I am extremely satisfied with the service and advice of Theramanuel.</p>
+										<h6 class="mt-2 mb-0">Howard Lane</h6>
+										<p class="text-muted">Theramanuel Investor</p>
+									</div>
+									<div class="carousel-item">
+										<h2>“Satisfied with the growth my investment”</h2>
+										<p class="lead text-muted">Theramanuel gave me the best independent advice on my investment strategy. I am able to monitor the performance, switch funds and add to the investment with little or no hassle, even as a sophisticated investor.</p>
+										<h6 class="mt-2 mb-0">John Wright</h6>
+										<p class="text-muted">Theramanuel Investor</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<img class="position-absolute card-decor animate-5" src="img/in-theramanuel-4-decor-1.svg" alt="decor" style="top: 50%; left: -5%;">
+						<img class="position-absolute card-decor animate-6" src="img/in-theramanuel-4-decor-2.svg" alt="decor" style="top: -22%; left: 10%;">
+						<img class="position-absolute card-decor animate-7" src="img/in-theramanuel-4-decor-3.svg" alt="decor" style="top: -16%; left: 94%;">
+						<img class="position-absolute card-decor animate-6" src="img/in-theramanuel-4-decor-4.svg" alt="decor" style="top: 82%; left: 96.5%;">
+						<img class="position-absolute animate-1" src="img/in-theramanuel-4-avatar-1.png" alt="decor" style="top: -15%; left: -15%;">
+						<img class="position-absolute animate-2" src="img/in-theramanuel-4-avatar-2.png" alt="decor" style="top: 28%; left: -20%;">
+						<img class="position-absolute animate-2" src="img/in-theramanuel-4-avatar-3.png" alt="decor" style="top: 16%; left: 117%;">
+						<img class="position-absolute animate-1" src="img/in-theramanuel-4-avatar-4.png" alt="decor" style="top: 58%; left: 108%;">
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section content end -->
+		<!-- section content begin -->
+		<section class="py-5 in-theramanuel-9 bg-white">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12 col-lg-9 text-center">
+						<h2>Proudly serving traders since 1986.</h2>
+					</div>
+				</div>
+				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-0 mt-md-3 gy-3 gy-md-0 gx-md-3 gx-lg-5">
+					<div class="col">
+						<div class="award-wrap text-center">
+							<h5>Best Trading Experience</h5>
+							<p class="small text-muted text-uppercase">Jordan Forex EXPO 2022</p>
+						</div>
+					</div>
+					<div class="col">
+						<div class="award-wrap text-center">
+							<h5>Best Execution Broker</h5>
+							<p class="small text-muted text-uppercase">Forex EXPO Dubai 2022</p>
+						</div>
+					</div>
+					<div class="col d-md-none d-lg-block">
+						<div class="award-wrap text-center">
+							<h5>Best Trading Platform</h5>
+							<p class="small text-muted text-uppercase">London Summit 2022</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section content end -->
+	</main>
+	<!-- footer begin -->
+	<footer class="bg-light pb-4 in-theramanuel-footer">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gy-4 gy-lg-0">
+				<div class="col">
+					<h5>Overview</h5>
+					<ul class="list-unstyled">
+						<li><a href="#">Open account</a></li>
+						<li><a href="#">Our company</a></li>
+						<li><a href="#">Login</a></li>
+						<li><a href="#">Careers</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Account</h5>
+					<ul class="list-unstyled">
+						<li><a href="#">Client services</a></li>
+						<li><a href="#">VIP offering</a></li>
+						<li><a href="#">Corporate account</a></li>
+						<li><a href="#">Support center</a></li>
+						<li><a href="#">Refer a friend</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Others</h5>
+					<ul class="list-unstyled">
+						<li><a href="#">Trade inspirations</a></li>
+						<li><a href="#">Outrageous predictions</a></li>
+						<li><a href="#">Quarterly outlook</a></li>
+						<li><a href="#">Margin information</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Get in Touch</h5>
+					<p>Contact us any time for getting support.</p>
+					<a class="footer-email" href="mailto:support@theramanuel.com">support@theramanuel.com</a>
+					<!-- social media begin -->
+					<div class="social-media-list small hstack">
+						<div><a href="https://www.facebook.com/theramanuel" class="color-facebook text-decoration-none"><i class="fab fa-facebook"></i> Facebook</a></div>
+						<div><a href="https://x.com/theramanuel" class="color-twitter text-decoration-none"><i class="fab fa-x-twitter"></i> X</a></div>
+						<div><a href="https://www.instagram.com/theramanuel" class="color-instagram text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a></div>
+					</div>
+					<!-- social media end -->
+				</div>
+				<div class="col-md-12 col-lg-12 text-center small mt-4">
+					<div class="trade-warning">
+						<h6 class="mb-1"><span><i class="fas fa-triangle-exclamation fa-sm"></i>Risk warning</span></h6>
+						<p class="mb-0">The prices of securities fluctuate, sometimes dramatically. The price of a security may move up or down, and may become valueless. It is as likely that losses will be incurred rather than profit made as a result of buying and selling securities.</p>
+					</div>
+					<p class="copyright-text">Copyright ©2023 Theramanuel Ltd. All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer end -->
+	<!-- to top begin -->
+	<div class="d-none d-md-block">
+		<a href="#" class="to-top fas fa-arrow-up text-decoration-none text-white"></a>
+	</div>
+	<!-- to top end -->
+	<!-- javascript -->
+	<script src="js/vendors/bootstrap.bundle.min.js"></script>
+	<script src="js/vendors/vanilla-marquee.min.js"></script>
+	<script src="js/vendors/apexcharts.min.js"></script>
+	<script src="js/utilities.min.js"></script>
+	<script src="js/config-theme.js"></script>
+</body>
+
+</html>

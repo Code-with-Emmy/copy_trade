@@ -649,7 +649,7 @@
                 <form style="padding:3px;" role="form" method="post" action="{{ route('notifyuser') }}">
                     @csrf
                     <div class=" form-group">
-                        <label>Turn on/off  Dashboard Notification : {{$user->notify}}</label>
+                        <label>Turn on/off  Dashboard Notification : {{ data_get($user->getAttributes(), 'notify_status', 'off') }}</label>
                         <select class="form-control  " name="notifystatus">
 
                             <option value="on">On</option>

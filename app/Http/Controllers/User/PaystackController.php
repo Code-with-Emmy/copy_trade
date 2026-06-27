@@ -19,7 +19,6 @@ class PaystackController extends Controller
         try {
             return Paystack::getAuthorizationUrl()->redirectNow();
         } catch (\Exception $e) {
-            //dd($e);
             return redirect()->back()->with('message', 'The paystack token has expired or the website currency is not supported. Please refresh the page and try again.');
         }
     }
@@ -27,7 +26,6 @@ class PaystackController extends Controller
     public function handleGatewayCallback()
     {
         $paymentDetails = Paystack::getPaymentData();
-        //dd($paymentDetails);
         $payamount = $paymentDetails['data']['amount'];
         $txn_ref = $paymentDetails['data']['reference'];
         $amount = $payamount / 100;

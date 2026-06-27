@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('title', 'Sign In')
-@section('meta_description', 'Sign in to BitCloven to manage your copy trading subscriptions and monitor portfolio analytics.')
+@section('meta_description', 'Sign in to ' . ($settings->site_name ?? config('app.name')) . ' to manage your copy trading subscriptions and monitor portfolio analytics.')
 
 @section('content')
     <section class="min-h-[80vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
@@ -11,14 +11,13 @@
             <div class="hidden lg:block reveal">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0b90a]/10 border border-[#f0b90a]/20 mb-6">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#f0b90a] animate-pulse"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-[#f0b90a]">Secure Access</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-[#f0b90a]">Simple Login</span>
                 </div>
                 <h1 class="font-display text-5xl font-bold text-white leading-tight mb-6">
-                    Return to your <br>
-                    <span class="text-[#f0b90a]">strategic</span> command.
+                    Welcome back.
                 </h1>
                 <p class="text-lg text-slate-400 leading-relaxed mb-8 max-w-md">
-                    Monitor your mirrored strategies, manage risk parameters, and track real-time performance from your premium investor dashboard.
+                    Sign in with your email or username and password to continue.
                 </p>
                 
                 <div class="space-y-4">
@@ -48,24 +47,19 @@
                     <div class="relative z-10">
                         <div class="mb-10 lg:hidden">
                             <h2 class="text-3xl font-bold text-white mb-2">Sign In</h2>
-                            <p class="text-slate-400">Secure access to your BitCloven account</p>
+                            <p class="text-slate-400">Secure access to your {{ $settings->site_name ?? config('app.name') }} account</p>
                         </div>
 
                         <form action="{{ route('login') }}" method="POST" class="space-y-6">
                             @csrf
-                            
-                            @if (session('status'))
-                                <div class="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
 
                             <div class="space-y-2">
-                                <label for="email" class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Identity</label>
+                                <label for="email" class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Email or Username</label>
                                 <div class="relative">
                                     <input id="email" type="text" name="email" value="{{ old('email') }}" required autofocus 
                                            placeholder="Email or Username"
                                            class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
+                                <p class="text-[10px] text-slate-500 mt-2">Use the email or username you signed up with.</p>
                                 </div>
                             </div>
 
@@ -76,9 +70,10 @@
                                 </div>
                                 <div class="relative">
                                     <input id="password" type="password" name="password" required 
-                                           placeholder="••••••••"
+                                           placeholder="Enter your password"
                                            class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#f0b90a]/50 focus:ring-1 focus:ring-[#f0b90a]/30 transition-all">
                                 </div>
+                                <p class="text-[10px] text-slate-500 mt-2">If you forgot your password, use Recover?</p>
                             </div>
 
                             <div class="flex items-center justify-between py-2">
@@ -89,12 +84,12 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <span class="text-xs font-bold text-slate-400 group-hover:text-slate-200 transition-colors uppercase tracking-widest">Persist Session</span>
+                                    <span class="text-xs font-bold text-slate-400 group-hover:text-slate-200 transition-colors uppercase tracking-widest">Remember me</span>
                                 </label>
                             </div>
 
                             <button type="submit" class="w-full h-14 bg-[#f0b90a] hover:bg-[#c99408] text-black font-bold rounded-2xl transition-all flex items-center justify-center gap-2 group shadow-lg shadow-[#f0b90a]/10">
-                                <span>Authenticate Access</span>
+                                <span>Sign In</span>
                                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                 </svg>
@@ -102,8 +97,8 @@
                         </form>
 
                         <div class="mt-8 pt-8 border-t border-white/5 flex flex-col items-center gap-4">
-                            <p class="text-slate-500 text-xs font-medium uppercase tracking-widest">New to the platform?</p>
-                            <a href="{{ route('register') }}" class="text-[#f0b90a] font-bold text-sm hover:underline">Establish Account →</a>
+                            <p class="text-slate-500 text-xs font-medium uppercase tracking-widest">Need an account?</p>
+                            <a href="{{ route('register') }}" class="text-[#f0b90a] font-bold text-sm hover:underline">Create one now →</a>
                         </div>
                     </div>
                 </div>

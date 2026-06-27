@@ -52,6 +52,8 @@
                 </div>
             </div>
 
+            @include('partials.theme-toggle')
+
             <div class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
                     class="h-12 w-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white/60 hover:text-white hover:border-yellow-500/30 transition-all relative group/bell">
@@ -206,6 +208,9 @@
                 class="flex flex-col items-center p-3 {{ request()->routeIs('admin.notifications', 'admin.notifications.*') ? 'gold-text' : 'text-slate-500' }}">
                 <i data-lucide="bell" class="w-6 h-6"></i>
             </a>
+            <div class="flex flex-col items-center p-3">
+                @include('partials.theme-toggle')
+            </div>
             <a href="{{ route('admin.profile') }}"
                 class="flex flex-col items-center p-3 {{ request()->routeIs('admin.profile', 'adminprofile', 'admin.password') ? 'gold-text' : 'text-slate-500' }}">
                 <i data-lucide="user" class="w-6 h-6"></i>

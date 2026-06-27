@@ -865,4 +865,151 @@ class AutoTaskController extends Controller
 
         return $strategies[array_rand($strategies)];
     }
+
+    /**
+     * Generate bulk trades for all active bot investments
+     * Called via HTTP route or console command
+     *
+     * @param int $tradesPerBot Number of trades to generate per active investment
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function generateBulkBotTrades(int $tradesPerBot = 20)
+    {
+        $settings = \App\Models\Settings::find(1);
+
+        if (!$settings || $settings->trade_mode !== 'on') {
+            return response()->json([
+                'success'  => false,
+                'message'  => 'Trading mode is OFF. Enable trade mode in platform settings.',
+            ]);
+        }
+
+        $activeBotInvestments = \App\Models\UserBotInvestment::where('status', 'active')
+            ->where('expires_at', '>', now())
+            ->with(['user', 'bot'])
+            ->get();
+
+        if ($activeBotInvestments->isEmpty()) {
+            return response()->json([
+                'success'              => true,
+                'message'              => 'No active bot investments found.',
+                'total_trades_created' => 0,
+                'investments_processed' => 0,
+                'results'              => [],
+            ]);
+        }
+
+        $totalTradesCreated = 0;
+        $results = [];
+
+        foreach ($activeBotInvestments as $investment) {
+            $user = $investment->user;
+            $bot  = $investment->bot;
+
+            if (!$user || !$bot) {
+                continue;
+            }
+
+            $successfulTrades = 0;
+            $failedTrades     = 0;
+            $netProfit        = 0.0;
+
+            for ($i = 0; $i < $tradesPerBot; $i++) {
+                $tradingResult = $this->calculateBotTradingResult($investment);
+
+                $openedAt = now()->subMinutes(rand(15, 180) * ($i + 1));
+                $closedAt = $openedAt->copy()->addMinutes(rand(5, 45));
+
+                if ($tradingResult['result'] === 'PROFIT') {
+                    $profit = $tradingResult['amount'];
+                    $netProfit += $profit;
+                    $successfulTrades++;
+
+                    // Update user account
+                    \App\Models\User::where('id', $user->id)->update([
+                        'roi'         => $user->roi + $profit,
+                        'account_bal' => $user->account_bal + $profit,
+                    ]);
+                    $user->refresh();
+
+                    // Update bot investment
+                    $investment->update([
+                        'current_balance'   => $investment->current_balance + $profit,
+                        'total_profit'      => $investment->total_profit + $profit,
+                        'successful_trades' => $investment->successful_trades + 1,
+                        'last_profit_at'    => now(),
+                    ]);
+                    $investment->refresh();
+
+                    // Record transaction
+                    \App\Models\TpTransaction::create([
+                        'user'   => $user->id,
+                        'plan'   => "Bot Trading Profit - {$bot->name}",
+                        'amount' => $profit,
+                        'type'   => 'Bot Trading Profit',
+                        'leverage' => $tradingResult['percentage'],
+                    ]);
+
+                } else {
+                    $loss = $tradingResult['amount'];
+                    $netProfit -= $loss;
+                    $failedTrades++;
+
+                    $investment->update([
+                        'current_balance' => max(0, $investment->current_balance - $loss),
+                        'total_loss'      => $investment->total_loss + $loss,
+                        'failed_trades'   => $investment->failed_trades + 1,
+                        'last_profit_at'  => now(),
+                    ]);
+                    $investment->refresh();
+                }
+
+                // Create trading history entry
+                \App\Models\BotTradingHistory::create([
+                    'user_bot_investment_id' => $investment->id,
+                    'trade_type'             => $tradingResult['trade_type'],
+                    'trading_pair'           => $tradingResult['trading_pair'],
+                    'entry_price'            => $tradingResult['entry_price'],
+                    'exit_price'             => $tradingResult['exit_price'],
+                    'amount'                 => max($investment->current_balance, 1) * 0.1,
+                    'profit_loss'            => $tradingResult['result'] === 'PROFIT' ? $tradingResult['amount'] : -$tradingResult['amount'],
+                    'profit_percentage'      => $tradingResult['result'] === 'PROFIT' ? $tradingResult['percentage'] : -$tradingResult['percentage'],
+                    'result'                 => $tradingResult['result'] === 'PROFIT' ? 'profit' : 'loss',
+                    'strategy_used'          => $tradingResult['strategy'],
+                    'opened_at'              => $openedAt,
+                    'closed_at'              => $closedAt,
+                ]);
+
+                $totalTradesCreated++;
+            }
+
+            // Update bot last trade timestamp
+            $bot->update([
+                'last_trade'   => now(),
+                'total_earned' => $bot->total_earned + max(0, $netProfit),
+            ]);
+
+            $successRate = $tradesPerBot > 0
+                ? round(($successfulTrades / $tradesPerBot) * 100, 1)
+                : 0;
+
+            $results[] = [
+                'bot_name'         => $bot->name,
+                'user_email'       => $user->email,
+                'trades_created'   => $tradesPerBot,
+                'successful_trades' => $successfulTrades,
+                'failed_trades'    => $failedTrades,
+                'net_profit'       => round($netProfit, 2),
+                'success_rate'     => $successRate,
+            ];
+        }
+
+        return response()->json([
+            'success'               => true,
+            'message'               => 'Bulk trades generated successfully.',
+            'total_trades_created'  => $totalTradesCreated,
+            'investments_processed' => $activeBotInvestments->count(),
+            'results'               => $results,
+        ]);
+    }
 }

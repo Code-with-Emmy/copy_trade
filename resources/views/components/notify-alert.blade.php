@@ -68,7 +68,7 @@
 @endif
 
 <!-- Notify Alert -->
-@if (Auth::check() && Auth::user()->notify_status == 'on' && Auth::user()->notify)
+@if (Auth::check() && data_get(Auth::user()->getAttributes(), 'notify_status') == 'on' && data_get(Auth::user()->getAttributes(), 'notify'))
 <div x-data="{ show: true }"
      x-show="show"
      x-transition:enter="transition ease-out duration-300"
@@ -87,7 +87,7 @@
             </div>
             <div class="flex-1 min-w-0">
                 <h4 class="text-sm font-semibold text-amber-800 mb-1">Notification</h4>
-                <p class="text-sm text-amber-700 leading-relaxed">{{ Auth::user()->notify }}</p>
+                <p class="text-sm text-amber-700 leading-relaxed">{{ data_get(Auth::user()->getAttributes(), 'notify') }}</p>
             </div>
         </div>
         <button @click="show = false"

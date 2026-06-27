@@ -114,7 +114,7 @@
 
 @section('scripts')
     @parent
-    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.25.1-lts/standard/ckeditor.js"></script>
     <script type="text/javascript">
         var category = document.querySelector("#category");
 

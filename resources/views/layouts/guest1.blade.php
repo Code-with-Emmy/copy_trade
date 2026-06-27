@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ darkMode: localStorage.getItem('theme') === 'light' ? false : true }"
-    :class="{ 'dark': darkMode }" class="dark bg-gray-300 h-full">
+<html lang="en">
+@include('partials.theme-init')
 
 <head>
     <meta charset="utf-8">
@@ -19,11 +19,14 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Set dark mode as default if no preference is stored
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'dark');
-            document.documentElement.classList.add('dark');
-        }
+        (function () {
+            var stored = localStorage.getItem('site-theme') || localStorage.getItem('theme');
+            if (!stored) {
+                stored = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            localStorage.setItem('site-theme', stored);
+            localStorage.setItem('theme', stored);
+        })();
 
         tailwind.config = {
             darkMode: 'class',
@@ -115,7 +118,10 @@
     <!-- <script src="{{ asset('temp/custom/assets/js/bootstrap.min.js') }}"></script> -->
 
     <link href="{{ asset('temp/custom/assets/css/others.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
     <!-- <link href="404.html" rel="stylesheet" /> -->
+
+    @yield('styles')
 
     <title>{{$settings->site_name }}</title>
     <!-- <link rel="manifest" href="{{ asset('temp/custom/assets/js/manifest.json') }}"> -->
@@ -179,6 +185,7 @@ EXPERTISE.???">
 
     <!-- <link href="404" rel="stylesheet" /> -->
 
+    @yield('head')
 </head>
 
 
@@ -253,8 +260,16 @@ EXPERTISE.???">
     <div class="fixed top-4 right-4 z-50">
 
 
-        <button x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || !localStorage.getItem('theme') }"
-            @click="darkMode = !darkMode; localStorage.setItem('theme', darkMode ? 'dark' : 'light'); document.documentElement.classList.toggle('dark', darkMode)"
+        <button x-data="{ darkMode: (localStorage.getItem('site-theme') || localStorage.getItem('theme') || 'dark') === 'dark' }"
+            @click="
+                darkMode = !darkMode;
+                const theme = darkMode ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+                localStorage.setItem('site-theme', theme);
+                document.documentElement.classList.toggle('dark', darkMode);
+                document.documentElement.classList.toggle('light', !darkMode);
+                document.documentElement.style.colorScheme = theme;
+            "
             class="relative inline-flex items-center justify-center w-10 h-10 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-150 backdrop-blur-sm"
             :aria-pressed="darkMode" x-cloak>
             <svg x-cloak x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -307,28 +322,25 @@ EXPERTISE.???">
 
     <!-- Initialize Scripts -->
     <script>
-        // Set dark mode as default if no preference is stored
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'dark');
-            document.documentElement.classList.add('dark');
-        }
-
-        // Initialize theme
         document.addEventListener('alpine:init', () => {
             Alpine.store('theme', {
                 init() {
-                    // Default to dark if no preference is set
-                    this.darkMode = localStorage.getItem('theme') === 'dark' || !localStorage.getItem('theme');
+                    const stored = localStorage.getItem('site-theme') || localStorage.getItem('theme');
+                    this.darkMode = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
                     this.updateTheme();
                 },
-                darkMode: true, // Set default to true
+                darkMode: true,
                 toggle() {
                     this.darkMode = !this.darkMode;
                     this.updateTheme();
                 },
                 updateTheme() {
-                    localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+                    const theme = this.darkMode ? 'dark' : 'light';
+                    localStorage.setItem('theme', theme);
+                    localStorage.setItem('site-theme', theme);
                     document.documentElement.classList.toggle('dark', this.darkMode);
+                    document.documentElement.classList.toggle('light', !this.darkMode);
+                    document.documentElement.style.colorScheme = theme;
                 }
             });
         });
@@ -347,6 +359,57 @@ EXPERTISE.???">
             }
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function showToast(message, type = 'info') {
+                if (!message) return;
+
+                const backgroundColors = {
+                    success: 'linear-gradient(to right, #16a34a, #059669)',
+                    error: 'linear-gradient(to right, #dc2626, #ef4444)',
+                    info: 'linear-gradient(to right, #334155, #475569)',
+                };
+
+                Toastify({
+                    text: message,
+                    duration: 6000,
+                    close: true,
+                    gravity: 'top',
+                    position: 'right',
+                    stopOnFocus: true,
+                    backgroundColor: backgroundColors[type] || backgroundColors.info,
+                    className: 'toastify',
+                }).showToast();
+            }
+
+            const messages = [];
+            @if(session('success'))
+                messages.push({ message: @json(session('success')), type: 'success' });
+            @endif
+            @if(session('status'))
+                messages.push({ message: @json(session('status')), type: 'success' });
+            @endif
+            @if(session('error'))
+                messages.push({ message: @json(session('error')), type: 'error' });
+            @endif
+            @if(session('message'))
+                messages.push({ message: @json(session('message')), type: 'info' });
+            @endif
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    messages.push({ message: @json($error), type: 'error' });
+                @endforeach
+            @endif
+
+            messages.forEach((toast, index) => {
+                setTimeout(() => showToast(toast.message, toast.type), index * 250);
+            });
+        });
+    </script>
+
+    @yield('scripts')
+
     <!-- Language Selector -->
     @include('layouts.lang')
     <!-- Language Selector -->

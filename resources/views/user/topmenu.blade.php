@@ -86,6 +86,7 @@
                     <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin"
                         data-target="#sidenav-main"><i class="far fa-bars"></i></a>
                 </li>
+                
 
                 <!-- Notifications -->
                 <li class="nav-item dropdown dropdown-animate">

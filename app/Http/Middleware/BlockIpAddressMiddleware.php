@@ -25,7 +25,6 @@ class BlockIpAddressMiddleware
         $ipaddress = DB::table('ipaddresses')->pluck('ipaddress');
         $iparrays = $ipaddress->toArray();
         $userip = $request->ip();
-        //dd($userip);
         if (in_array($userip, $iparrays)) {
              abort(403, "You are restricted to access the site.");
         }

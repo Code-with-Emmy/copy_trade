@@ -104,6 +104,15 @@ return new class extends Migration {
                 $table->string('symbol')->nullable();
                 $table->string('type')->nullable();
                 $table->string('logo')->nullable();
+                $table->decimal('price', 24, 8)->nullable();
+                $table->decimal('open', 24, 8)->nullable();
+                $table->decimal('high', 24, 8)->nullable();
+                $table->decimal('low', 24, 8)->nullable();
+                $table->decimal('close', 24, 8)->nullable();
+                $table->decimal('volume', 24, 8)->nullable();
+                $table->decimal('market_cap', 24, 8)->nullable();
+                $table->decimal('change', 24, 8)->nullable();
+                $table->decimal('percent_change_24h', 24, 8)->nullable();
                 $table->timestamps();
             });
         }
