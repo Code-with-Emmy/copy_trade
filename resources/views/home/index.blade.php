@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.public')
 
-<!-- Mirrored from bitcloven.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Mar 2026 20:43:55 GMT -->
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $settings->site_name ?? config('app.name') }} - Social Copy Trading Platform</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
-</head>
-
-<body>
-    @php
-        $brandLogo = !empty(data_get($settings ?? null, 'logo'))
-            ? asset('storage/' . data_get($settings, 'logo'))
-            : asset('images/logo.png');
-    @endphp
-
-    <x-landing.navbar />
-
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-content fade-in">
@@ -34,24 +15,24 @@
                 <div class="hero-sponsors">
                     <p class="hero-sponsors-label">Investors and Partners</p>
                     <div class="sponsor-logos">
-                        <img src="images/bybit.svg" alt="Bybit">
-                        <img src="images/morgan.png" alt="Morgan Stanley">
-                        <img src="images/allianz.svg" alt="Allianz">
-                        <img src="images/ml.png" alt="Merrill Lynch">
-                        <img src="images/square.svg" alt="Square">
+                        <img src="{{ asset('images/bybit.svg') }}" alt="Bybit">
+                        <img src="{{ asset('images/morgan.png') }}" alt="Morgan Stanley">
+                        <img src="{{ asset('images/allianz.svg') }}" alt="Allianz">
+                        <img src="{{ asset('images/ml.png') }}" alt="Merrill Lynch">
+                        <img src="{{ asset('images/square.svg') }}" alt="Square">
                     </div>
                     <div class="sponsor-marquee">
                         <div class="marquee-track">
-                            <img src="images/bybit.svg" alt="Bybit">
-                            <img src="images/morgan.png" alt="Morgan Stanley">
-                            <img src="images/allianz.svg" alt="Allianz">
-                            <img src="images/ml.png" alt="Merrill Lynch">
-                            <img src="images/square.svg" alt="Square">
-                            <img src="images/bybit.svg" alt="Bybit">
-                            <img src="images/morgan.png" alt="Morgan Stanley">
-                            <img src="images/allianz.svg" alt="Allianz">
-                            <img src="images/ml.png" alt="Merrill Lynch">
-                            <img src="images/square.svg" alt="Square">
+                            <img src="{{ asset('images/bybit.svg') }}" alt="Bybit">
+                            <img src="{{ asset('images/morgan.png') }}" alt="Morgan Stanley">
+                            <img src="{{ asset('images/allianz.svg') }}" alt="Allianz">
+                            <img src="{{ asset('images/ml.png') }}" alt="Merrill Lynch">
+                            <img src="{{ asset('images/square.svg') }}" alt="Square">
+                            <img src="{{ asset('images/bybit.svg') }}" alt="Bybit">
+                            <img src="{{ asset('images/morgan.png') }}" alt="Morgan Stanley">
+                            <img src="{{ asset('images/allianz.svg') }}" alt="Allianz">
+                            <img src="{{ asset('images/ml.png') }}" alt="Merrill Lynch">
+                            <img src="{{ asset('images/square.svg') }}" alt="Square">
                         </div>
                     </div>
                 </div>
@@ -59,7 +40,7 @@
             <div class="hero-phone fade-in-delay">
                 <div class="phone-mockup">
                     <div class="phone-frame">
-                        <img src="images/hero.png" alt="Investment app preview">
+                        <img src="{{ asset('images/hero.png') }}" alt="Investment app preview">
                     </div>
                 </div>
             </div>
@@ -128,7 +109,7 @@
                         →</a>
                 </div>
                 <div class="goals-image">
-                    <img src="images/coins.webp" alt="Copy trading dashboard">
+                    <img src="{{ asset('images/coins.webp') }}" alt="Copy trading dashboard">
                 </div>
             </div>
         </div>
@@ -238,7 +219,7 @@
                 <div class="stat-card">
                     <div class="stat-emphasis">
                         <span class="stat-figure">50</span>
-                        <img src="images/countries.webp" alt="Countries" class="stat-flag-img">
+                        <img src="{{ asset('images/countries.webp') }}" alt="Countries" class="stat-flag-img">
                     </div>
                     <p class="stat-label">Countries</p>
                 </div>
@@ -345,7 +326,7 @@
                     <a href="{{ route('login') }}" class="btn-primary">Browse Leaderboard</a>
                 </div>
                 <div class="explore-image">
-                    <video class="explore-video" src="images/leaderboard.mp4" autoplay muted loop playsinline></video>
+                    <video class="explore-video" src="{{ asset('images/leaderboard.mp4') }}" autoplay muted loop playsinline></video>
                 </div>
             </div>
         </div>
@@ -506,9 +487,4 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-</body>
-
-<!-- Mirrored from bitcloven.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Mar 2026 20:44:13 GMT -->
-
-</html>
+    @endsection

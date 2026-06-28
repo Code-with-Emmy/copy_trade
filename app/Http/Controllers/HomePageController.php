@@ -50,6 +50,7 @@ class HomePageController extends Controller
     public function index()
     {
         $settings = Settings::where('id', '=', '1')->first();
+
         //sum total deposited
         $total_deposits = DB::table('deposits')->select(DB::raw("SUM(amount) as total"))->
             where('status', 'Processed')->get();
@@ -60,24 +61,38 @@ class HomePageController extends Controller
 
         $btcStats = $this->getBitcoinStats();
 
+        // Safely load trader data — tables may not exist yet on a fresh deployment
+        try {
+            $featuredTraders    = Trader::query()->active()->with('metric')->where('is_featured', true)->limit(3)->get();
+            $marketplaceSections = $this->marketplaceService->sections();
+            $leaderboards       = $this->leaderboardService->boards();
+            $platformStats      = $this->platformStats();
+        } catch (\Throwable $e) {
+            \Log::warning('HomePageController: Could not load trader data — ' . $e->getMessage());
+            $featuredTraders    = collect();
+            $marketplaceSections = ['featured' => collect(), 'top_ranked' => collect(), 'trending' => collect(), 'recent' => collect(), 'watchlist_ids' => []];
+            $leaderboards       = ['top_roi' => collect(), 'lowest_drawdown' => collect(), 'most_copied' => collect(), 'trending' => collect()];
+            $platformStats      = ['active_investors' => 0, 'assets_copied' => 0, 'average_monthly_returns' => 0, 'verified_traders' => 0, 'executed_trades' => 0, 'active_subscriptions' => 0];
+        }
+
         return view('home.index')->with(array(
-            'settings' => $settings,
-            'total_users' => User::count(),
-            'plans' => Plans::all(),
-            'total_deposits' => $total_deposits,
-            'total_withdrawals' => $total_withdrawals,
-            'faqs' => Faq::orderby('id', 'desc')->get(),
-            'test' => Testimony::orderby('id', 'desc')->get(),
-            'withdrawals' => Withdrawal::orderby('id', 'DESC')->take(7)->get(),
-            'deposits' => Deposit::orderby('id', 'DESC')->take(7)->get(),
-            'title' => $settings->site_title,
-            'btcStats' => $btcStats,
-            'mplans' => Plans::where('type', 'Main')->get(),
-            'pplans' => Plans::where('type', 'Promo')->get(),
-            'featuredTraders' => Trader::query()->active()->with('metric')->where('is_featured', true)->limit(3)->get(),
-            'marketplaceSections' => $this->marketplaceService->sections(),
-            'leaderboards' => $this->leaderboardService->boards(),
-            'platformStats' => $this->platformStats(),
+            'settings'           => $settings,
+            'total_users'        => User::count(),
+            'plans'              => Plans::all(),
+            'total_deposits'     => $total_deposits,
+            'total_withdrawals'  => $total_withdrawals,
+            'faqs'               => Faq::orderby('id', 'desc')->get(),
+            'test'               => Testimony::orderby('id', 'desc')->get(),
+            'withdrawals'        => Withdrawal::orderby('id', 'DESC')->take(7)->get(),
+            'deposits'           => Deposit::orderby('id', 'DESC')->take(7)->get(),
+            'title'              => $settings->site_title,
+            'btcStats'           => $btcStats,
+            'mplans'             => Plans::where('type', 'Main')->get(),
+            'pplans'             => Plans::where('type', 'Promo')->get(),
+            'featuredTraders'    => $featuredTraders,
+            'marketplaceSections' => $marketplaceSections,
+            'leaderboards'       => $leaderboards,
+            'platformStats'      => $platformStats,
         ));
     }
 

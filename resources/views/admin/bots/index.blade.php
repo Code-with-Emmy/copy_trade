@@ -98,7 +98,7 @@
                                         @endif
                                         <div>
                                             <p class="font-bold text-white">{{ $bot->name }}</p>
-                                            <p class="text-xs text-slate-400">{{ \Illuminate\Support\Str::limit($bot->description, 58) }}</p>
+                                            <p class="text-xs text-slate-400">{{ strlen($bot->description) > 58 ? substr($bot->description, 0, 58) . '...' : $bot->description }}</p>
                                         </div>
                                     </div>
                                 </td>

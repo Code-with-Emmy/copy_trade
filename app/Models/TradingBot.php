@@ -54,19 +54,15 @@ class TradingBot extends Model
     }
 
     /**
-     * Get bot performance metrics
+     * Get bot performance metrics (uses pre-loaded aggregates to avoid N+1 memory issues)
      */
-    public function getPerformanceAttribute()
+    public function getPerformanceAttribute(): array
     {
-        $investments = $this->userInvestments;
-        $totalInvested = $investments->sum('investment_amount');
-        $totalProfit = $investments->sum('total_profit');
-
         return [
-            'total_invested' => $totalInvested,
-            'total_profit' => $totalProfit,
-            'roi_percentage' => $totalInvested > 0 ? round(($totalProfit / $totalInvested) * 100, 2) : 0,
-            'active_users' => $this->activeInvestments()->count(),
+            'total_invested'  => (float) ($this->attributes['total_invested_sum'] ?? 0),
+            'total_profit'    => (float) ($this->attributes['total_profit_sum'] ?? 0),
+            'roi_percentage'  => 0,
+            'active_users'    => (int) ($this->active_investments_count ?? 0),
         ];
     }
 

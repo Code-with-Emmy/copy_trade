@@ -17,8 +17,9 @@ class BotController extends Controller
      */
     public function index()
     {
-        $bots = TradingBot::with(['userInvestments'])
-                    ->withCount(['userInvestments', 'activeInvestments'])
+        $bots = TradingBot::withCount(['userInvestments', 'activeInvestments'])
+                    ->withSum('userInvestments as total_invested_sum', 'investment_amount')
+                    ->withSum('userInvestments as total_profit_sum', 'total_profit')
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
 

@@ -229,14 +229,14 @@
 
   <!-- Mobile Sidebar Backdrop -->
   <div x-show="sidebarOpen" @click="sidebarOpen = false"
-    class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm lg:hidden"
+    class="fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm lg:hidden"
     x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300"
     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"></div>
 
   <!-- Sidebar Container -->
   <aside
-    class="fixed inset-y-0 left-0 z-[100] w-72 border-r border-white/10 bg-gradient-to-b from-[#040507] via-[#05080d] to-black transform lg:translate-x-0 transition-transform duration-300 ease-in-out"
+    class="fixed inset-y-0 left-0 z-[110] w-72 border-r border-white/10 bg-gradient-to-b from-[#040507] via-[#05080d] to-black transform lg:translate-x-0 transition-transform duration-300 ease-in-out"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
     <div class="flex flex-col h-full">
@@ -577,7 +577,7 @@
   </div>
 
   <!-- Mobile Bottom Navigation (Glass) -->
-  <div class="fixed bottom-0 left-0 right-0 z-[100] lg:hidden">
+  <div class="fixed bottom-0 left-0 right-0 z-[90] lg:hidden">
     <div class="mx-4 mb-6 dashboard-glass bg-black/60 border-white/10 p-2 overflow-visible">
       <div class="flex items-center justify-around relative">
         <a href="{{ route('dashboard') }}"

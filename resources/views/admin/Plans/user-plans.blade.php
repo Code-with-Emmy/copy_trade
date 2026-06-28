@@ -106,17 +106,18 @@
                                 <tr>
                                     <td>{{ $userPlan->id }}</td>
                                     <td>
-                                        @if($userPlan->user)
-                                            <a href="{{ route('viewuser', $userPlan->user_id) }}" target="_blank">
-                                                {{ $userPlan->user->name }}
+                                        @php $planUser = $userPlan->duser; @endphp
+                                        @if($planUser)
+                                            <a href="{{ route('viewuser', $planUser->id) }}" target="_blank">
+                                                {{ $planUser->name }}
                                             </a>
                                         @else
                                             <span class="text-danger">User not found</span>
                                         @endif
                                     </td>
-                                    <td>{{ $userPlan->plan ? $userPlan->plan->name : 'N/A' }}</td>
-                                    <td>{{ $settings->currency }}{{ number_format($userPlan->amount, 2) }}</td>
-                                    <td>{{ $userPlan->plan ? $userPlan->plan->roi_percentage : 0 }}% per {{ $userPlan->plan ? $userPlan->plan->roi_interval : 'N/A' }}</td>
+                                    <td>@php $planObj = $userPlan->dplan; @endphp{{ $planObj ? $planObj->name : 'N/A' }}</td>
+                                    <td>{{ $settings->currency }}{{ number_format((float)$userPlan->amount, 2) }}</td>
+                                    <td>{{ $planObj ? ($planObj->returns ?? '0%') : 'N/A' }}</td>
                                     <td>{{ $settings->currency }}{{ number_format($userPlan->total_paid_amount, 2) }}</td>
                                     <td>
                                         @if($userPlan->status == 'pending')

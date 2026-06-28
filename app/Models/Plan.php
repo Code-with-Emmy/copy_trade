@@ -17,212 +17,171 @@ class Plan extends Model
         initializeSoftDeletes as protected initializeSoftDeletesTrait;
     }
 
+    protected $table = 'plans';
+
     protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'price',
-        'min_price',
-        'max_price',
-        'min_return',
-        'max_return',
-        'bonus_percentage',
-        'duration',
-        'duration_type',
-        'payout_interval',
-        'return_type',
-        'profit_calculation',
-        'allow_compounding',
-        'compounding_percentage',
-        'featured',
-        'badge_text',
-        'color_scheme',
-        'active',
-        'sort_order',
-        'features',
+        'name', 'slug', 'description', 'price',
+        'min_price', 'max_price', 'min_reinvest', 'max_reinvest',
+        'min_return', 'max_return', 'bonus_percentage',
+        'duration', 'duration_type', 'payout_interval',
+        'return_type', 'profit_calculation',
+        'allow_compounding', 'compounding_percentage',
+        'featured', 'badge_text', 'color_scheme',
+        'active', 'sort_order', 'features',
     ];
 
     protected $casts = [
-        'min_price' => 'decimal:8',
-        'max_price' => 'decimal:8',
-        'min_return' => 'decimal:2',
-        'max_return' => 'decimal:2',
-        'bonus_percentage' => 'decimal:2',
+        'min_price'         => 'decimal:8',
+        'max_price'         => 'decimal:8',
+        'min_return'        => 'decimal:2',
+        'max_return'        => 'decimal:2',
+        'bonus_percentage'  => 'decimal:2',
         'allow_compounding' => 'boolean',
-        'featured' => 'boolean',
-        'active' => 'boolean',
-        'features' => 'array',
+        'featured'          => 'boolean',
+        'active'            => 'boolean',
+        'features'          => 'array',
     ];
 
-    protected static function bootSoftDeletes()
+    // ── Schema column cache ───────────────────────────────────────────────────
+    // We hardcode the table name here to avoid calling `new static()` inside
+    // initializeSoftDeletes(), which would cause infinite recursion → OOM.
+
+    private static array $colCache = [];
+
+    private static function columnExists(string $column): bool
     {
-        if (Schema::hasColumn((new static())->getTable(), 'deleted_at')) {
+        if (!array_key_exists($column, self::$colCache)) {
+            self::$colCache[$column] = Schema::hasColumn('plans', $column);
+        }
+        return self::$colCache[$column];
+    }
+
+    // ── SoftDeletes: only boot if the column actually exists ─────────────────
+
+    protected static function bootSoftDeletes(): void
+    {
+        if (self::columnExists('deleted_at')) {
             static::bootSoftDeletesTrait();
         }
     }
 
-    public function initializeSoftDeletes()
+    public function initializeSoftDeletes(): void
     {
-        if (Schema::hasColumn($this->getTable(), 'deleted_at')) {
+        if (self::columnExists('deleted_at')) {
             $this->initializeSoftDeletesTrait();
         }
     }
 
-    /**
-     * Get the user plans associated with this plan
-     */
+    // ── Relationships ─────────────────────────────────────────────────────────
+
     public function userPlans(): HasMany
     {
         return $this->hasMany(UserPlan::class, 'plan');
     }
 
-    /**
-     * Get the features for this plan
-     */
     public function planFeatures(): HasMany
     {
         return $this->hasMany(PlanFeature::class);
     }
 
-    /**
-     * Get the categories for this plan
-     */
     public function categories(): BelongsToMany
     {
         if (!Schema::hasTable('plan_plan_category') || !Schema::hasTable('plan_categories')) {
             return $this->belongsToMany(PlanCategory::class, 'plan_plan_category')->whereRaw('1 = 0');
         }
-
         return $this->belongsToMany(PlanCategory::class, 'plan_plan_category');
     }
 
+    // ── Accessors (read $attributes directly — no Schema calls at runtime) ────
+
     public function getIsActiveAttribute(): bool
     {
-        if (Schema::hasColumn($this->getTable(), 'active')) {
-            return (bool) $this->getAttribute('active');
-        }
-
-        return true;
+        return (bool) ($this->attributes['active'] ?? true);
     }
 
     public function getIsFeaturedAttribute(): bool
     {
-        if (Schema::hasColumn($this->getTable(), 'featured')) {
-            return (bool) $this->getAttribute('featured');
-        }
-
-        return false;
+        return (bool) ($this->attributes['featured'] ?? false);
     }
 
     public function getRoiPercentageAttribute(): float
     {
-        if (Schema::hasColumn($this->getTable(), 'roi_percentage')) {
-            return (float) $this->getAttribute('roi_percentage');
-        }
-
-        return (float) ($this->getAttribute('returns') ?? 0);
+        return (float) ($this->attributes['roi_percentage']
+            ?? $this->attributes['returns']
+            ?? 0);
     }
 
     public function getMinAmountAttribute(): float
     {
-        return (float) ($this->getAttribute('min_amount') ?? $this->getAttribute('min_price') ?? 0);
+        return (float) ($this->attributes['min_amount']
+            ?? $this->attributes['min_price']
+            ?? 0);
     }
 
     public function getMaxAmountAttribute(): float
     {
-        return (float) ($this->getAttribute('max_amount') ?? $this->getAttribute('max_price') ?? 0);
+        return (float) ($this->attributes['max_amount']
+            ?? $this->attributes['max_price']
+            ?? 0);
     }
 
     public function getRoiIntervalAttribute(): string
     {
-        return (string) ($this->getAttribute('roi_interval') ?? $this->getAttribute('type') ?? 'Standard plan');
+        return (string) ($this->attributes['roi_interval']
+            ?? $this->attributes['type']
+            ?? 'Standard plan');
     }
 
     public function getDurationUnitAttribute(): string
     {
-        if (Schema::hasColumn($this->getTable(), 'duration_unit')) {
-            return (string) $this->getAttribute('duration_unit');
-        }
-
-        return (string) ($this->getAttribute('expiration') ?? 'days');
+        return (string) ($this->attributes['duration_unit']
+            ?? $this->attributes['expiration']
+            ?? 'days');
     }
 
-    /**
-     * Calculate the duration in days
-     */
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
     public function getDurationInDays(): int
     {
-        $multiplier = match ($this->duration_type) {
-            'days' => 1,
-            'weeks' => 7,
+        $multiplier = match ($this->attributes['duration_type'] ?? 'days') {
+            'weeks'  => 7,
             'months' => 30,
-            'years' => 365,
-            default => 1,
+            'years'  => 365,
+            default  => 1,
         };
-
-        return (int) $this->duration * $multiplier;
+        return (int) ($this->attributes['duration'] ?? 1) * $multiplier;
     }
 
-    /**
-     * Calculate the expected return amount
-     */
     public function calculateExpectedReturn(float $amount): float
     {
-        $returnPercentage = ($this->min_return + $this->max_return) / 2;
+        $min = (float) ($this->attributes['min_return'] ?? 0);
+        $max = (float) ($this->attributes['max_return'] ?? 0);
+        $avg = ($min + $max) / 2;
 
-        // Simple ROI calculation
-        if ($this->return_type === 'percentage') {
-            return $amount * ($returnPercentage / 100) + $amount;
+        if (($this->attributes['return_type'] ?? 'percentage') === 'percentage') {
+            return $amount * ($avg / 100) + $amount;
         }
-
-        return $amount + $this->price; // Fixed amount return
+        return $amount + (float) ($this->attributes['price'] ?? 0);
     }
 
-    /**
-     * Boot the model
-     */
-    protected static function boot()
-    {
-        parent::boot();
+    // ── Scopes ────────────────────────────────────────────────────────────────
 
-        // Check if the active column exists - this is used until the migration can be run
-        static::addGlobalScope('defaultActive', function ($query) {
-            if (!\Schema::hasColumn('plans', 'active')) {
-                return $query;
-            }
-
-            return $query->where(function($q) {
-                $q->where('active', true)->orWhereNull('active');
-            });
-        });
-    }
-
-    /**
-     * Get active plans
-     */
     public function scopeActive($query)
     {
-        if (!\Schema::hasColumn('plans', 'active')) {
+        if (!self::columnExists('active')) {
             return $query;
         }
-
         return $query->where('active', true);
     }
 
-    /**
-     * Get featured plans
-     */
     public function scopeFeatured($query)
     {
         return $query->where('featured', true);
     }
 
-    /**
-     * Get plans by category
-     */
     public function scopeByCategory($query, $categoryId)
     {
-        return $query->whereHas('categories', function($q) use ($categoryId) {
+        return $query->whereHas('categories', function ($q) use ($categoryId) {
             $q->where('plan_category_id', $categoryId);
         });
     }
